@@ -1,0 +1,117 @@
+# Lab 9: Advanced ggplot2 - Facets, Themes, and Layouts {#lab9}
+
+```{block, type='objectives'}
+
+**Objectives:**
+
+1. To build scatterplots for continuous-vs-continuous relationships
+2. To build boxplots and violin plots for distributions across categories
+3. To refine axes, scales, and custom themes
+4. To use facetting to display complex, multi-panel data sets
+```
+
+In Lab 4 we covered histograms and bar plots. Today we go further: relationships between continuous variables, distributions across groups, and multi-panel layouts — the kind of polish you'll want for a scientific paper or presentation.
+
+## Scatterplots
+
+Scatterplots represent **continuous vs. continuous** variables, and are used to look for correlations.
+
+```{r}
+library(ggplot2)
+library(palmerpenguins)
+data(penguins)
+
+ggplot(data = penguins, aes(x=bill_depth_mm, y=bill_length_mm)) + geom_point()
+```
+
+This is hard to read as-is — no clear trend appears. Coloring by a category often reveals a hidden pattern (this is called **Simpson's Paradox**, when a trend appears, disappears, or reverses when a grouping variable is introduced):
+
+```{r}
+ggplot(data = penguins, aes(x=bill_depth_mm, y=bill_length_mm, color=species)) + geom_point()
+```
+
+```{block, type='rmdquestion'}
+#### Question 1
+
+- Build a scatterplot of `flipper_length_mm` (x) versus `body_mass_g` (y), colored by `species`
+- Is there a positive, negative, or no relationship? Does it differ by species?
+```
+
+## Boxplots and violin plots
+
+These combine a histogram-like view with a categorical x-axis, illustrating the **distribution of a continuous variable across categories**.
+
+```{r}
+ggplot(data = penguins, aes(x=species, y=flipper_length_mm, color=species)) + geom_violin()
+```
+
+Add the raw data points with `geom_jitter()`:
+
+```{r}
+ggplot(data = penguins, aes(x=species, y=flipper_length_mm, color=species)) + geom_violin() + geom_jitter()
+```
+
+Add a boxplot on top to summarize the median and quartiles:
+
+```{r}
+ggplot(data = penguins, aes(x=species, y=flipper_length_mm, color=species)) + geom_violin() + geom_jitter() + geom_boxplot()
+```
+
+The thick middle line is the median; the box edges are the 25th and 75th percentiles; the whiskers approximate a 95% range for comparing medians.
+
+```{block, type='rmdquestion'}
+#### Question 2
+
+- Build a boxplot of `bill_length_mm` across `species`
+- Which species has the widest spread (most variable) bill length? Which has the narrowest?
+- Connect this back to Lab 6: if you ran an ANOVA on this variable, would you predict a significant result based on this plot alone? Why?
+```
+
+## Facetting: multiple panels for complex data
+
+Facetting splits one plot into a grid of small panels, one per category — extremely useful for comparing patterns across many groups at once (e.g., decadal climate trends across multiple regions).
+
+```{r}
+ggplot(data = penguins, aes(x=bill_depth_mm, y=bill_length_mm)) +
+  geom_point() +
+  facet_wrap(~species)
+```
+
+`facet_wrap()` splits by one variable. `facet_grid()` splits by two variables at once (rows and columns):
+
+```{r}
+ggplot(data = penguins, aes(x=bill_depth_mm, y=bill_length_mm)) +
+  geom_point() +
+  facet_grid(sex ~ species)
+```
+
+```{block, type='rmdquestion'}
+#### Question 3
+
+- Facet the boxplot from Question 2 by `island` using `facet_wrap()`
+- Does the pattern you observed in Question 2 hold across all islands, or does it change? Explain.
+```
+
+## Refining axes, scales, and themes
+
+```{r}
+ggplot(data = penguins, aes(x=species, y=flipper_length_mm, fill=species)) +
+  geom_boxplot() +
+  scale_y_continuous(breaks = seq(170, 235, by = 10)) +
+  labs(title = "Flipper length by species",
+       subtitle = "Palmer Station, Antarctica LTER",
+       x = "Species", y = "Flipper length (mm)") +
+  theme_bw() +
+  theme(legend.position = "none")
+```
+
+- `scale_y_continuous(breaks = ...)` controls exactly where axis tick marks appear
+- `theme_bw()` gives a clean white-background theme, common in publications
+- `theme(legend.position = "none")` removes a redundant legend (here, color duplicates the x-axis)
+
+```{block, type='rmdquestion'}
+#### Question 4
+
+- Take your faceted plot from Question 3 and add a title, subtitle, clean axis labels, and a theme of your choice
+- Compare it to the very first, unstyled scatterplot at the top of this lab. In 2-3 sentences, explain what specifically makes the final version more "publication-ready."
+```

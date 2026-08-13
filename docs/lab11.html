@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 12 Lab 11: Computational Data Fitting and Predictive Modeling | BIOL120 Excercise Guidebook</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 12 Lab 11: Computational Data Fitting and Predictive Modeling | BIOL120 Excercise Guidebook" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 12 Lab 11: Computational Data Fitting and Predictive Modeling | BIOL120 Excercise Guidebook" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="ProfessorJavier F. Tabima Restrepo" />
+
+
+<meta name="date" content="2026-08-13" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="lab10.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Quantitative Biology (BIOL120)</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Quantitative Biology (BIOL120) Excercise Guidebook</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#additional-information-about-the-professor"><i class="fa fa-check"></i>Additional information about the professor</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="lab1.html"><a href="lab1.html"><i class="fa fa-check"></i><b>2</b> Lab 1: Introduction to Electronic Lab Notebooks</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="lab1.html"><a href="lab1.html#why-electronic-notebooks"><i class="fa fa-check"></i><b>2.1</b> Why electronic notebooks?</a></li>
+<li class="chapter" data-level="2.2" data-path="lab1.html"><a href="lab1.html#basics-of-markdown"><i class="fa fa-check"></i><b>2.2</b> Basics of Markdown</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="lab1.html"><a href="lab1.html#basic-syntax"><i class="fa fa-check"></i><b>2.2.1</b> Basic syntax</a></li>
+<li class="chapter" data-level="2.2.2" data-path="lab1.html"><a href="lab1.html#lines-and-blocks-of-code"><i class="fa fa-check"></i><b>2.2.2</b> Lines and blocks of code</a></li>
+<li class="chapter" data-level="2.2.3" data-path="lab1.html"><a href="lab1.html#lists"><i class="fa fa-check"></i><b>2.2.3</b> Lists</a></li>
+<li class="chapter" data-level="2.2.4" data-path="lab1.html"><a href="lab1.html#horizontal-rules"><i class="fa fa-check"></i><b>2.2.4</b> Horizontal rules</a></li>
+<li class="chapter" data-level="2.2.5" data-path="lab1.html"><a href="lab1.html#links-figures-and-tables"><i class="fa fa-check"></i><b>2.2.5</b> Links, figures and tables</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="lab1.html"><a href="lab1.html#executable-code-chunks"><i class="fa fa-check"></i><b>2.3</b> Executable code chunks</a></li>
+<li class="chapter" data-level="2.4" data-path="lab1.html"><a href="lab1.html#additional-resources-on-markdown"><i class="fa fa-check"></i><b>2.4</b> Additional resources on Markdown</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="lab2.html"><a href="lab2.html"><i class="fa fa-check"></i><b>3</b> Lab 2: Basic R Programming and Vector Operations</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="lab2.html"><a href="lab2.html#the-r-console-and-basic-math"><i class="fa fa-check"></i><b>3.1</b> The R console and basic math</a></li>
+<li class="chapter" data-level="3.2" data-path="lab2.html"><a href="lab2.html#objects"><i class="fa fa-check"></i><b>3.2</b> Objects</a></li>
+<li class="chapter" data-level="3.3" data-path="lab2.html"><a href="lab2.html#basic-data-structures-in-r"><i class="fa fa-check"></i><b>3.3</b> Basic data structures in R</a></li>
+<li class="chapter" data-level="3.4" data-path="lab2.html"><a href="lab2.html#unidimensional-objects-vectors"><i class="fa fa-check"></i><b>3.4</b> Unidimensional objects: Vectors</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="lab2.html"><a href="lab2.html#classes-of-vectors"><i class="fa fa-check"></i><b>3.4.1</b> Classes of vectors</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="lab2.html"><a href="lab2.html#math-operations-on-vectors"><i class="fa fa-check"></i><b>3.5</b> Math operations on vectors</a></li>
+<li class="chapter" data-level="3.6" data-path="lab2.html"><a href="lab2.html#expanding-vectors"><i class="fa fa-check"></i><b>3.6</b> Expanding vectors</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="lab3.html"><a href="lab3.html"><i class="fa fa-check"></i><b>4</b> Lab 3: Logical Subsetting and Conditional Filtering</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="lab3.html"><a href="lab3.html#logical-comparisons"><i class="fa fa-check"></i><b>4.1</b> Logical comparisons</a></li>
+<li class="chapter" data-level="4.2" data-path="lab3.html"><a href="lab3.html#boolean-logic-and-or-not"><i class="fa fa-check"></i><b>4.2</b> Boolean logic: AND, OR, NOT</a></li>
+<li class="chapter" data-level="4.3" data-path="lab3.html"><a href="lab3.html#subsetting-vectors-and-data-frames"><i class="fa fa-check"></i><b>4.3</b> Subsetting vectors and data frames</a></li>
+<li class="chapter" data-level="4.4" data-path="lab3.html"><a href="lab3.html#isolating-specific-variants-or-categories-of-interest"><i class="fa fa-check"></i><b>4.4</b> Isolating specific variants or categories of interest</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="lab4.html"><a href="lab4.html"><i class="fa fa-check"></i><b>5</b> Lab 4: Scientific Visualization with ggplot2</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="lab4.html"><a href="lab4.html#the-grammar-of-graphics"><i class="fa fa-check"></i><b>5.1</b> The Grammar of Graphics</a></li>
+<li class="chapter" data-level="5.2" data-path="lab4.html"><a href="lab4.html#installing-and-loading-ggplot2"><i class="fa fa-check"></i><b>5.2</b> Installing and loading ggplot2</a></li>
+<li class="chapter" data-level="5.3" data-path="lab4.html"><a href="lab4.html#histograms"><i class="fa fa-check"></i><b>5.3</b> Histograms</a></li>
+<li class="chapter" data-level="5.4" data-path="lab4.html"><a href="lab4.html#bar-plots"><i class="fa fa-check"></i><b>5.4</b> Bar plots</a></li>
+<li class="chapter" data-level="5.5" data-path="lab4.html"><a href="lab4.html#publication-quality-touches"><i class="fa fa-check"></i><b>5.5</b> Publication-quality touches</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="lab5.html"><a href="lab5.html"><i class="fa fa-check"></i><b>6</b> Lab 5: Chaining Data Operations and Pipelines for Public Health Data</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="lab5.html"><a href="lab5.html#the-problem-with-nested-functions"><i class="fa fa-check"></i><b>6.1</b> The problem with nested functions</a></li>
+<li class="chapter" data-level="6.2" data-path="lab5.html"><a href="lab5.html#the-pipe-operator"><i class="fa fa-check"></i><b>6.2</b> The pipe operator</a></li>
+<li class="chapter" data-level="6.3" data-path="lab5.html"><a href="lab5.html#building-a-pipeline-on-a-data-frame"><i class="fa fa-check"></i><b>6.3</b> Building a pipeline on a data frame</a></li>
+<li class="chapter" data-level="6.4" data-path="lab5.html"><a href="lab5.html#adding-a-new-calculated-column-mid-pipeline"><i class="fa fa-check"></i><b>6.4</b> Adding a new calculated column mid-pipeline</a></li>
+<li class="chapter" data-level="6.5" data-path="lab5.html"><a href="lab5.html#why-pipelines-matter-for-reproducibility"><i class="fa fa-check"></i><b>6.5</b> Why pipelines matter for reproducibility</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="lab6.html"><a href="lab6.html"><i class="fa fa-check"></i><b>7</b> Lab 6: Biostatistics and Computational Testing in R</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="lab6.html"><a href="lab6.html#statistical-hypotheses"><i class="fa fa-check"></i><b>7.1</b> Statistical hypotheses</a></li>
+<li class="chapter" data-level="7.2" data-path="lab6.html"><a href="lab6.html#the-t-test-comparing-two-groups"><i class="fa fa-check"></i><b>7.2</b> The t-test: comparing two groups</a></li>
+<li class="chapter" data-level="7.3" data-path="lab6.html"><a href="lab6.html#anova-comparing-more-than-two-groups"><i class="fa fa-check"></i><b>7.3</b> ANOVA: comparing more than two groups</a></li>
+<li class="chapter" data-level="7.4" data-path="lab6.html"><a href="lab6.html#chi-squared-test-comparing-categorical-variables"><i class="fa fa-check"></i><b>7.4</b> Chi-squared test: comparing categorical variables</a></li>
+<li class="chapter" data-level="7.5" data-path="lab6.html"><a href="lab6.html#choosing-the-right-test"><i class="fa fa-check"></i><b>7.5</b> Choosing the right test</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="lab7.html"><a href="lab7.html"><i class="fa fa-check"></i><b>8</b> Lab 7: R Markdown and Literate Programming</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="lab7.html"><a href="lab7.html#what-is-literate-programming"><i class="fa fa-check"></i><b>8.1</b> What is literate programming?</a></li>
+<li class="chapter" data-level="8.2" data-path="lab7.html"><a href="lab7.html#controlling-code-chunks"><i class="fa fa-check"></i><b>8.2</b> Controlling code chunks</a></li>
+<li class="chapter" data-level="8.3" data-path="lab7.html"><a href="lab7.html#scientific-and-mathematical-notation"><i class="fa fa-check"></i><b>8.3</b> Scientific and mathematical notation</a></li>
+<li class="chapter" data-level="8.4" data-path="lab7.html"><a href="lab7.html#exporting-your-report"><i class="fa fa-check"></i><b>8.4</b> Exporting your report</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="lab8.html"><a href="lab8.html"><i class="fa fa-check"></i><b>9</b> Lab 8: Advanced Data Wrangling and Importing Ecological Datasets</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="lab8.html"><a href="lab8.html#reading-text-delimited-files-.txt-.tsv"><i class="fa fa-check"></i><b>9.1</b> Reading text-delimited files (<code>.txt</code> / <code>.tsv</code>)</a></li>
+<li class="chapter" data-level="9.2" data-path="lab8.html"><a href="lab8.html#reading-comma-separated-files-.csv"><i class="fa fa-check"></i><b>9.2</b> Reading comma-separated files (<code>.csv</code>)</a></li>
+<li class="chapter" data-level="9.3" data-path="lab8.html"><a href="lab8.html#reading-excel-files-.xlsx"><i class="fa fa-check"></i><b>9.3</b> Reading Excel files (<code>.xlsx</code>)</a></li>
+<li class="chapter" data-level="9.4" data-path="lab8.html"><a href="lab8.html#dealing-with-missing-data"><i class="fa fa-check"></i><b>9.4</b> Dealing with missing data</a></li>
+<li class="chapter" data-level="9.5" data-path="lab8.html"><a href="lab8.html#selecting-variables-and-adding-calculated-columns"><i class="fa fa-check"></i><b>9.5</b> Selecting variables and adding calculated columns</a></li>
+<li class="chapter" data-level="9.6" data-path="lab8.html"><a href="lab8.html#summarizing-data-by-category"><i class="fa fa-check"></i><b>9.6</b> Summarizing data by category</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="lab9.html"><a href="lab9.html"><i class="fa fa-check"></i><b>10</b> Lab 9: Advanced ggplot2 - Facets, Themes, and Layouts</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="lab9.html"><a href="lab9.html#scatterplots"><i class="fa fa-check"></i><b>10.1</b> Scatterplots</a></li>
+<li class="chapter" data-level="10.2" data-path="lab9.html"><a href="lab9.html#boxplots-and-violin-plots"><i class="fa fa-check"></i><b>10.2</b> Boxplots and violin plots</a></li>
+<li class="chapter" data-level="10.3" data-path="lab9.html"><a href="lab9.html#facetting-multiple-panels-for-complex-data"><i class="fa fa-check"></i><b>10.3</b> Facetting: multiple panels for complex data</a></li>
+<li class="chapter" data-level="10.4" data-path="lab9.html"><a href="lab9.html#refining-axes-scales-and-themes"><i class="fa fa-check"></i><b>10.4</b> Refining axes, scales, and themes</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="lab10.html"><a href="lab10.html"><i class="fa fa-check"></i><b>11</b> Lab 10: Inference and Statistical Testing in Genomics</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="lab10.html"><a href="lab10.html#parametric-vs.-non-parametric-tests"><i class="fa fa-check"></i><b>11.1</b> Parametric vs. non-parametric tests</a></li>
+<li class="chapter" data-level="11.2" data-path="lab10.html"><a href="lab10.html#comparing-gene-expression-between-two-conditions"><i class="fa fa-check"></i><b>11.2</b> Comparing gene expression between two conditions</a></li>
+<li class="chapter" data-level="11.3" data-path="lab10.html"><a href="lab10.html#phenotypic-variation-across-environments"><i class="fa fa-check"></i><b>11.3</b> Phenotypic variation across environments</a></li>
+<li class="chapter" data-level="11.4" data-path="lab10.html"><a href="lab10.html#multiple-testing-why-1000-genes-1-gene"><i class="fa fa-check"></i><b>11.4</b> Multiple testing: why 1000 genes ≠ 1 gene</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="lab11.html"><a href="lab11.html"><i class="fa fa-check"></i><b>12</b> Lab 11: Computational Data Fitting and Predictive Modeling</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="lab11.html"><a href="lab11.html#linear-regression-basics"><i class="fa fa-check"></i><b>12.1</b> Linear regression basics</a></li>
+<li class="chapter" data-level="12.2" data-path="lab11.html"><a href="lab11.html#visualizing-the-fitted-line"><i class="fa fa-check"></i><b>12.2</b> Visualizing the fitted line</a></li>
+<li class="chapter" data-level="12.3" data-path="lab11.html"><a href="lab11.html#checking-the-fit-residuals"><i class="fa fa-check"></i><b>12.3</b> Checking the fit: residuals</a></li>
+<li class="chapter" data-level="12.4" data-path="lab11.html"><a href="lab11.html#making-predictions"><i class="fa fa-check"></i><b>12.4</b> Making predictions</a></li>
+<li class="chapter" data-level="12.5" data-path="lab11.html"><a href="lab11.html#curve-fitting-for-growth-and-conservation-trends"><i class="fa fa-check"></i><b>12.5</b> Curve fitting for growth and conservation trends</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">BIOL120 Excercise Guidebook</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="lab11" class="section level1 hasAnchor" number="12">
+<h1><span class="header-section-number">Chapter 12</span> Lab 11: Computational Data Fitting and Predictive Modeling<a href="lab11.html#lab11" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div class="objectives">
+<p>
+<strong>Objectives:</strong>
+</p>
+<ol style="list-style-type: decimal">
+<li>
+To fit a linear regression model in R
+</li>
+<li>
+To interpret model coefficients, R-squared, and p-values
+</li>
+<li>
+To evaluate model fit using residuals
+</li>
+<li>
+To use a fitted model to forecast/predict new values
+</li>
+</ol>
+</div>
+<p>This is our final statistics lab of the semester. Instead of just testing whether groups differ (Labs 6 and 10), today we build a model that describes <strong>how</strong> one variable changes as another changes — and use it to make predictions, a common task in environmental and conservation biology (e.g., forecasting population trends or growth curves).</p>
+<div id="linear-regression-basics" class="section level2 hasAnchor" number="12.1">
+<h2><span class="header-section-number">12.1</span> Linear regression basics<a href="lab11.html#linear-regression-basics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A simple linear regression models a straight-line relationship:</p>
+<p><span class="math display">\[y = \beta_0 + \beta_1 x + \epsilon\]</span></p>
+<p>where <span class="math inline">\(\beta_0\)</span> is the intercept, <span class="math inline">\(\beta_1\)</span> is the slope, and <span class="math inline">\(\epsilon\)</span> is the error term.</p>
+<p>Let’s use body measurements from the <code>penguins</code> data set (Lab 4/9) to model how flipper length predicts body mass.</p>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="lab11.html#cb191-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb191-2"><a href="lab11.html#cb191-2" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb191-3"><a href="lab11.html#cb191-3" tabindex="-1"></a><span class="fu">data</span>(penguins)</span>
+<span id="cb191-4"><a href="lab11.html#cb191-4" tabindex="-1"></a>penguins <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(penguins)</span></code></pre></div>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="lab11.html#cb192-1" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(body_mass_g <span class="sc">~</span> flipper_length_mm, <span class="at">data =</span> penguins)</span>
+<span id="cb192-2"><a href="lab11.html#cb192-2" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = body_mass_g ~ flipper_length_mm, data = penguins)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -1057.33  -259.79   -12.24   242.97  1293.89 
+## 
+## Coefficients:
+##                   Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)       -5872.09     310.29  -18.93   &lt;2e-16 ***
+## flipper_length_mm    50.15       1.54   32.56   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 393.3 on 331 degrees of freedom
+## Multiple R-squared:  0.7621, Adjusted R-squared:  0.7614 
+## F-statistic:  1060 on 1 and 331 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>Key parts of the output:</p>
+<ul>
+<li><strong>Estimate</strong> (Intercept and slope): the fitted values of <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span></li>
+<li><strong>Pr(&gt;|t|)</strong>: p-value testing whether each coefficient differs significantly from zero</li>
+<li><strong>R-squared</strong>: the proportion of variance in <span class="math inline">\(y\)</span> explained by <span class="math inline">\(x\)</span> (0 to 1; closer to 1 = better fit)</li>
+</ul>
+<div class="rmdquestion">
+<h4 id="question-1">
+Question 1
+</h4>
+<ul>
+<li>
+What is the slope of this model? In plain language, what does it
+mean biologically (e.g., “for every 1mm increase in flipper length, body
+mass increases by ___ grams”)?
+</li>
+<li>
+What is the R-squared value? How much of the variation in body mass
+does flipper length explain?
+</li>
+<li>
+Is the slope statistically significant? How do you know?
+</li>
+</ul>
+</div>
+</div>
+<div id="visualizing-the-fitted-line" class="section level2 hasAnchor" number="12.2">
+<h2><span class="header-section-number">12.2</span> Visualizing the fitted line<a href="lab11.html#visualizing-the-fitted-line" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="lab11.html#cb194-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
+<span id="cb194-2"><a href="lab11.html#cb194-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb194-3"><a href="lab11.html#cb194-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb194-4"><a href="lab11.html#cb194-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Flipper length (mm)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Body mass (g)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb194-5"><a href="lab11.html#cb194-5" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-129-1.png" width="672" /></p>
+<p><code>geom_smooth(method="lm")</code> overlays the regression line, and <code>se=TRUE</code> shades a 95% confidence band around it.</p>
+<div class="rmdquestion">
+<h4 id="question-2">
+Question 2
+</h4>
+<ul>
+<li>
+Recreate this plot but colored by <code>species</code>. Does the
+flipper length - body mass relationship look consistent across species,
+or different?
+</li>
+</ul>
+</div>
+</div>
+<div id="checking-the-fit-residuals" class="section level2 hasAnchor" number="12.3">
+<h2><span class="header-section-number">12.3</span> Checking the fit: residuals<a href="lab11.html#checking-the-fit-residuals" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Residuals</strong> are the differences between observed and predicted values (<span class="math inline">\(y_{observed} - y_{predicted}\)</span>). A good linear fit should have residuals scattered randomly around zero, with no obvious pattern.</p>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="lab11.html#cb196-1" tabindex="-1"></a><span class="fu">plot</span>(model, <span class="at">which =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-131-1.png" width="672" /></p>
+<p>If you see a clear curve or funnel shape in this plot, a straight line may not be the right model for your data.</p>
+<div class="rmdquestion">
+<h4 id="question-3">
+Question 3
+</h4>
+<ul>
+<li>
+Based on the residual plot, does a linear model seem like a
+reasonable fit for this relationship? Explain what you’d look for to
+answer “yes” or “no.”
+</li>
+</ul>
+</div>
+</div>
+<div id="making-predictions" class="section level2 hasAnchor" number="12.4">
+<h2><span class="header-section-number">12.4</span> Making predictions<a href="lab11.html#making-predictions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Once a model is fit, you can use it to predict new, unobserved values with <code>predict()</code>:</p>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="lab11.html#cb197-1" tabindex="-1"></a>new_penguin <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">flipper_length_mm =</span> <span class="dv">210</span>)</span>
+<span id="cb197-2"><a href="lab11.html#cb197-2" tabindex="-1"></a><span class="fu">predict</span>(model, <span class="at">newdata =</span> new_penguin)</span></code></pre></div>
+<pre><code>##        1 
+## 4660.093</code></pre>
+<div class="rmdquestion">
+<h4 id="question-4">
+Question 4
+</h4>
+<ul>
+<li>
+Using your fitted model, predict the body mass of a penguin with a
+flipper length of 195mm and one with 225mm
+</li>
+<li>
+One of these predictions is likely more reliable than the other.
+Which one, and why? (Hint: look at the range of flipper lengths actually
+observed in the data with <code>range(penguins$flipper_length_mm)</code>
+— predicting outside this range is called “extrapolation”)
+</li>
+</ul>
+</div>
+</div>
+<div id="curve-fitting-for-growth-and-conservation-trends" class="section level2 hasAnchor" number="12.5">
+<h2><span class="header-section-number">12.5</span> Curve fitting for growth and conservation trends<a href="lab11.html#curve-fitting-for-growth-and-conservation-trends" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Not all biological relationships are straight lines. Population growth, for example, is often better modeled with a curve. Here’s a simple example using <code>nls()</code> (nonlinear least squares) to fit an exponential growth curve to simulated population data:</p>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="lab11.html#cb199-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">11</span>)</span>
+<span id="cb199-2"><a href="lab11.html#cb199-2" tabindex="-1"></a>year <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">15</span></span>
+<span id="cb199-3"><a href="lab11.html#cb199-3" tabindex="-1"></a>population <span class="ot">&lt;-</span> <span class="dv">50</span> <span class="sc">*</span> <span class="fu">exp</span>(<span class="fl">0.15</span> <span class="sc">*</span> year) <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">15</span>, <span class="dv">0</span>, <span class="dv">10</span>)</span>
+<span id="cb199-4"><a href="lab11.html#cb199-4" tabindex="-1"></a>pop_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(year, population)</span>
+<span id="cb199-5"><a href="lab11.html#cb199-5" tabindex="-1"></a></span>
+<span id="cb199-6"><a href="lab11.html#cb199-6" tabindex="-1"></a>growth_model <span class="ot">&lt;-</span> <span class="fu">nls</span>(population <span class="sc">~</span> N0 <span class="sc">*</span> <span class="fu">exp</span>(r <span class="sc">*</span> year), <span class="at">data =</span> pop_data,</span>
+<span id="cb199-7"><a href="lab11.html#cb199-7" tabindex="-1"></a>                     <span class="at">start =</span> <span class="fu">list</span>(<span class="at">N0 =</span> <span class="dv">50</span>, <span class="at">r =</span> <span class="fl">0.1</span>))</span>
+<span id="cb199-8"><a href="lab11.html#cb199-8" tabindex="-1"></a><span class="fu">summary</span>(growth_model)</span></code></pre></div>
+<pre><code>## 
+## Formula: population ~ N0 * exp(r * year)
+## 
+## Parameters:
+##    Estimate Std. Error t value Pr(&gt;|t|)    
+## N0 49.23624    2.16641   22.73 7.53e-12 ***
+## r   0.14961    0.00348   42.99 2.11e-15 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 9.213 on 13 degrees of freedom
+## 
+## Number of iterations to convergence: 4 
+## Achieved convergence tolerance: 3.79e-06</code></pre>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="lab11.html#cb201-1" tabindex="-1"></a><span class="fu">ggplot</span>(pop_data, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> population)) <span class="sc">+</span></span>
+<span id="cb201-2"><a href="lab11.html#cb201-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb201-3"><a href="lab11.html#cb201-3" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">predict</span>(growth_model)), <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb201-4"><a href="lab11.html#cb201-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Fitted exponential growth curve&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Year&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Population size&quot;</span>) <span class="sc">+</span></span>
+<span id="cb201-5"><a href="lab11.html#cb201-5" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-136-1.png" width="672" /></p>
+<div class="rmdquestion">
+<h4 id="question-5">
+Question 5
+</h4>
+<ul>
+<li>
+What is the fitted growth rate (<span class="math inline"><span class="math inline">\(r\)</span></span>) from <code>growth_model</code>?
+</li>
+<li>
+Use <code>predict()</code> with this model to forecast the
+population size at year 20. Add the code and result.
+</li>
+<li>
+Why might a linear model be a poor choice for forecasting population
+growth, compared to this exponential model? Relate your answer back to
+what you observed with residuals in Question 3.
+</li>
+</ul>
+</div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="lab10.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/USERNAME/REPO/edit/BRANCH/11-lab11-datafitting.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["_main.pdf", "_main.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

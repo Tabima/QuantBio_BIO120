@@ -1,0 +1,196 @@
+# Lab 1: Introduction to Electronic Lab Notebooks {#lab1}
+
+```{block, type='objectives'}
+
+**Objectives:**
+
+1. To create electronic notebooks for the course
+2. To familiarize ourselves with the use of R Markdown and its features
+3. To create our initial R Markdown document
+4. To understand the importance of replicable and reproducible notebooks
+```
+
+The electronic lab notebooks we will use in class will be created as `R Markdown documents`.
+
+Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document.
+
+## Why electronic notebooks?
+
+Reproducibility is a core value of quantitative biology: another scientist (or you, six months from now) should be able to open your notebook, run it, and get the exact same results. An electronic notebook that mixes your written explanations, your code, and your code's output in one document is one of the easiest ways to guarantee that.
+
+We will call these documents *Electronic Lab Notebooks (ELNs)*. Your ELNs will record what you did in lab, save your results and commands, and document where your data files live. Every lab practicum in this course must be submitted as a knitted R Markdown document.
+
+***
+
+## Basics of Markdown
+
+> Syntax: a set of rules for, or an analysis of the syntax of, a language
+
+### Basic syntax
+
+In Markdown, text that is not specially formatted displays in plain font. If you surround words with certain symbols, they change appearance:
+
+- `**bold**` becomes **bold**
+- `*italics*` becomes *italics*
+
+If you want to add a header or subtitle, start a line with `#`. One `#` is a main header, two `##` is a subtitle, and so on.
+
+### Lines and blocks of code
+
+Markdown allows you to display unformatted lines of code. To create in-line code, surround it with a single backtick `` ` ``.
+
+#### Example of inline code:
+
+Similarity searches were done using `blastn` with default parameters.
+
+#### Example of code blocks:
+
+To create a code block, start a region with three backticks, add your code, then close with three more backticks:
+
+```
+This is a code block
+some_command --flag value
+```
+
+### Lists
+
+**Unordered** lists start each item with a `-`:
+
+```
+- Bananas
+- Pijamas
+- Bandanas
+```
+
+- Bananas
+- Pijamas
+- Bandanas
+
+**Ordered** lists use a number and a period. Numbers don't have to be consecutive in the raw text — Markdown renumbers them automatically:
+
+```
+1. Wake up
+1. Make the bed
+1. Lie down again
+```
+
+1. Wake up
+1. Make the bed
+1. Lie down again
+
+Nested lists are created with **4 spaces** of indentation:
+
+```
+1. This week:
+    - Homework
+    - Breakfast
+2. This weekend
+    - Nothing
+```
+
+1. This week:
+    - Homework
+    - Breakfast
+2. This weekend
+    - Nothing
+
+### Horizontal rules
+
+Three `*` in a row on an empty line creates a horizontal rule:
+
+```
+***
+```
+
+***
+
+### Links, figures and tables
+
+**Hyperlinks:** `[link name](link address)`. For example `[NCBI](ncbi.nlm.nih.gov/)` renders as [NCBI](ncbi.nlm.nih.gov/).
+
+**Figures from the web:** same syntax as a link with a `!` in front: `![Clark Logo](https://www.clarku.edu/wp-content/themes/clarku/assets/img/main-logo.svg)` renders as:
+
+![Clark Logo](https://www.clarku.edu/wp-content/themes/clarku/assets/img/main-logo.svg)
+
+You can also embed local images (e.g., a photo of your notebook page) by uploading the file into the same folder as your `.Rmd` and linking it: `![Local image of my notebook](notebook_pg1.jpg)`.
+
+**Tables:** separate the header row with hyphens and each column with a pipe `|`:
+
+```
+Header One| Header Two
+------------ | -------------
+Cell [1,1] | Cell [1,2]
+```
+
+Header One| Header Two
+------------ | -------------
+Cell [1,1] | Cell [1,2]
+
+Tip: use [tablesgenerator.com](https://www.tablesgenerator.com/markdown_tables) to convert an Excel/CSV table into Markdown automatically.
+
+***
+
+## Executable code chunks
+
+```{block, type='rmdinfo'}
+
+#### Executable Code Chunks
+
+Executable code chunks are sections in your R Markdown file that allow you to **execute** or run code. That means you can read datasets, create tables, and plot figures directly inside the notebook.
+
+Executable code chunks look like this:
+
+<pre><code>```{coding language goes here}
+code goes here
+```</code></pre>
+
+We can use `bash`, `R`, and even `python` (with the right packages installed) inside an R Markdown document.
+```
+
+An example using `bash` to get the current date:
+
+<pre><code>```{bash}
+date
+```</code></pre>
+
+```{bash, echo=F}
+date
+```
+
+And an example using `R`:
+
+<pre><code>```{r}
+2 + 2
+```</code></pre>
+
+```{r, echo=F}
+2 + 2
+```
+
+```{block, type='rmdquestion'}
+#### Question 1
+
+- Create a new R Markdown document in RStudio (`File -> New File -> R Markdown`) and save it as `Lab1_YourName.Rmd`
+- Add a level-1 header with your name, a level-2 header called "Lab 1"
+- Write two sentences about yourself using at least one bold word and one italic word
+- Add an unordered list with three of your hobbies
+- Add one `R` code chunk that prints the result of `5 * 7`
+- Knit the document to HTML and confirm it renders without errors. Add a screenshot or describe what you see.
+```
+
+```{block, type='rmdquestion'}
+#### Question 2
+
+- Why does reproducibility matter in science? Give one example (real or hypothetical) of a problem that could arise if a colleague could not reproduce your analysis.
+- What is the difference between writing code in the R console versus writing it inside a code chunk in an R Markdown notebook?
+```
+
+***
+
+## Additional resources on Markdown
+
+- [Mastering Markdown by GitHub](https://guides.github.com/features/mastering-markdown/)
+- [Using online resources to learn Markdown](https://www.markdowntutorial.com/)
+- [R Markdown gallery](https://rmarkdown.rstudio.com/gallery.html)

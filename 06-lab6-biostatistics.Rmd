@@ -1,0 +1,110 @@
+# Lab 6: Biostatistics and Computational Testing in R {#lab6}
+
+```{block, type='objectives'}
+
+**Objectives:**
+
+1. To understand what a statistical hypothesis is
+2. To execute and interpret a t-test
+3. To execute and interpret a one-way ANOVA
+4. To execute and interpret a chi-squared test
+```
+
+Up to now we've described and visualized data. Today we take the next step: asking whether the patterns we see are likely to be real, or could plausibly be due to chance.
+
+## Statistical hypotheses
+
+Every statistical test starts with two competing hypotheses:
+
+- **Null hypothesis ($H_0$):** there is no difference / no relationship
+- **Alternative hypothesis ($H_1$):** there is a difference / a relationship
+
+A test gives us a **p-value**: the probability of observing data this extreme (or more extreme) if the null hypothesis were true. By convention in biology, we often use $\alpha = 0.05$ as our threshold — if $p < 0.05$, we reject $H_0$.
+
+```{block, type='rmdquestion'}
+#### Question 1
+
+- In your own words, what does a p-value of 0.03 mean?
+- What does it NOT mean? (Hint: it is not "the probability the null hypothesis is true")
+```
+
+## The t-test: comparing two groups
+
+A t-test compares the means of two groups of a continuous variable. Let's use the `penguins` data set from Lab 4.
+
+```{r}
+library(palmerpenguins)
+data(penguins)
+penguins <- na.omit(penguins)
+```
+
+Do Adelie and Chinstrap penguins differ in bill length?
+
+```{r}
+adelie_chinstrap <- subset(penguins, species %in% c("Adelie","Chinstrap"))
+t.test(bill_length_mm ~ species, data = adelie_chinstrap)
+```
+
+Look at the `p-value` in the output. A very small p-value (well below 0.05) tells us the two species' mean bill lengths are very unlikely to be this different by chance alone.
+
+```{block, type='rmdquestion'}
+#### Question 2
+
+- Run a t-test comparing `flipper_length_mm` between Gentoo and Adelie penguins. Add the code and the output.
+- Based on the p-value, would you reject or fail to reject the null hypothesis? State your conclusion in a full sentence.
+```
+
+## ANOVA: comparing more than two groups
+
+A t-test only compares two groups. When you have three or more groups, use an **ANOVA** (Analysis of Variance) instead.
+
+```{r}
+anova_model <- aov(bill_length_mm ~ species, data = penguins)
+summary(anova_model)
+```
+
+Look at the `Pr(>F)` value in the summary table — this is your p-value for the ANOVA.
+
+```{block, type='rmdquestion'}
+#### Question 3
+
+- Run an ANOVA testing whether `body_mass_g` differs across all three penguin species. Add the code and output.
+- What does the ANOVA tell you that a single t-test could not?
+- ANOVA tells you *that* groups differ, but not *which* groups differ. Look up `TukeyHSD()` and run it on your model. Which specific pairs of species are significantly different?
+```
+
+## Chi-squared test: comparing categorical variables
+
+A chi-squared test asks whether two **categorical** variables are associated. For example: is `island` associated with `species`?
+
+First, build a contingency table:
+
+```{r}
+island_species_table <- table(penguins$island, penguins$species)
+island_species_table
+```
+
+Then test it:
+
+```{r}
+chisq.test(island_species_table)
+```
+
+```{block, type='rmdquestion'}
+#### Question 4
+
+- Build a contingency table of `species` versus `sex`, and run a chi-squared test on it. Add the code and output.
+- Based on the p-value, is there a statistically significant association between species and sex in this data set? Explain what that would mean biologically if there were.
+```
+
+## Choosing the right test
+
+```{block, type='rmdquestion'}
+#### Question 5
+
+For each of the following biological questions, name the test you would use (t-test, ANOVA, or chi-squared) and explain why:
+
+- Does average tail length differ between two subspecies of lizard?
+- Does flower color (red/yellow/white) differ in frequency between two habitats?
+- Does average enzyme activity differ across four temperature treatments?
+```

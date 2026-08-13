@@ -1,0 +1,141 @@
+# Lab 4: Scientific Visualization with ggplot2 {#lab4}
+
+```{block, type='objectives'}
+
+**Objectives:**
+
+1. To understand the Grammar of Graphics used by ggplot2
+2. To map variables to aesthetics (x, y, fill, color)
+3. To build histograms and bar plots
+4. To design a publication-quality chart
+```
+
+One of the clearest ways to present results is by plotting them. This chapter focuses on the `ggplot2` package, the most widely used plotting package in `R`.
+
+## The Grammar of Graphics
+
+`ggplot2` builds plots in layers using a consistent syntax:
+
+```
+ggplot(data = <data>, aes(x = <variable>, y = <variable>)) + geom_<type>()
+```
+
+- `data =` tells ggplot which data frame to use
+- `aes()` ("aesthetic mapping") tells ggplot which columns go on which axis (and optionally, color/fill)
+- `geom_<type>()` tells ggplot what kind of plot to draw (bars, points, lines, etc.)
+
+Make sure your data is "tidy": each variable you want to plot should be in its own column.
+
+## Installing and loading ggplot2
+
+```{block, type='rmdinfo'}
+#### R Packages
+
+An R package is a collection of code, data, and functions that extends what `R` can do.
+
+##### Installing a package
+
+Write this once in the **CONSOLE**:
+
+`install.packages('ggplot2')`
+
+##### Loading a package
+
+Add this to a code chunk in your R Markdown notebook:
+
+\```{r}
+library(ggplot2)
+\```
+```
+
+We'll practice with `R`'s well-known `palmerpenguins` data set. Install it if you haven't already (`install.packages("palmerpenguins")`), then load both packages:
+
+```{r}
+library(ggplot2)
+library(palmerpenguins)
+data(penguins)
+```
+
+```{block, type='rmdquestion'}
+#### Question 1
+
+- Load `ggplot2` and `palmerpenguins` in your own notebook
+- Use `str(penguins)` or `head(penguins)` to explore the data. What are the columns, and what class is each one?
+```
+
+## Histograms
+
+A histogram shows the **distribution of frequency** of a continuous value. The x-axis holds the continuous values (binned into intervals) and the y-axis holds the count.
+
+```{r}
+ggplot(data = penguins, aes(x=flipper_length_mm)) + geom_bar()
+```
+
+We can add color to separate categories, for example by species:
+
+```{r}
+ggplot(data = penguins, aes(x=flipper_length_mm, fill=species)) + geom_bar()
+```
+
+```{block, type='rmdquestion'}
+#### Question 2
+
+- Make a histogram of `bill_length_mm`, colored by `species`. Add the code and a short interpretation: do the species overlap or separate?
+```
+
+## Bar plots
+
+Bar plots represent a **continuous variable across discrete categories**. A good example: the number of penguins per species per island.
+
+```{r}
+library(tidyverse)
+penguin.island <- penguins %>% count(species, island)
+penguin.island
+```
+
+```{r}
+ggplot(data = penguin.island, aes(x=island, y=n)) + geom_bar(stat = "identity")
+```
+
+The `stat="identity"` flag tells ggplot to use the actual value in `n` for the bar height, instead of counting rows.
+
+Add `fill=species` to break each bar down by species:
+
+```{r}
+ggplot(data = penguin.island, aes(x=island, y=n, fill=species)) + geom_bar(stat = "identity")
+```
+
+This is a **stacked bar chart**. To place bars for each category side-by-side instead, add `position="dodge"`:
+
+```{r}
+ggplot(data = penguin.island, aes(x=island, y=n, fill=species)) + geom_bar(stat = "identity", position = "dodge")
+```
+
+```{block, type='rmdquestion'}
+#### Question 3
+
+- Which islands have only one species of penguin, and which have more than one? Use the plots above to answer.
+- Recreate the `penguin.island` summary but grouped by `species` and `sex` instead of `species` and `island`. Plot it as a dodged bar chart.
+```
+
+## Publication-quality touches
+
+A few small additions go a long way toward making a plot presentation-ready:
+
+```{r}
+ggplot(data = penguin.island, aes(x=island, y=n, fill=species)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(title = "Penguin counts by island and species",
+       x = "Island", y = "Number of penguins", fill = "Species") +
+  theme_minimal()
+```
+
+- `labs()` sets a title and axis/legend labels
+- `theme_minimal()` (or `theme_bw()`, `theme_classic()`) strips ggplot's default gray background
+
+```{block, type='rmdquestion'}
+#### Question 4
+
+- Take one of your plots from this lab and add a title, clear axis labels, and a theme of your choice
+- In 2-3 sentences, explain why labeling and theming matters when sharing a plot outside of your own notebook (e.g., in a paper or presentation)
+```

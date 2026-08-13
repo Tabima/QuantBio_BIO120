@@ -1,0 +1,127 @@
+# Lab 5: Chaining Data Operations and Pipelines for Public Health Data {#lab5}
+
+```{block, type='objectives'}
+
+**Objectives:**
+
+1. To understand the purpose of the pipe operator (`%>%` or `|>`)
+2. To chain multiple functions into a single readable pipeline
+3. To structure clean, reproducible code for multi-step analyses
+4. To apply a pipeline to a public health data set
+```
+
+So far, every time we wanted to do multiple operations on our data, we either nested functions inside each other or created many intermediate objects. Today we learn a cleaner way: **piping**.
+
+## The problem with nested functions
+
+Recall from earlier labs that we can nest functions, like `length(unique(x))`. This works for two steps, but gets hard to read fast:
+
+```{r, eval=FALSE}
+round(mean(subset(my_data, group == "A")$value), 2)
+```
+
+Reading this requires working from the inside out — the opposite order of how the steps actually happen.
+
+## The pipe operator
+
+The pipe operator, written `%>%` (from the `tidyverse` package) or `|>` (built into base R since version 4.1), means **"and then."** It takes the output of what's on its left and feeds it as the first input to what's on its right.
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+c(4, 8, 15, 16, 23, 42) %>% mean()
+```
+
+is the same as:
+
+```{r}
+mean(c(4, 8, 15, 16, 23, 42))
+```
+
+The real benefit shows up once you chain several steps:
+
+```{r}
+c(4, 8, 15, 16, 23, 42) %>%
+  mean() %>%
+  round(1)
+```
+
+Each line reads like a sentence: "take this vector, and then take its mean, and then round it."
+
+```{block, type='rmdquestion'}
+#### Question 1
+
+- Rewrite `sqrt(sum(c(3,4)^2))` (the length of a right-triangle hypotenuse) using the pipe operator
+- In your own words, explain what "and then" means in the context of `%>%`
+```
+
+## Building a pipeline on a data frame
+
+Let's build a small public health data set: daily case counts of a disease across a few counties.
+
+```{r}
+cases <- data.frame(
+  county = c("Worcester","Worcester","Middlesex","Middlesex","Suffolk","Suffolk"),
+  day = c(1,2,1,2,1,2),
+  new_cases = c(12, 18, 5, 9, 30, 25),
+  stringsAsFactors = FALSE
+)
+cases
+```
+
+A typical pipeline might: filter to a county of interest, calculate a summary statistic, and round the result — all in one chain:
+
+```{r}
+cases %>%
+  filter(county == "Suffolk") %>%
+  summarize(total_cases = sum(new_cases), avg_cases = mean(new_cases))
+```
+
+`filter()` and `summarize()` are `tidyverse` functions similar to `subset()` and the summary functions you've already used, but designed to work smoothly with the pipe.
+
+We can also group by a category before summarizing, using `group_by()`:
+
+```{r}
+cases %>%
+  group_by(county) %>%
+  summarize(total_cases = sum(new_cases))
+```
+
+```{block, type='rmdquestion'}
+#### Question 2
+
+- Add two more days of data to the `cases` data frame (for any counties)
+- Write a pipeline that calculates the average `new_cases` per county, sorted from highest to lowest (hint: look up the `arrange()` function and use `desc()`)
+- Add the code and the resulting table
+```
+
+## Adding a new calculated column mid-pipeline
+
+The `mutate()` function adds a new column, and can be chained into your pipeline:
+
+```{r}
+cases %>%
+  mutate(cases_per_1000 = new_cases / 10) %>%
+  filter(cases_per_1000 > 1)
+```
+
+```{block, type='rmdquestion'}
+#### Question 3
+
+- Add a column to `cases` called `severity`, calculated as `new_cases * 2` (a made-up severity index), using `mutate()` inside a pipeline
+- Then filter the pipeline to show only rows with `severity` greater than 20
+- Chain all of this into a single pipeline with `%>%`. Add the code and result
+```
+
+## Why pipelines matter for reproducibility
+
+A well-structured pipeline documents your entire analysis as a readable sequence of steps, each easy to check individually. This connects directly to the goal from Lab 1: an outside reader (or your future self) should be able to follow exactly what happened to the data, in what order.
+
+```{block, type='rmdquestion'}
+#### Question 4
+
+- Take any 3-step analysis you've done in a previous lab (loading data, filtering, and summarizing, for example) and rewrite it as a single `%>%` pipeline
+- What are the advantages of a pipeline over nested functions, in terms of reproducibility and readability? What might be a disadvantage?
+```

@@ -1,0 +1,175 @@
+# Lab 2: Basic R Programming and Vector Operations {#lab2}
+
+```{block, type='objectives'}
+
+**Objectives:**
+
+1. To understand what an object is in R
+2. To identify and create vectors
+3. To learn how to differentiate types (classes) of vectors
+4. To perform simple math operations on numeric vectors
+```
+
+This chapter focuses on getting comfortable with the `R` console, scripting, and packages, and on the core syntax you will use for the rest of the course: creating objects, and building and operating on vectors.
+
+## The R console and basic math
+
+Open RStudio and locate the **console** pane. You can type any of the following directly into the console and hit `Enter`:
+
+```{r}
+2 + 2
+10 - 3
+6 * 7
+100 / 4
+2^5
+```
+
+R follows the standard order of operations (PEMDAS), and you can use parentheses to control it, just like a calculator.
+
+```{block, type='rmdquestion'}
+#### Question 1
+   - Use the R console to calculate the area of a circle with radius 4.5 (Hint: `pi` is a built-in constant in R)
+   - Calculate $ \frac{(12+8)}{4^2} $ using R. Add the code and the result.
+```
+
+## Objects
+
+`R` can store any type of variable into an **object**. To create an object, write the name of the object, followed by `<-`, followed by what you want to store.
+
+```{r}
+x <- 5
+x
+```
+
+You'll see the new object `x` appear in your **Environment** pane (upper right of RStudio). That confirms your object has been created and is available for future use in this session.
+
+## Basic data structures in R
+
+A basic data structure is an n-dimensional object that stores information. Data structures in R are classified by their number of dimensions:
+
+1. Uni-dimensional data structures such as **vectors**
+2. Two-dimensional data structures such as **data frames** or **matrices**
+3. N-dimensional data structures such as **lists** (not covered in this course)
+
+```{r}
+# One dimensional objects
+c(1,2,3,4,5)
+c("A","B","C","D","E")
+
+# Two dimensional objects
+data.frame(c(1,2,3,4,5), c("A","B","C","D","E"))
+```
+
+## Unidimensional objects: Vectors
+
+A vector is a one-dimensional object — think of it as a "list" of elements in only one direction, with no rows or columns.
+
+```{r}
+numbers <- c(1,2,3,4,5)
+letters_vec <- c("A","B","C","D")
+numbers
+letters_vec
+```
+
+To create a vector, use the `c()` function (short for "combine"), which combines the values you separate by commas.
+
+```{block, type='rmdinfo'}
+###  R Functions
+
+Functions are the commands `R` uses to interpret an order. `c()` means "Combine Values into a Vector."
+
+Syntax: `function(object)`
+
+To measure the length of a vector, use the function `length()`:
+```
+
+```{r}
+length(numbers)
+```
+
+```{block, type='rmdquestion'}
+#### Question 2
+
+- Create three vectors:
+    - One named `words` with your five favorite words
+    - One named `numbers` with your lucky numbers
+    - One named `mixed` with three numbers and three letters, in any order
+- Show the code you used to create the vectors
+```
+
+### Classes of vectors
+
+Use the `class()` command to identify the type of vector you're working with:
+
+```{r}
+class(numbers)
+class(letters_vec)
+```
+
+`R` shows either `numeric`/`integer` or `character`. Character vectors are surrounded by quotation marks (`"`); numeric vectors are not.
+
+```{block, type='rmdquestion'}
+#### Question 3
+
+- What are the classes of your `words`, `numbers` and `mixed` objects from Question 2?
+- What class does R assign to a vector that mixes numbers and letters, like `mixed`? Why do you think that happens?
+```
+
+## Math operations on vectors
+
+Because vectors can hold multiple numbers at once, math operations are applied **element-wise**:
+
+```{r}
+v1 <- c(1, 2, 3, 4, 5)
+v1 + 10
+v1 * 2
+v1 ^ 2
+```
+
+You can also do math between two vectors of the same length:
+
+```{r}
+v2 <- c(10, 20, 30, 40, 50)
+v1 + v2
+v2 / v1
+```
+
+Useful summary functions for numeric vectors:
+
+```{r}
+sum(v1)
+mean(v1)
+max(v1)
+min(v1)
+```
+
+```{block, type='rmdquestion'}
+#### Question 4
+
+- Create a numeric vector called `measurements` with 6 numbers of your choice
+- Calculate the sum, mean, maximum, and minimum of `measurements`. Add the code and results
+- Multiply every value in `measurements` by 2.54 (as if converting inches to centimeters). Add the code and the resulting vector
+```
+
+## Expanding vectors
+
+If you have two vectors of the same class, you can combine them using `c()` again:
+
+```{r}
+double.letters <- c(letters_vec, letters_vec)
+double.letters
+
+double.numbers <- c(numbers, numbers)
+double.numbers
+
+more.numbers <- c(numbers, 6, 7, 8, 9, 10)
+more.numbers
+```
+
+```{block, type='rmdquestion'}
+#### Question 5
+
+- Increase each of your vectors from Question 2 by two or three more elements. Add the code and the results.
+- Create an object that combines your `words` and `numbers` vectors. Add the code.
+- What is the class of this combined object? Explain why, based on what you learned in Question 3.
+```

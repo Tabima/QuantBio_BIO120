@@ -1,0 +1,108 @@
+# Lab 7: R Markdown and Literate Programming {#lab7}
+
+```{block, type='objectives'}
+
+**Objectives:**
+
+1. To understand the concept of literate programming
+2. To integrate code, text, and scientific/mathematical notation in a single document
+3. To customize code chunk behavior (echo, eval, results)
+4. To export a reproducible report to HTML and PDF
+```
+
+Back in Lab 1 you built your first R Markdown notebook. Now that you know a lot more `R`, it's time to dig into what makes R Markdown genuinely powerful: **literate programming** — writing your explanation and your code side-by-side, as one continuous, reproducible document.
+
+## What is literate programming?
+
+Literate programming means the document you write to explain your analysis IS the document that runs your analysis. There's no separate "script" and "report" that can drift out of sync — they're the same file.
+
+```{block, type='rmdquestion'}
+#### Question 1
+
+- Think back to Lab 1's electronic notebook. What could go wrong if you kept your code in one file and your write-up in a separate Word document? Give one concrete example.
+```
+
+## Controlling code chunks
+
+Every code chunk can take options that control what happens when you knit:
+
+| Option | Effect |
+|---|---|
+| `echo=FALSE` | runs the code but hides it from the output (only shows results) |
+| `eval=FALSE` | shows the code but does NOT run it |
+| `include=FALSE` | runs the code but hides both code and output |
+| `results='hide'` | runs the code, shows nothing of the output |
+| `message=FALSE`, `warning=FALSE` | suppress package-loading messages/warnings |
+
+```{r, echo=FALSE}
+# This code runs, but you don't see this comment or the code itself in the knitted output
+x <- 5 * 5
+```
+
+```{r}
+x
+```
+
+```{block, type='rmdquestion'}
+#### Question 2
+
+- Create a code chunk that calculates the mean of `c(3,6,9,12)` but set `echo=FALSE` so only the result shows. Knit it and confirm the code is hidden but the answer appears.
+- Create a second chunk showing a `library()` call with `message=FALSE` so the loading message doesn't clutter your report. Explain why a reader of your report might prefer this.
+```
+
+## Scientific and mathematical notation
+
+R Markdown supports LaTeX math notation, which is essential for writing formulas cleanly in a scientific report. Inline math is wrapped in single dollar signs, block equations in double dollar signs.
+
+Inline: `$E = mc^2$` renders as $E = mc^2$
+
+Block:
+```
+$$\bar{x} = \frac{1}{n}\sum_{i=1}^{n}x_i$$
+```
+renders as:
+
+$$\bar{x} = \frac{1}{n}\sum_{i=1}^{n}x_i$$
+
+Some useful symbols:
+
+| Code | Renders |
+|---|---|
+| `\alpha`, `\beta` | $\alpha$, $\beta$ |
+| `x^2` | $x^2$ |
+| `x_i` | $x_i$ |
+| `\frac{a}{b}` | $\frac{a}{b}$ |
+| `\sqrt{x}` | $\sqrt{x}$ |
+| `\sum` | $\sum$ |
+
+```{block, type='rmdquestion'}
+#### Question 3
+
+- Write the formula for sample standard deviation in LaTeX math notation and confirm it renders correctly when knitted:
+
+$$s = \sqrt{\frac{1}{n-1}\sum_{i=1}^{n}(x_i - \bar{x})^2}$$
+
+- Write out, in LaTeX notation, the formula you used for a t-test or ANOVA in Lab 6 (you can find the general formula online — cite where you found it)
+```
+
+## Exporting your report
+
+R Markdown can knit to several output formats, controlled by the YAML header at the very top of your `.Rmd` file:
+
+```
+---
+title: "My Lab Report"
+author: "Your Name"
+date: "`r Sys.Date()`"
+output: html_document
+---
+```
+
+Change `output: html_document` to `output: pdf_document` to knit to PDF instead (this requires a LaTeX installation — RStudio will prompt you to install `tinytex` if needed), or `output: word_document` for a `.docx` file.
+
+```{block, type='rmdquestion'}
+#### Question 4
+
+- Add a proper YAML header to your notebook with a title, your name, and `` `r Sys.Date()` `` for an automatically updating date
+- Knit your document to both HTML and PDF (or Word, if PDF gives you trouble). Add a note on any differences you noticed between the two output formats
+```

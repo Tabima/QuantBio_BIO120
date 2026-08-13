@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 7 Lab 6: Biostatistics and Computational Testing in R | BIOL120 Excercise Guidebook</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 7 Lab 6: Biostatistics and Computational Testing in R | BIOL120 Excercise Guidebook" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 7 Lab 6: Biostatistics and Computational Testing in R | BIOL120 Excercise Guidebook" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="ProfessorJavier F. Tabima Restrepo" />
+
+
+<meta name="date" content="2026-08-13" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="lab5.html"/>
+<link rel="next" href="lab7.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Quantitative Biology (BIOL120)</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Quantitative Biology (BIOL120) Excercise Guidebook</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#additional-information-about-the-professor"><i class="fa fa-check"></i>Additional information about the professor</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="lab1.html"><a href="lab1.html"><i class="fa fa-check"></i><b>2</b> Lab 1: Introduction to Electronic Lab Notebooks</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="lab1.html"><a href="lab1.html#why-electronic-notebooks"><i class="fa fa-check"></i><b>2.1</b> Why electronic notebooks?</a></li>
+<li class="chapter" data-level="2.2" data-path="lab1.html"><a href="lab1.html#basics-of-markdown"><i class="fa fa-check"></i><b>2.2</b> Basics of Markdown</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="lab1.html"><a href="lab1.html#basic-syntax"><i class="fa fa-check"></i><b>2.2.1</b> Basic syntax</a></li>
+<li class="chapter" data-level="2.2.2" data-path="lab1.html"><a href="lab1.html#lines-and-blocks-of-code"><i class="fa fa-check"></i><b>2.2.2</b> Lines and blocks of code</a></li>
+<li class="chapter" data-level="2.2.3" data-path="lab1.html"><a href="lab1.html#lists"><i class="fa fa-check"></i><b>2.2.3</b> Lists</a></li>
+<li class="chapter" data-level="2.2.4" data-path="lab1.html"><a href="lab1.html#horizontal-rules"><i class="fa fa-check"></i><b>2.2.4</b> Horizontal rules</a></li>
+<li class="chapter" data-level="2.2.5" data-path="lab1.html"><a href="lab1.html#links-figures-and-tables"><i class="fa fa-check"></i><b>2.2.5</b> Links, figures and tables</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="lab1.html"><a href="lab1.html#executable-code-chunks"><i class="fa fa-check"></i><b>2.3</b> Executable code chunks</a></li>
+<li class="chapter" data-level="2.4" data-path="lab1.html"><a href="lab1.html#additional-resources-on-markdown"><i class="fa fa-check"></i><b>2.4</b> Additional resources on Markdown</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="lab2.html"><a href="lab2.html"><i class="fa fa-check"></i><b>3</b> Lab 2: Basic R Programming and Vector Operations</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="lab2.html"><a href="lab2.html#the-r-console-and-basic-math"><i class="fa fa-check"></i><b>3.1</b> The R console and basic math</a></li>
+<li class="chapter" data-level="3.2" data-path="lab2.html"><a href="lab2.html#objects"><i class="fa fa-check"></i><b>3.2</b> Objects</a></li>
+<li class="chapter" data-level="3.3" data-path="lab2.html"><a href="lab2.html#basic-data-structures-in-r"><i class="fa fa-check"></i><b>3.3</b> Basic data structures in R</a></li>
+<li class="chapter" data-level="3.4" data-path="lab2.html"><a href="lab2.html#unidimensional-objects-vectors"><i class="fa fa-check"></i><b>3.4</b> Unidimensional objects: Vectors</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="lab2.html"><a href="lab2.html#classes-of-vectors"><i class="fa fa-check"></i><b>3.4.1</b> Classes of vectors</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="lab2.html"><a href="lab2.html#math-operations-on-vectors"><i class="fa fa-check"></i><b>3.5</b> Math operations on vectors</a></li>
+<li class="chapter" data-level="3.6" data-path="lab2.html"><a href="lab2.html#expanding-vectors"><i class="fa fa-check"></i><b>3.6</b> Expanding vectors</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="lab3.html"><a href="lab3.html"><i class="fa fa-check"></i><b>4</b> Lab 3: Logical Subsetting and Conditional Filtering</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="lab3.html"><a href="lab3.html#logical-comparisons"><i class="fa fa-check"></i><b>4.1</b> Logical comparisons</a></li>
+<li class="chapter" data-level="4.2" data-path="lab3.html"><a href="lab3.html#boolean-logic-and-or-not"><i class="fa fa-check"></i><b>4.2</b> Boolean logic: AND, OR, NOT</a></li>
+<li class="chapter" data-level="4.3" data-path="lab3.html"><a href="lab3.html#subsetting-vectors-and-data-frames"><i class="fa fa-check"></i><b>4.3</b> Subsetting vectors and data frames</a></li>
+<li class="chapter" data-level="4.4" data-path="lab3.html"><a href="lab3.html#isolating-specific-variants-or-categories-of-interest"><i class="fa fa-check"></i><b>4.4</b> Isolating specific variants or categories of interest</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="lab4.html"><a href="lab4.html"><i class="fa fa-check"></i><b>5</b> Lab 4: Scientific Visualization with ggplot2</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="lab4.html"><a href="lab4.html#the-grammar-of-graphics"><i class="fa fa-check"></i><b>5.1</b> The Grammar of Graphics</a></li>
+<li class="chapter" data-level="5.2" data-path="lab4.html"><a href="lab4.html#installing-and-loading-ggplot2"><i class="fa fa-check"></i><b>5.2</b> Installing and loading ggplot2</a></li>
+<li class="chapter" data-level="5.3" data-path="lab4.html"><a href="lab4.html#histograms"><i class="fa fa-check"></i><b>5.3</b> Histograms</a></li>
+<li class="chapter" data-level="5.4" data-path="lab4.html"><a href="lab4.html#bar-plots"><i class="fa fa-check"></i><b>5.4</b> Bar plots</a></li>
+<li class="chapter" data-level="5.5" data-path="lab4.html"><a href="lab4.html#publication-quality-touches"><i class="fa fa-check"></i><b>5.5</b> Publication-quality touches</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="lab5.html"><a href="lab5.html"><i class="fa fa-check"></i><b>6</b> Lab 5: Chaining Data Operations and Pipelines for Public Health Data</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="lab5.html"><a href="lab5.html#the-problem-with-nested-functions"><i class="fa fa-check"></i><b>6.1</b> The problem with nested functions</a></li>
+<li class="chapter" data-level="6.2" data-path="lab5.html"><a href="lab5.html#the-pipe-operator"><i class="fa fa-check"></i><b>6.2</b> The pipe operator</a></li>
+<li class="chapter" data-level="6.3" data-path="lab5.html"><a href="lab5.html#building-a-pipeline-on-a-data-frame"><i class="fa fa-check"></i><b>6.3</b> Building a pipeline on a data frame</a></li>
+<li class="chapter" data-level="6.4" data-path="lab5.html"><a href="lab5.html#adding-a-new-calculated-column-mid-pipeline"><i class="fa fa-check"></i><b>6.4</b> Adding a new calculated column mid-pipeline</a></li>
+<li class="chapter" data-level="6.5" data-path="lab5.html"><a href="lab5.html#why-pipelines-matter-for-reproducibility"><i class="fa fa-check"></i><b>6.5</b> Why pipelines matter for reproducibility</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="lab6.html"><a href="lab6.html"><i class="fa fa-check"></i><b>7</b> Lab 6: Biostatistics and Computational Testing in R</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="lab6.html"><a href="lab6.html#statistical-hypotheses"><i class="fa fa-check"></i><b>7.1</b> Statistical hypotheses</a></li>
+<li class="chapter" data-level="7.2" data-path="lab6.html"><a href="lab6.html#the-t-test-comparing-two-groups"><i class="fa fa-check"></i><b>7.2</b> The t-test: comparing two groups</a></li>
+<li class="chapter" data-level="7.3" data-path="lab6.html"><a href="lab6.html#anova-comparing-more-than-two-groups"><i class="fa fa-check"></i><b>7.3</b> ANOVA: comparing more than two groups</a></li>
+<li class="chapter" data-level="7.4" data-path="lab6.html"><a href="lab6.html#chi-squared-test-comparing-categorical-variables"><i class="fa fa-check"></i><b>7.4</b> Chi-squared test: comparing categorical variables</a></li>
+<li class="chapter" data-level="7.5" data-path="lab6.html"><a href="lab6.html#choosing-the-right-test"><i class="fa fa-check"></i><b>7.5</b> Choosing the right test</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="lab7.html"><a href="lab7.html"><i class="fa fa-check"></i><b>8</b> Lab 7: R Markdown and Literate Programming</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="lab7.html"><a href="lab7.html#what-is-literate-programming"><i class="fa fa-check"></i><b>8.1</b> What is literate programming?</a></li>
+<li class="chapter" data-level="8.2" data-path="lab7.html"><a href="lab7.html#controlling-code-chunks"><i class="fa fa-check"></i><b>8.2</b> Controlling code chunks</a></li>
+<li class="chapter" data-level="8.3" data-path="lab7.html"><a href="lab7.html#scientific-and-mathematical-notation"><i class="fa fa-check"></i><b>8.3</b> Scientific and mathematical notation</a></li>
+<li class="chapter" data-level="8.4" data-path="lab7.html"><a href="lab7.html#exporting-your-report"><i class="fa fa-check"></i><b>8.4</b> Exporting your report</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="lab8.html"><a href="lab8.html"><i class="fa fa-check"></i><b>9</b> Lab 8: Advanced Data Wrangling and Importing Ecological Datasets</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="lab8.html"><a href="lab8.html#reading-text-delimited-files-.txt-.tsv"><i class="fa fa-check"></i><b>9.1</b> Reading text-delimited files (<code>.txt</code> / <code>.tsv</code>)</a></li>
+<li class="chapter" data-level="9.2" data-path="lab8.html"><a href="lab8.html#reading-comma-separated-files-.csv"><i class="fa fa-check"></i><b>9.2</b> Reading comma-separated files (<code>.csv</code>)</a></li>
+<li class="chapter" data-level="9.3" data-path="lab8.html"><a href="lab8.html#reading-excel-files-.xlsx"><i class="fa fa-check"></i><b>9.3</b> Reading Excel files (<code>.xlsx</code>)</a></li>
+<li class="chapter" data-level="9.4" data-path="lab8.html"><a href="lab8.html#dealing-with-missing-data"><i class="fa fa-check"></i><b>9.4</b> Dealing with missing data</a></li>
+<li class="chapter" data-level="9.5" data-path="lab8.html"><a href="lab8.html#selecting-variables-and-adding-calculated-columns"><i class="fa fa-check"></i><b>9.5</b> Selecting variables and adding calculated columns</a></li>
+<li class="chapter" data-level="9.6" data-path="lab8.html"><a href="lab8.html#summarizing-data-by-category"><i class="fa fa-check"></i><b>9.6</b> Summarizing data by category</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="lab9.html"><a href="lab9.html"><i class="fa fa-check"></i><b>10</b> Lab 9: Advanced ggplot2 - Facets, Themes, and Layouts</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="lab9.html"><a href="lab9.html#scatterplots"><i class="fa fa-check"></i><b>10.1</b> Scatterplots</a></li>
+<li class="chapter" data-level="10.2" data-path="lab9.html"><a href="lab9.html#boxplots-and-violin-plots"><i class="fa fa-check"></i><b>10.2</b> Boxplots and violin plots</a></li>
+<li class="chapter" data-level="10.3" data-path="lab9.html"><a href="lab9.html#facetting-multiple-panels-for-complex-data"><i class="fa fa-check"></i><b>10.3</b> Facetting: multiple panels for complex data</a></li>
+<li class="chapter" data-level="10.4" data-path="lab9.html"><a href="lab9.html#refining-axes-scales-and-themes"><i class="fa fa-check"></i><b>10.4</b> Refining axes, scales, and themes</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="lab10.html"><a href="lab10.html"><i class="fa fa-check"></i><b>11</b> Lab 10: Inference and Statistical Testing in Genomics</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="lab10.html"><a href="lab10.html#parametric-vs.-non-parametric-tests"><i class="fa fa-check"></i><b>11.1</b> Parametric vs. non-parametric tests</a></li>
+<li class="chapter" data-level="11.2" data-path="lab10.html"><a href="lab10.html#comparing-gene-expression-between-two-conditions"><i class="fa fa-check"></i><b>11.2</b> Comparing gene expression between two conditions</a></li>
+<li class="chapter" data-level="11.3" data-path="lab10.html"><a href="lab10.html#phenotypic-variation-across-environments"><i class="fa fa-check"></i><b>11.3</b> Phenotypic variation across environments</a></li>
+<li class="chapter" data-level="11.4" data-path="lab10.html"><a href="lab10.html#multiple-testing-why-1000-genes-1-gene"><i class="fa fa-check"></i><b>11.4</b> Multiple testing: why 1000 genes ≠ 1 gene</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="lab11.html"><a href="lab11.html"><i class="fa fa-check"></i><b>12</b> Lab 11: Computational Data Fitting and Predictive Modeling</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="lab11.html"><a href="lab11.html#linear-regression-basics"><i class="fa fa-check"></i><b>12.1</b> Linear regression basics</a></li>
+<li class="chapter" data-level="12.2" data-path="lab11.html"><a href="lab11.html#visualizing-the-fitted-line"><i class="fa fa-check"></i><b>12.2</b> Visualizing the fitted line</a></li>
+<li class="chapter" data-level="12.3" data-path="lab11.html"><a href="lab11.html#checking-the-fit-residuals"><i class="fa fa-check"></i><b>12.3</b> Checking the fit: residuals</a></li>
+<li class="chapter" data-level="12.4" data-path="lab11.html"><a href="lab11.html#making-predictions"><i class="fa fa-check"></i><b>12.4</b> Making predictions</a></li>
+<li class="chapter" data-level="12.5" data-path="lab11.html"><a href="lab11.html#curve-fitting-for-growth-and-conservation-trends"><i class="fa fa-check"></i><b>12.5</b> Curve fitting for growth and conservation trends</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">BIOL120 Excercise Guidebook</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="lab6" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">Chapter 7</span> Lab 6: Biostatistics and Computational Testing in R<a href="lab6.html#lab6" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div class="objectives">
+<p>
+<strong>Objectives:</strong>
+</p>
+<ol style="list-style-type: decimal">
+<li>
+To understand what a statistical hypothesis is
+</li>
+<li>
+To execute and interpret a t-test
+</li>
+<li>
+To execute and interpret a one-way ANOVA
+</li>
+<li>
+To execute and interpret a chi-squared test
+</li>
+</ol>
+</div>
+<p>Up to now we’ve described and visualized data. Today we take the next step: asking whether the patterns we see are likely to be real, or could plausibly be due to chance.</p>
+<div id="statistical-hypotheses" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> Statistical hypotheses<a href="lab6.html#statistical-hypotheses" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Every statistical test starts with two competing hypotheses:</p>
+<ul>
+<li><strong>Null hypothesis (<span class="math inline">\(H_0\)</span>):</strong> there is no difference / no relationship</li>
+<li><strong>Alternative hypothesis (<span class="math inline">\(H_1\)</span>):</strong> there is a difference / a relationship</li>
+</ul>
+<p>A test gives us a <strong>p-value</strong>: the probability of observing data this extreme (or more extreme) if the null hypothesis were true. By convention in biology, we often use <span class="math inline">\(\alpha = 0.05\)</span> as our threshold — if <span class="math inline">\(p &lt; 0.05\)</span>, we reject <span class="math inline">\(H_0\)</span>.</p>
+<div class="rmdquestion">
+<h4 id="question-1">
+Question 1
+</h4>
+<ul>
+<li>
+In your own words, what does a p-value of 0.03 mean?
+</li>
+<li>
+What does it NOT mean? (Hint: it is not “the probability the null
+hypothesis is true”)
+</li>
+</ul>
+</div>
+</div>
+<div id="the-t-test-comparing-two-groups" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">7.2</span> The t-test: comparing two groups<a href="lab6.html#the-t-test-comparing-two-groups" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A t-test compares the means of two groups of a continuous variable. Let’s use the <code>penguins</code> data set from Lab 4.</p>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="lab6.html#cb124-1" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb124-2"><a href="lab6.html#cb124-2" tabindex="-1"></a><span class="fu">data</span>(penguins)</span>
+<span id="cb124-3"><a href="lab6.html#cb124-3" tabindex="-1"></a>penguins <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(penguins)</span></code></pre></div>
+<p>Do Adelie and Chinstrap penguins differ in bill length?</p>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="lab6.html#cb125-1" tabindex="-1"></a>adelie_chinstrap <span class="ot">&lt;-</span> <span class="fu">subset</span>(penguins, species <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Adelie&quot;</span>,<span class="st">&quot;Chinstrap&quot;</span>))</span>
+<span id="cb125-2"><a href="lab6.html#cb125-2" tabindex="-1"></a><span class="fu">t.test</span>(bill_length_mm <span class="sc">~</span> species, <span class="at">data =</span> adelie_chinstrap)</span></code></pre></div>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  bill_length_mm by species
+## t = -21.712, df = 108.17, p-value &lt; 2.2e-16
+## alternative hypothesis: true difference in means between group Adelie and group Chinstrap is not equal to 0
+## 95 percent confidence interval:
+##  -10.92365  -9.09605
+## sample estimates:
+##    mean in group Adelie mean in group Chinstrap 
+##                38.82397                48.83382</code></pre>
+<p>Look at the <code>p-value</code> in the output. A very small p-value (well below 0.05) tells us the two species’ mean bill lengths are very unlikely to be this different by chance alone.</p>
+<div class="rmdquestion">
+<h4 id="question-2">
+Question 2
+</h4>
+<ul>
+<li>
+Run a t-test comparing <code>flipper_length_mm</code> between Gentoo
+and Adelie penguins. Add the code and the output.
+</li>
+<li>
+Based on the p-value, would you reject or fail to reject the null
+hypothesis? State your conclusion in a full sentence.
+</li>
+</ul>
+</div>
+</div>
+<div id="anova-comparing-more-than-two-groups" class="section level2 hasAnchor" number="7.3">
+<h2><span class="header-section-number">7.3</span> ANOVA: comparing more than two groups<a href="lab6.html#anova-comparing-more-than-two-groups" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A t-test only compares two groups. When you have three or more groups, use an <strong>ANOVA</strong> (Analysis of Variance) instead.</p>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="lab6.html#cb127-1" tabindex="-1"></a>anova_model <span class="ot">&lt;-</span> <span class="fu">aov</span>(bill_length_mm <span class="sc">~</span> species, <span class="at">data =</span> penguins)</span>
+<span id="cb127-2"><a href="lab6.html#cb127-2" tabindex="-1"></a><span class="fu">summary</span>(anova_model)</span></code></pre></div>
+<pre><code>##              Df Sum Sq Mean Sq F value Pr(&gt;F)    
+## species       2   7015    3508   397.3 &lt;2e-16 ***
+## Residuals   330   2914       9                   
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>Look at the <code>Pr(&gt;F)</code> value in the summary table — this is your p-value for the ANOVA.</p>
+<div class="rmdquestion">
+<h4 id="question-3">
+Question 3
+</h4>
+<ul>
+<li>
+Run an ANOVA testing whether <code>body_mass_g</code> differs across
+all three penguin species. Add the code and output.
+</li>
+<li>
+What does the ANOVA tell you that a single t-test could not?
+</li>
+<li>
+ANOVA tells you <em>that</em> groups differ, but not <em>which</em>
+groups differ. Look up <code>TukeyHSD()</code> and run it on your model.
+Which specific pairs of species are significantly different?
+</li>
+</ul>
+</div>
+</div>
+<div id="chi-squared-test-comparing-categorical-variables" class="section level2 hasAnchor" number="7.4">
+<h2><span class="header-section-number">7.4</span> Chi-squared test: comparing categorical variables<a href="lab6.html#chi-squared-test-comparing-categorical-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A chi-squared test asks whether two <strong>categorical</strong> variables are associated. For example: is <code>island</code> associated with <code>species</code>?</p>
+<p>First, build a contingency table:</p>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="lab6.html#cb129-1" tabindex="-1"></a>island_species_table <span class="ot">&lt;-</span> <span class="fu">table</span>(penguins<span class="sc">$</span>island, penguins<span class="sc">$</span>species)</span>
+<span id="cb129-2"><a href="lab6.html#cb129-2" tabindex="-1"></a>island_species_table</span></code></pre></div>
+<pre><code>##            
+##             Adelie Chinstrap Gentoo
+##   Biscoe        44         0    119
+##   Dream         55        68      0
+##   Torgersen     47         0      0</code></pre>
+<p>Then test it:</p>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="lab6.html#cb131-1" tabindex="-1"></a><span class="fu">chisq.test</span>(island_species_table)</span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test
+## 
+## data:  island_species_table
+## X-squared = 284.59, df = 4, p-value &lt; 2.2e-16</code></pre>
+<div class="rmdquestion">
+<h4 id="question-4">
+Question 4
+</h4>
+<ul>
+<li>
+Build a contingency table of <code>species</code> versus
+<code>sex</code>, and run a chi-squared test on it. Add the code and
+output.
+</li>
+<li>
+Based on the p-value, is there a statistically significant
+association between species and sex in this data set? Explain what that
+would mean biologically if there were.
+</li>
+</ul>
+</div>
+</div>
+<div id="choosing-the-right-test" class="section level2 hasAnchor" number="7.5">
+<h2><span class="header-section-number">7.5</span> Choosing the right test<a href="lab6.html#choosing-the-right-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="rmdquestion">
+<h4 id="question-5">
+Question 5
+</h4>
+<p>
+For each of the following biological questions, name the test you
+would use (t-test, ANOVA, or chi-squared) and explain why:
+</p>
+<ul>
+<li>
+Does average tail length differ between two subspecies of
+lizard?
+</li>
+<li>
+Does flower color (red/yellow/white) differ in frequency between two
+habitats?
+</li>
+<li>
+Does average enzyme activity differ across four temperature
+treatments?
+</li>
+</ul>
+</div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="lab5.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="lab7.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/USERNAME/REPO/edit/BRANCH/06-lab6-biostatistics.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["_main.pdf", "_main.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

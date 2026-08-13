@@ -1,6 +1,6 @@
 --- 
 title: "BIOL120 Excercise Guidebook"
-author: "Professors Jackie Dresch and Javier F. Tabima Restrepo"
+author: "ProfessorJavier F. Tabima Restrepo"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: book
@@ -24,8 +24,4 @@ You will find here all the exercises for class, as well as a basic reference gui
 
 Professor Tabima Restrepo is always reachable at `jtabima@clarku.edu`. 
 
-His office hours are on *Wednesdays between 1PM and 3PM* in Lasry 223, or by email.
-
-Professor Dresch is always reachable at `jdresch@clarku.edu`. 
-
-Her office hours are on *Tuesdays and Fridays between 10:30 and 11:30 AM* in Lasry 111, or by email.
+His office hours are on *Wednesdays between 1PM and 3PM* in Lasry 233, or by email.

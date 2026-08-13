@@ -1,0 +1,130 @@
+# Lab 11: Computational Data Fitting and Predictive Modeling {#lab11}
+
+```{block, type='objectives'}
+
+**Objectives:**
+
+1. To fit a linear regression model in R
+2. To interpret model coefficients, R-squared, and p-values
+3. To evaluate model fit using residuals
+4. To use a fitted model to forecast/predict new values
+```
+
+This is our final statistics lab of the semester. Instead of just testing whether groups differ (Labs 6 and 10), today we build a model that describes **how** one variable changes as another changes — and use it to make predictions, a common task in environmental and conservation biology (e.g., forecasting population trends or growth curves).
+
+## Linear regression basics
+
+A simple linear regression models a straight-line relationship:
+
+$$y = \beta_0 + \beta_1 x + \epsilon$$
+
+where $\beta_0$ is the intercept, $\beta_1$ is the slope, and $\epsilon$ is the error term.
+
+Let's use body measurements from the `penguins` data set (Lab 4/9) to model how flipper length predicts body mass.
+
+```{r}
+library(ggplot2)
+library(palmerpenguins)
+data(penguins)
+penguins <- na.omit(penguins)
+```
+
+```{r}
+model <- lm(body_mass_g ~ flipper_length_mm, data = penguins)
+summary(model)
+```
+
+Key parts of the output:
+
+- **Estimate** (Intercept and slope): the fitted values of $\beta_0$ and $\beta_1$
+- **Pr(>|t|)**: p-value testing whether each coefficient differs significantly from zero
+- **R-squared**: the proportion of variance in $y$ explained by $x$ (0 to 1; closer to 1 = better fit)
+
+```{block, type='rmdquestion'}
+#### Question 1
+
+- What is the slope of this model? In plain language, what does it mean biologically (e.g., "for every 1mm increase in flipper length, body mass increases by ___ grams")?
+- What is the R-squared value? How much of the variation in body mass does flipper length explain?
+- Is the slope statistically significant? How do you know?
+```
+
+## Visualizing the fitted line
+
+```{r}
+ggplot(data = penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = TRUE) +
+  labs(x = "Flipper length (mm)", y = "Body mass (g)") +
+  theme_minimal()
+```
+
+`geom_smooth(method="lm")` overlays the regression line, and `se=TRUE` shades a 95% confidence band around it.
+
+```{block, type='rmdquestion'}
+#### Question 2
+
+- Recreate this plot but colored by `species`. Does the flipper length - body mass relationship look consistent across species, or different?
+```
+
+## Checking the fit: residuals
+
+**Residuals** are the differences between observed and predicted values ($y_{observed} - y_{predicted}$). A good linear fit should have residuals scattered randomly around zero, with no obvious pattern.
+
+```{r}
+plot(model, which = 1)
+```
+
+If you see a clear curve or funnel shape in this plot, a straight line may not be the right model for your data.
+
+```{block, type='rmdquestion'}
+#### Question 3
+
+- Based on the residual plot, does a linear model seem like a reasonable fit for this relationship? Explain what you'd look for to answer "yes" or "no."
+```
+
+## Making predictions
+
+Once a model is fit, you can use it to predict new, unobserved values with `predict()`:
+
+```{r}
+new_penguin <- data.frame(flipper_length_mm = 210)
+predict(model, newdata = new_penguin)
+```
+
+```{block, type='rmdquestion'}
+#### Question 4
+
+- Using your fitted model, predict the body mass of a penguin with a flipper length of 195mm and one with 225mm
+- One of these predictions is likely more reliable than the other. Which one, and why? (Hint: look at the range of flipper lengths actually observed in the data with `range(penguins$flipper_length_mm)` — predicting outside this range is called "extrapolation")
+```
+
+## Curve fitting for growth and conservation trends
+
+Not all biological relationships are straight lines. Population growth, for example, is often better modeled with a curve. Here's a simple example using `nls()` (nonlinear least squares) to fit an exponential growth curve to simulated population data:
+
+```{r}
+set.seed(11)
+year <- 1:15
+population <- 50 * exp(0.15 * year) + rnorm(15, 0, 10)
+pop_data <- data.frame(year, population)
+
+growth_model <- nls(population ~ N0 * exp(r * year), data = pop_data,
+                     start = list(N0 = 50, r = 0.1))
+summary(growth_model)
+```
+
+```{r}
+ggplot(pop_data, aes(x = year, y = population)) +
+  geom_point() +
+  geom_line(aes(y = predict(growth_model)), color = "blue") +
+  labs(title = "Fitted exponential growth curve", x = "Year", y = "Population size") +
+  theme_minimal()
+```
+
+```{block, type='rmdquestion'}
+#### Question 5
+
+- What is the fitted growth rate ($r$) from `growth_model`? 
+- Use `predict()` with this model to forecast the population size at year 20. Add the code and result.
+- Why might a linear model be a poor choice for forecasting population growth, compared to this exponential model? Relate your answer back to what you observed with residuals in Question 3.
+```

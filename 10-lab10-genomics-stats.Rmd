@@ -1,0 +1,123 @@
+# Lab 10: Inference and Statistical Testing in Genomics {#lab10}
+
+```{block, type='objectives'}
+
+**Objectives:**
+
+1. To distinguish parametric from non-parametric statistical tests
+2. To apply statistical inference to gene expression data
+3. To test for phenotypic variation across environments
+4. To interpret multiple-testing concerns in genomic data
+```
+
+Lab 6 introduced core statistical tests. Genomic data sets bring an extra wrinkle: instead of testing one variable, you're often testing thousands of genes at once, and the data frequently doesn't meet the assumptions of the tests we've used so far.
+
+## Parametric vs. non-parametric tests
+
+**Parametric tests** (t-test, ANOVA) assume your data are roughly normally distributed. **Non-parametric tests** make no such assumption, and are safer when your data are skewed, have outliers, or come from small sample sizes — common in gene expression data.
+
+| Parametric | Non-parametric equivalent |
+|---|---|
+| t-test (2 groups) | Wilcoxon rank-sum test (`wilcox.test`) |
+| ANOVA (3+ groups) | Kruskal-Wallis test (`kruskal.test`) |
+
+You can check whether a variable looks normally distributed with a quick histogram, or formally with a Shapiro-Wilk test:
+
+```{r}
+set.seed(1)
+expr_gene1 <- rnorm(30, mean = 10, sd = 2)
+shapiro.test(expr_gene1)
+```
+
+A p-value **above** 0.05 here suggests the data does not significantly deviate from normal (safe to use a t-test/ANOVA). A p-value **below** 0.05 suggests you should consider a non-parametric alternative.
+
+```{block, type='rmdquestion'}
+#### Question 1
+
+- Simulate a second, non-normal vector using `rexp(30, rate = 0.5)` (exponential distribution) and run `shapiro.test()` on it
+- Compare the two p-values. Which data set would you feel comfortable analyzing with a t-test, and which would you not?
+```
+
+## Comparing gene expression between two conditions
+
+Let's build a small simulated expression data set: expression level of one gene, measured in a control group and a treatment group.
+
+```{r}
+set.seed(42)
+gene_expr <- data.frame(
+  condition = rep(c("control","treatment"), each = 15),
+  expression = c(rnorm(15, mean = 8, sd = 1.5), rnorm(15, mean = 11, sd = 1.5))
+)
+head(gene_expr)
+```
+
+If the data look roughly normal, a t-test is appropriate (Lab 6):
+
+```{r}
+t.test(expression ~ condition, data = gene_expr)
+```
+
+If not, use the non-parametric equivalent:
+
+```{r}
+wilcox.test(expression ~ condition, data = gene_expr)
+```
+
+```{block, type='rmdquestion'}
+#### Question 2
+
+- Run `shapiro.test()` separately on the control and treatment groups within `gene_expr` (hint: use `subset()` from Lab 3 to isolate each group first)
+- Based on the results, which test — `t.test()` or `wilcox.test()` — is more appropriate here? Justify your choice, then report the result of whichever test you chose.
+```
+
+## Phenotypic variation across environments
+
+Genomic studies often ask whether a phenotype (an observable trait, potentially influenced by gene expression) varies across environments. This is the same question ANOVA answers, applied to an ecological/environmental design.
+
+```{r}
+set.seed(7)
+phenotype <- data.frame(
+  environment = rep(c("low_elev","mid_elev","high_elev"), each = 12),
+  trait_value = c(rnorm(12, 5, 1), rnorm(12, 6.2, 1), rnorm(12, 7.5, 1))
+)
+
+model <- aov(trait_value ~ environment, data = phenotype)
+summary(model)
+```
+
+```{block, type='rmdquestion'}
+#### Question 3
+
+- Is there a statistically significant difference in `trait_value` across the three elevation environments? Report the p-value and your conclusion.
+- Run `TukeyHSD(model)` (from Lab 6) to see which specific environment pairs differ
+```
+
+## Multiple testing: why 1000 genes ≠ 1 gene
+
+A critical issue in genomics: if you test 1,000 genes at $\alpha = 0.05$, you'd expect roughly 50 "significant" results **by chance alone**, even if nothing is really going on. This is the multiple testing problem.
+
+A common correction is the **Bonferroni correction**: divide your significance threshold by the number of tests.
+
+```{r}
+n_genes_tested <- 1000
+alpha <- 0.05
+bonferroni_threshold <- alpha / n_genes_tested
+bonferroni_threshold
+```
+
+`R` can also adjust a whole vector of p-values at once with `p.adjust()`:
+
+```{r}
+set.seed(3)
+fake_pvalues <- runif(20, 0, 0.1)  # 20 genes' worth of p-values
+p.adjust(fake_pvalues, method = "bonferroni")
+p.adjust(fake_pvalues, method = "fdr")  # a less conservative, commonly used alternative
+```
+
+```{block, type='rmdquestion'}
+#### Question 4
+
+- If you tested 500 genes, what would your Bonferroni-corrected significance threshold be?
+- Using the `fake_pvalues` example, how many genes are significant at the raw $\alpha = 0.05$ threshold? How many remain significant after Bonferroni correction? After FDR correction?
+- Why does this matter for interpreting a genome-wide expression study? Write 2-3 sentences.
+```
