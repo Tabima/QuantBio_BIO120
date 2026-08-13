@@ -29,11 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Professors Jackie Dresch and Javier F. Tabima Restrepo" />
 
 
-<<<<<<< Updated upstream
-<meta name="date" content="2022-10-24" />
-=======
-<meta name="date" content="2022-10-20" />
->>>>>>> Stashed changes
+<meta name="date" content="2022-11-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -41,7 +37,7 @@ set in the _output.yml file.</p>" />
   
   
 <link rel="prev" href="plots.html"/>
-
+<link rel="next" href="m-files-functions-and-simple-plotting-tools.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -246,6 +242,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.3.3" data-path="using-matlab-as-a-powerful-calculator.html"><a href="using-matlab-as-a-powerful-calculator.html#multiplying-two-vectorsmatrices"><i class="fa fa-check"></i><b>11.3.3</b> Multiplying two vectors/matrices:</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="12" data-path="m-files-functions-and-simple-plotting-tools.html"><a href="m-files-functions-and-simple-plotting-tools.html"><i class="fa fa-check"></i><b>12</b> m files, functions, and Simple Plotting Tools</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="m-files-functions-and-simple-plotting-tools.html"><a href="m-files-functions-and-simple-plotting-tools.html#m-files"><i class="fa fa-check"></i><b>12.1</b> m files</a></li>
+<li class="chapter" data-level="12.2" data-path="m-files-functions-and-simple-plotting-tools.html"><a href="m-files-functions-and-simple-plotting-tools.html#functions"><i class="fa fa-check"></i><b>12.2</b> functions</a></li>
+<li class="chapter" data-level="12.3" data-path="m-files-functions-and-simple-plotting-tools.html"><a href="m-files-functions-and-simple-plotting-tools.html#plotting-function-output-model-predictions"><i class="fa fa-check"></i><b>12.3</b> Plotting function output / model predictions</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="model-fitting-a.k.a.-parameter-estimation.html"><a href="model-fitting-a.k.a.-parameter-estimation.html"><i class="fa fa-check"></i><b>13</b> Model Fitting (A.K.A. parameter estimation)</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="model-fitting-a.k.a.-parameter-estimation.html"><a href="model-fitting-a.k.a.-parameter-estimation.html#importing-numerical-data"><i class="fa fa-check"></i><b>13.1</b> Importing Numerical Data</a></li>
+<li class="chapter" data-level="13.2" data-path="model-fitting-a.k.a.-parameter-estimation.html"><a href="model-fitting-a.k.a.-parameter-estimation.html#creating-a-model-function"><i class="fa fa-check"></i><b>13.2</b> Creating a Model Function</a></li>
+<li class="chapter" data-level="13.3" data-path="model-fitting-a.k.a.-parameter-estimation.html"><a href="model-fitting-a.k.a.-parameter-estimation.html#creating-an-objective-error-function"><i class="fa fa-check"></i><b>13.3</b> Creating an Objective / Error Function</a></li>
+<li class="chapter" data-level="13.4" data-path="model-fitting-a.k.a.-parameter-estimation.html"><a href="model-fitting-a.k.a.-parameter-estimation.html#fitting-your-model-to-your-data"><i class="fa fa-check"></i><b>13.4</b> Fitting your Model to your Data</a>
+<ul>
+<li class="chapter" data-level="13.4.1" data-path="model-fitting-a.k.a.-parameter-estimation.html"><a href="model-fitting-a.k.a.-parameter-estimation.html#running-fminsearch"><i class="fa fa-check"></i><b>13.4.1</b> Running fminsearch()</a></li>
+<li class="chapter" data-level="13.4.2" data-path="model-fitting-a.k.a.-parameter-estimation.html"><a href="model-fitting-a.k.a.-parameter-estimation.html#visualizing-the-best-fit"><i class="fa fa-check"></i><b>13.4.2</b> Visualizing the Best Fit</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="investigating-a-numerical-data-set.html"><a href="investigating-a-numerical-data-set.html"><i class="fa fa-check"></i><b>14</b> Investigating a Numerical Data Set</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="investigating-a-numerical-data-set.html"><a href="investigating-a-numerical-data-set.html#extracting-and-combining-subsets-of-data"><i class="fa fa-check"></i><b>14.1</b> Extracting (and Combining) Subsets of Data</a></li>
+<li class="chapter" data-level="14.2" data-path="investigating-a-numerical-data-set.html"><a href="investigating-a-numerical-data-set.html#simple-summary-statistics"><i class="fa fa-check"></i><b>14.2</b> Simple Summary Statistics</a></li>
+<li class="chapter" data-level="14.3" data-path="investigating-a-numerical-data-set.html"><a href="investigating-a-numerical-data-set.html#writing-saving-numerical-data"><i class="fa fa-check"></i><b>14.3</b> Writing / Saving Numerical Data</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -271,7 +290,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>MATLAB can do basic arithmetic, including trigonometry and linear algebra. Read through the MATLAB basics and try the examples below to get used to using MATLAB commands.</p>
 <p>If you ever need additional help, recall the MathWorks help site: <a href="http://www.mathworks.com/help/matlab/">here</a>.</p>
 <p>To get started, open MATLAB and make sure you are working in the <strong>Command Window</strong>:
-<img src="MATLAB_open.png" alt="unchanged image" /></p>
+<img src="MATLAB_open.png" alt="MATLAB" /></p>
 <div id="matlab-basics-for-calculation" class="section level2 hasAnchor" number="11.1">
 <h2><span class="header-section-number">11.1</span> MATLAB Basics for calculation:<a href="using-matlab-as-a-powerful-calculator.html#matlab-basics-for-calculation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
@@ -380,12 +399,12 @@ Let <span class="math inline"><span class="math inline">\(x = 42\)</span></span>
 <ol style="list-style-type: decimal">
 <li>If not given an increment, MATLAB will assume we want integers.</li>
 </ol>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="using-matlab-as-a-powerful-calculator.html#cb136-1" aria-hidden="true" tabindex="-1"></a>v <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span></code></pre></div>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="using-matlab-as-a-powerful-calculator.html#cb124-1" aria-hidden="true" tabindex="-1"></a>v <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span></code></pre></div>
 creates the vector <span class="math inline">\(v = \left[1,2,3,4,5,6,7,8,9,10\right]\)</span>
 <ol start="2" style="list-style-type: decimal">
 <li>We can tell MATLAB an increment to use.</li>
 </ol>
-<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="using-matlab-as-a-powerful-calculator.html#cb137-1" aria-hidden="true" tabindex="-1"></a>v <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span><span class="fl">0.1</span><span class="sc">:</span><span class="fl">1.5</span></span></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="using-matlab-as-a-powerful-calculator.html#cb125-1" aria-hidden="true" tabindex="-1"></a>v <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span><span class="fl">0.1</span><span class="sc">:</span><span class="fl">1.5</span></span></code></pre></div>
 creates the vector <span class="math inline">\(v = \left[1,1.1,1.2,1.3,1.4,1.5\right]\)</span></li>
 </ul></li>
 </ul>
@@ -489,9 +508,9 @@ Given the following matrices,<span class="math inline"><span class="math inline"
 <p>If we want to square each term in a vector x, just type</p>
 <p><code>x.^2</code></p>
 <p>OR we can use a for loop</p>
-<div class="sourceCode" id="cb142"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb142-1"><a href="using-matlab-as-a-powerful-calculator.html#cb142-1" aria-hidden="true" tabindex="-1"></a>for i=1:length(x)</span>
-<span id="cb142-2"><a href="using-matlab-as-a-powerful-calculator.html#cb142-2" aria-hidden="true" tabindex="-1"></a>        x(i) = x(i)^2;</span>
-<span id="cb142-3"><a href="using-matlab-as-a-powerful-calculator.html#cb142-3" aria-hidden="true" tabindex="-1"></a>end;</span></code></pre></div></li>
+<div class="sourceCode" id="cb130"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb130-1"><a href="using-matlab-as-a-powerful-calculator.html#cb130-1" aria-hidden="true" tabindex="-1"></a>for i=1:length(x)</span>
+<span id="cb130-2"><a href="using-matlab-as-a-powerful-calculator.html#cb130-2" aria-hidden="true" tabindex="-1"></a>        x(i) = x(i)^2;</span>
+<span id="cb130-3"><a href="using-matlab-as-a-powerful-calculator.html#cb130-3" aria-hidden="true" tabindex="-1"></a>end;</span></code></pre></div></li>
 </ul>
 <div class="rmdquestion">
 <h4 id="question-4">
@@ -535,8 +554,8 @@ You don’t need Linear Algebra - use MATLAB to help answer this question.
           </div>
         </div>
       </div>
-<a href="plots.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="plots.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="m-files-functions-and-simple-plotting-tools.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

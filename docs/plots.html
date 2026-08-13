@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Professors Jackie Dresch and Javier F. Tabima Restrepo" />
 
 
-<meta name="date" content="2022-10-24" />
+<meta name="date" content="2022-11-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -242,6 +242,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.3.3" data-path="using-matlab-as-a-powerful-calculator.html"><a href="using-matlab-as-a-powerful-calculator.html#multiplying-two-vectorsmatrices"><i class="fa fa-check"></i><b>11.3.3</b> Multiplying two vectors/matrices:</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="12" data-path="m-files-functions-and-simple-plotting-tools.html"><a href="m-files-functions-and-simple-plotting-tools.html"><i class="fa fa-check"></i><b>12</b> m files, functions, and Simple Plotting Tools</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="m-files-functions-and-simple-plotting-tools.html"><a href="m-files-functions-and-simple-plotting-tools.html#m-files"><i class="fa fa-check"></i><b>12.1</b> m files</a></li>
+<li class="chapter" data-level="12.2" data-path="m-files-functions-and-simple-plotting-tools.html"><a href="m-files-functions-and-simple-plotting-tools.html#functions"><i class="fa fa-check"></i><b>12.2</b> functions</a></li>
+<li class="chapter" data-level="12.3" data-path="m-files-functions-and-simple-plotting-tools.html"><a href="m-files-functions-and-simple-plotting-tools.html#plotting-function-output-model-predictions"><i class="fa fa-check"></i><b>12.3</b> Plotting function output / model predictions</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="model-fitting-a.k.a.-parameter-estimation.html"><a href="model-fitting-a.k.a.-parameter-estimation.html"><i class="fa fa-check"></i><b>13</b> Model Fitting (A.K.A. parameter estimation)</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="model-fitting-a.k.a.-parameter-estimation.html"><a href="model-fitting-a.k.a.-parameter-estimation.html#importing-numerical-data"><i class="fa fa-check"></i><b>13.1</b> Importing Numerical Data</a></li>
+<li class="chapter" data-level="13.2" data-path="model-fitting-a.k.a.-parameter-estimation.html"><a href="model-fitting-a.k.a.-parameter-estimation.html#creating-a-model-function"><i class="fa fa-check"></i><b>13.2</b> Creating a Model Function</a></li>
+<li class="chapter" data-level="13.3" data-path="model-fitting-a.k.a.-parameter-estimation.html"><a href="model-fitting-a.k.a.-parameter-estimation.html#creating-an-objective-error-function"><i class="fa fa-check"></i><b>13.3</b> Creating an Objective / Error Function</a></li>
+<li class="chapter" data-level="13.4" data-path="model-fitting-a.k.a.-parameter-estimation.html"><a href="model-fitting-a.k.a.-parameter-estimation.html#fitting-your-model-to-your-data"><i class="fa fa-check"></i><b>13.4</b> Fitting your Model to your Data</a>
+<ul>
+<li class="chapter" data-level="13.4.1" data-path="model-fitting-a.k.a.-parameter-estimation.html"><a href="model-fitting-a.k.a.-parameter-estimation.html#running-fminsearch"><i class="fa fa-check"></i><b>13.4.1</b> Running fminsearch()</a></li>
+<li class="chapter" data-level="13.4.2" data-path="model-fitting-a.k.a.-parameter-estimation.html"><a href="model-fitting-a.k.a.-parameter-estimation.html#visualizing-the-best-fit"><i class="fa fa-check"></i><b>13.4.2</b> Visualizing the Best Fit</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="investigating-a-numerical-data-set.html"><a href="investigating-a-numerical-data-set.html"><i class="fa fa-check"></i><b>14</b> Investigating a Numerical Data Set</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="investigating-a-numerical-data-set.html"><a href="investigating-a-numerical-data-set.html#extracting-and-combining-subsets-of-data"><i class="fa fa-check"></i><b>14.1</b> Extracting (and Combining) Subsets of Data</a></li>
+<li class="chapter" data-level="14.2" data-path="investigating-a-numerical-data-set.html"><a href="investigating-a-numerical-data-set.html#simple-summary-statistics"><i class="fa fa-check"></i><b>14.2</b> Simple Summary Statistics</a></li>
+<li class="chapter" data-level="14.3" data-path="investigating-a-numerical-data-set.html"><a href="investigating-a-numerical-data-set.html#writing-saving-numerical-data"><i class="fa fa-check"></i><b>14.3</b> Writing / Saving Numerical Data</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -279,22 +302,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="different-types-of-plots" class="section level2 hasAnchor" number="10.2">
 <h2><span class="header-section-number">10.2</span> Different types of plots<a href="plots.html#different-types-of-plots" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We are going to test a set of different plots using one of <code>R</code>’s most used data sets: <a href="https://allisonhorst.github.io/palmerpenguins/"><code>penguins</code></a>! To install it (in case you want to test it) do <code>install.packages("palmerpenguins")</code> and load the library:</p>
-<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="plots.html#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb97-2"><a href="plots.html#cb97-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span></code></pre></div>
-<pre><code>## Warning: package &#39;palmerpenguins&#39; was built under R version 4.1.2</code></pre>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="plots.html#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(penguins)</span></code></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="plots.html#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb95-2"><a href="plots.html#cb95-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb95-3"><a href="plots.html#cb95-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(penguins)</span></code></pre></div>
 <p>Give yourself some time to see what the data is about.</p>
 <div id="histogram" class="section level3 hasAnchor" number="10.2.1">
 <h3><span class="header-section-number">10.2.1</span> Histogram<a href="plots.html#histogram" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A histogram is a representation of the <strong>distribution of frequency (number of times) a continuous value</strong> exists in our data set.</p>
 <p>Histograms are represented as bars. In the X-axis we have the continuous values and in the Y-axis the frequency of each value. In addition, the bars are also binned (divided into contiguous, equally spaced intervals).</p>
 <p>So, if we want to make a histogram of the <code>flipper_length_mm</code> of the penguins, we can do it by include, then, the value at the <code>x=</code> variable and to include a <code>geom_bar()</code> option at the end. This <code>geom_bar</code> option tells <code>ggplot</code> that our plot is based on bars.</p>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="plots.html#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="fu">aes</span>(<span class="at">x=</span>flipper_length_mm)) <span class="sc">+</span> <span class="fu">geom_bar</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="plots.html#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="fu">aes</span>(<span class="at">x=</span>flipper_length_mm)) <span class="sc">+</span> <span class="fu">geom_bar</span>()</span></code></pre></div>
 <pre><code>## Warning: Removed 2 rows containing non-finite values (stat_count).</code></pre>
 <p><img src="_main_files/figure-html/unnamed-chunk-75-1.png" width="672" /></p>
 <p>The plot, then, shows us that there are two main peaks of abundance of the flipper length: one around 190mm and another around 219.</p>
 <p>We can also add colors to separate between species, for example:</p>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="plots.html#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="fu">aes</span>(<span class="at">x=</span>flipper_length_mm, <span class="at">fill=</span>species)) <span class="sc">+</span> <span class="fu">geom_bar</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="plots.html#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="fu">aes</span>(<span class="at">x=</span>flipper_length_mm, <span class="at">fill=</span>species)) <span class="sc">+</span> <span class="fu">geom_bar</span>()</span></code></pre></div>
 <pre><code>## Warning: Removed 2 rows containing non-finite values (stat_count).</code></pre>
 <p><img src="_main_files/figure-html/unnamed-chunk-76-1.png" width="672" /></p>
 <p>What we see, then, is that there are actually three peaks. One per species!</p>
@@ -303,22 +325,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">10.2.2</span> Barplots<a href="plots.html#barplots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Bar plots are <strong>representations of a continuous variable across discrete variables</strong>. This means we need a Y-axis that has continuous data and an X-axis that contains discrete data.</p>
 <p>A good example of this would be the number of penguins per species per island. We have to do some transformations of the data first:</p>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="plots.html#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
-<pre><code>## Warning: package &#39;tidyverse&#39; was built under R version 4.1.2</code></pre>
-<pre><code>## ── Attaching packages ─────────────────────────────────────────────────────────────────────────────────── tidyverse 1.3.2 ──
-## ✔ tibble  3.1.6      ✔ dplyr   1.0.10
-## ✔ tidyr   1.2.0      ✔ stringr 1.4.0 
-## ✔ readr   2.1.3      ✔ forcats 0.5.2 
-## ✔ purrr   0.3.4</code></pre>
-<pre><code>## Warning: package &#39;tidyr&#39; was built under R version 4.1.2</code></pre>
-<pre><code>## Warning: package &#39;readr&#39; was built under R version 4.1.2</code></pre>
-<pre><code>## Warning: package &#39;dplyr&#39; was built under R version 4.1.2</code></pre>
-<pre><code>## Warning: package &#39;forcats&#39; was built under R version 4.1.2</code></pre>
-<pre><code>## ── Conflicts ────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::filter() masks stats::filter()
-## ✖ dplyr::lag()    masks stats::lag()</code></pre>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="plots.html#cb112-1" aria-hidden="true" tabindex="-1"></a>penguin.island <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span> <span class="fu">count</span>(species, island)</span></code></pre></div>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="plots.html#cb113-1" aria-hidden="true" tabindex="-1"></a>penguin.island</span></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="plots.html#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb100-2"><a href="plots.html#cb100-2" aria-hidden="true" tabindex="-1"></a>penguin.island <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span> <span class="fu">count</span>(species, island)</span></code></pre></div>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="plots.html#cb101-1" aria-hidden="true" tabindex="-1"></a>penguin.island</span></code></pre></div>
 <pre><code>## # A tibble: 5 × 3
 ##   species   island        n
 ##   &lt;fct&gt;     &lt;fct&gt;     &lt;int&gt;
@@ -328,15 +337,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4 Chinstrap Dream        68
 ## 5 Gentoo    Biscoe      124</code></pre>
 <p>And now, we create the plot using the n (number of penguins) in the y-axis and islands in the x-axis:</p>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="plots.html#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguin.island, <span class="fu">aes</span>(<span class="at">x=</span>island, <span class="at">y=</span>n)) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="plots.html#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguin.island, <span class="fu">aes</span>(<span class="at">x=</span>island, <span class="at">y=</span>n)) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-79-1.png" width="672" /></p>
 <p>The <code>stat="identity"</code> flags allows for the use of a continuous variable in the y-axis.</p>
 <p>We are still missing data, right? What happens if we want to see the species of penguins per island? Add a <code>fill=species</code> flag inside of the <code>aes</code>:</p>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="plots.html#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguin.island, <span class="fu">aes</span>(<span class="at">x=</span>island, <span class="at">y=</span>n, <span class="at">fill=</span>species)) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="plots.html#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguin.island, <span class="fu">aes</span>(<span class="at">x=</span>island, <span class="at">y=</span>n, <span class="at">fill=</span>species)) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-80-1.png" width="672" />
 Now we can see that the Adelie species exists in all islands! This plot is called a <strong>stacked bar chart</strong>, because it stacks the different categories of each x rank in top of each other.</p>
 <p>There is a different type of bar chart that sets all the categories in the x-axis instead of on top of each other. To get this, add the flag <code>position="dodge"</code> into the <code>geom_bar</code> option:</p>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="plots.html#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguin.island, <span class="fu">aes</span>(<span class="at">x=</span>island, <span class="at">y=</span>n, <span class="at">fill=</span>species)) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="plots.html#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguin.island, <span class="fu">aes</span>(<span class="at">x=</span>island, <span class="at">y=</span>n, <span class="at">fill=</span>species)) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-81-1.png" width="672" />
 In some cases, these charts are much easier to interpret as they compare the values directly between categories.</p>
 </div>
@@ -344,11 +353,11 @@ In some cases, these charts are much easier to interpret as they compare the val
 <h3><span class="header-section-number">10.2.3</span> Scatterplots<a href="plots.html#scatterplots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Another super common type of plot are the scatter plots. Scatter plots represent <strong>continuous variables versus continuous variables</strong>. These plots are used for when we want to look at correlations between variables.</p>
 <p>For example, do we see that beak depth increases with beak length?</p>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="plots.html#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="fu">aes</span>(<span class="at">x=</span>bill_depth_mm, <span class="at">y=</span>bill_length_mm)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="plots.html#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="fu">aes</span>(<span class="at">x=</span>bill_depth_mm, <span class="at">y=</span>bill_length_mm)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div>
 <pre><code>## Warning: Removed 2 rows containing missing values (geom_point).</code></pre>
 <p><img src="_main_files/figure-html/unnamed-chunk-82-1.png" width="672" /></p>
 <p>So, we can see that each axis has continuous values. This plot its a bit hard to read, and that is because we don’t really see a trend at all. Maybe if we color the points based on species the information will become clearer:</p>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="plots.html#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="fu">aes</span>(<span class="at">x=</span>bill_depth_mm, <span class="at">y=</span>bill_length_mm, <span class="at">color=</span>species)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="plots.html#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="fu">aes</span>(<span class="at">x=</span>bill_depth_mm, <span class="at">y=</span>bill_length_mm, <span class="at">color=</span>species)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div>
 <pre><code>## Warning: Removed 2 rows containing missing values (geom_point).</code></pre>
 <p><img src="_main_files/figure-html/unnamed-chunk-83-1.png" width="672" /></p>
 <p>Much better! Now we can see a positive trend in the relation between bill depth and beak length per species, meaning that as one of these gets larger the other one also gets larger.</p>
@@ -358,17 +367,17 @@ In some cases, these charts are much easier to interpret as they compare the val
 <h3><span class="header-section-number">10.2.4</span> Boxplots, violin plots and distributions<a href="plots.html#boxplots-violin-plots-and-distributions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>There are plots that combine histograms and categorical variables by <strong>illustrating the distribution of the continuous variable across different categorical variables</strong>:</p>
 <p>These are called violin plots. If we want to see the distribution of <code>flipper_length_mm</code> per species, we can see it like this:</p>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="plots.html#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="fu">aes</span>(<span class="at">x=</span>species, <span class="at">y=</span>flipper_length_mm, <span class="at">color=</span>species)) <span class="sc">+</span> <span class="fu">geom_violin</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="plots.html#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="fu">aes</span>(<span class="at">x=</span>species, <span class="at">y=</span>flipper_length_mm, <span class="at">color=</span>species)) <span class="sc">+</span> <span class="fu">geom_violin</span>()</span></code></pre></div>
 <pre><code>## Warning: Removed 2 rows containing non-finite values (stat_ydensity).</code></pre>
 <p><img src="_main_files/figure-html/unnamed-chunk-84-1.png" width="672" /></p>
 <p>These plots are constructed by the abundance of data points at each of the y-axis values, so we can add points to the plot:</p>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="plots.html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="fu">aes</span>(<span class="at">x=</span>species, <span class="at">y=</span>flipper_length_mm, <span class="at">color=</span>species)) <span class="sc">+</span> <span class="fu">geom_violin</span>() <span class="sc">+</span> <span class="fu">geom_jitter</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="plots.html#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="fu">aes</span>(<span class="at">x=</span>species, <span class="at">y=</span>flipper_length_mm, <span class="at">color=</span>species)) <span class="sc">+</span> <span class="fu">geom_violin</span>() <span class="sc">+</span> <span class="fu">geom_jitter</span>()</span></code></pre></div>
 <pre><code>## Warning: Removed 2 rows containing non-finite values (stat_ydensity).</code></pre>
 <pre><code>## Warning: Removed 2 rows containing missing values (geom_point).</code></pre>
 <p><img src="_main_files/figure-html/unnamed-chunk-85-1.png" width="672" /></p>
 <p>So, if you see the regions that have the widest area are the ones with the most points. That’s how distributions are made!</p>
 <p>These distributions, then, also provide you with the median and other statistically important elements that we will not focus on. You can see this simplification of the distribution you can use the <code>geom_boxplot</code> option:</p>
-<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="plots.html#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="fu">aes</span>(<span class="at">x=</span>species, <span class="at">y=</span>flipper_length_mm, <span class="at">color=</span>species)) <span class="sc">+</span> <span class="fu">geom_violin</span>() <span class="sc">+</span> <span class="fu">geom_jitter</span>() <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="plots.html#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="fu">aes</span>(<span class="at">x=</span>species, <span class="at">y=</span>flipper_length_mm, <span class="at">color=</span>species)) <span class="sc">+</span> <span class="fu">geom_violin</span>() <span class="sc">+</span> <span class="fu">geom_jitter</span>() <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code></pre></div>
 <pre><code>## Warning: Removed 2 rows containing non-finite values (stat_ydensity).</code></pre>
 <pre><code>## Warning: Removed 2 rows containing non-finite values (stat_boxplot).</code></pre>
 <pre><code>## Warning: Removed 2 rows containing missing values (geom_point).</code></pre>

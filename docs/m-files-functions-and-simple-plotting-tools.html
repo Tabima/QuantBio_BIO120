@@ -4,13 +4,13 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 8 Basic R (2) : Data frames | BIOL120 Excercise Guidebook</title>
+  <title>Chapter 12 m files, functions, and Simple Plotting Tools | BIOL120 Excercise Guidebook</title>
   <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
 set in the _output.yml file.</p>" />
   <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 8 Basic R (2) : Data frames | BIOL120 Excercise Guidebook" />
+  <meta property="og:title" content="Chapter 12 m files, functions, and Simple Plotting Tools | BIOL120 Excercise Guidebook" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
@@ -19,7 +19,7 @@ set in the _output.yml file.</p>" />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 8 Basic R (2) : Data frames | BIOL120 Excercise Guidebook" />
+  <meta name="twitter:title" content="Chapter 12 m files, functions, and Simple Plotting Tools | BIOL120 Excercise Guidebook" />
   
   <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
@@ -36,8 +36,8 @@ set in the _output.yml file.</p>" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="vectors.html"/>
-<link rel="next" href="sumarizing-and-subsetting-data-frames.html"/>
+<link rel="prev" href="using-matlab-as-a-powerful-calculator.html"/>
+<link rel="next" href="model-fitting-a.k.a.-parameter-estimation.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -285,309 +285,204 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="basic-r-2-data-frames" class="section level1 hasAnchor" number="8">
-<h1><span class="header-section-number">Chapter 8</span> Basic R (2) : Data frames<a href="basic-r-2-data-frames.html#basic-r-2-data-frames" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div class="objectives">
-<p>
-<strong>Objectives:</strong>
-</p>
-<ol style="list-style-type: decimal">
-<li>
-To understand what a data frame is
+<div id="m-files-functions-and-simple-plotting-tools" class="section level1 hasAnchor" number="12">
+<h1><span class="header-section-number">Chapter 12</span> m files, functions, and Simple Plotting Tools<a href="m-files-functions-and-simple-plotting-tools.html#m-files-functions-and-simple-plotting-tools" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="m-files" class="section level2 hasAnchor" number="12.1">
+<h2><span class="header-section-number">12.1</span> m files<a href="m-files-functions-and-simple-plotting-tools.html#m-files" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><p>Creating an m file</p>
+<ul>
+<li><p><code>New</code> –<span class="math inline">\(&gt;\)</span> <code>Script</code></p></li>
+<li><p><code>Save</code> –<span class="math inline">\(&gt;\)</span> <code>Save As..</code></p></li>
+<li><p>Name your file (the .m will automatically be added) and make sure it is saved in your <code>Current Folder</code>.</p>
+<p>Note: the <code>Current Folder</code> can be set using the curved arrow on the top of your main MATLAB window:
+<img src="MATLAB_open_CurrentFolder.png" alt="current folder" /></p></li>
+</ul></li>
+<li><p>What to put in an m file?</p>
+<ul>
+<li><p>Any MATLAB commands you want to run (exacly as you would put them into the Command Window).</p></li>
+<li><p>Comments (i.e. notes to yourself regarding what your code does)</p>
+<p>Comments in MATLAB are any text that follows a <code>%</code> symbol.</p>
+<p>The <code>%</code> symbol tells MATLAB not to execute that line of code.</p>
+<p><img src="mfile.png" /></p></li>
+</ul></li>
+<li><p>Running an m file</p>
+<ul>
+<li>Go back to the <code>Command Window</code></li>
+<li>Type in the name of your m file (without the .m)</li>
+<li>When you hit enter, whatever MATLAB code is in your file will run</li>
+<li>If your m file doesn’t run, there is a good chance that your m file was not saved to your `Current Director’. Double check that you have saved it in the correct location!</li>
+<li>You can check that your m file ran by calling any of the variables that were defined in your m file (In the example below, I ran mfile.m and then checked the vector y.)
+<img src="mfile_run.png" /></li>
+</ul></li>
+<li><p>What’s the advantage to using an m file?</p>
+<ul>
+<li>All of your code is saved!<br />
 </li>
-<li>
-To identify and extract rows and columns
-</li>
-<li>
-To create new data frames based on vectors
-</li>
-<li>
-To combine different data frames
-</li>
-<li>
-To learn how to read different data frame types
-</li>
-</ol>
-</div>
-<p>There are objects that will have rows and columns, such as <strong>data frames</strong> and <strong>matrices</strong>. These are two-dimensional objects that we will use the blanket term <strong>Tables</strong>.</p>
-<div id="creating-tables-using-vectors" class="section level2 hasAnchor" number="8.1">
-<h2><span class="header-section-number">8.1</span> Creating tables using vectors<a href="basic-r-2-data-frames.html#creating-tables-using-vectors" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We can create tables using vectors</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="basic-r-2-data-frames.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This is a table with two columns and four rows.</span></span>
-<span id="cb39-2"><a href="basic-r-2-data-frames.html#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Columns are Names and Age</span></span>
-<span id="cb39-3"><a href="basic-r-2-data-frames.html#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Rows are the age of each person:</span></span>
-<span id="cb39-4"><a href="basic-r-2-data-frames.html#cb39-4" aria-hidden="true" tabindex="-1"></a>names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Kelsey&quot;</span>,<span class="st">&quot;Javier&quot;</span>,<span class="st">&quot;Joe&quot;</span>,<span class="st">&quot;Li&quot;</span>)</span>
-<span id="cb39-5"><a href="basic-r-2-data-frames.html#cb39-5" aria-hidden="true" tabindex="-1"></a>age <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">22</span>, <span class="dv">34</span>, <span class="dv">15</span>, <span class="dv">50</span>)</span>
-<span id="cb39-6"><a href="basic-r-2-data-frames.html#cb39-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Names is a character vector and age is a numeric/integer vector, so we can put them together in a data frame:</span></span>
-<span id="cb39-7"><a href="basic-r-2-data-frames.html#cb39-7" aria-hidden="true" tabindex="-1"></a>age.table <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(names, age, <span class="at">stringsAsFactors =</span> F)</span>
-<span id="cb39-8"><a href="basic-r-2-data-frames.html#cb39-8" aria-hidden="true" tabindex="-1"></a>age.table</span></code></pre></div>
-<pre><code>##    names age
-## 1 Kelsey  22
-## 2 Javier  34
-## 3    Joe  15
-## 4     Li  50</code></pre>
-<p>or loading existing data as we did in <a href="datasets.html#datasets">Chapter 4</a></p>
-<p>To see if our new object is correct, we can use the <code>class</code> and the <code>str</code> command. <code>str</code> means <strong>structure</strong>, and will return the structure of the table:</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="basic-r-2-data-frames.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We expect the table to be a data frame class</span></span>
-<span id="cb41-2"><a href="basic-r-2-data-frames.html#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(age.table)</span></code></pre></div>
-<pre><code>## [1] &quot;data.frame&quot;</code></pre>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="basic-r-2-data-frames.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We expect the structure of the table to be one character column, and one numeric column</span></span>
-<span id="cb43-2"><a href="basic-r-2-data-frames.html#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(age.table)</span></code></pre></div>
-<pre><code>## &#39;data.frame&#39;:    4 obs. of  2 variables:
-##  $ names: chr  &quot;Kelsey&quot; &quot;Javier&quot; &quot;Joe&quot; &quot;Li&quot;
-##  $ age  : num  22 34 15 50</code></pre>
-<p>We should also make sure that our table has the expected dimensions (i.e. Four rows and two columns), We can check this using the <code>dim</code> command:</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="basic-r-2-data-frames.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(age.table)</span></code></pre></div>
-<pre><code>## [1] 4 2</code></pre>
-<p>Note that it tells you the number of rows first, and then the number of columns. R <strong>always</strong> uses this order to deal with tables, so rows first and then columns.</p>
-<div id="accessing-specific-rows-and-columns" class="section level3 hasAnchor" number="8.1.1">
-<h3><span class="header-section-number">8.1.1</span> Accessing specific rows and columns<a href="basic-r-2-data-frames.html#accessing-specific-rows-and-columns" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>This in integrated further on the way that R handles tables. using the name of the table followed by square brackets will allow you to access rows or columns.</p>
-<p>Rows can be accessed on the left side of the square brackets. Use the number of the row you want to access it. So, if you want to access the first row of your <code>age.table</code> data frame, use the following code:</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="basic-r-2-data-frames.html#cb47-1" aria-hidden="true" tabindex="-1"></a>age.table[<span class="dv">1</span>, ]</span></code></pre></div>
-<pre><code>##    names age
-## 1 Kelsey  22</code></pre>
-<p>Similar syntax can be used to access the columns, but use the right side of the square brackets:</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="basic-r-2-data-frames.html#cb49-1" aria-hidden="true" tabindex="-1"></a>age.table[,<span class="dv">1</span> ]</span></code></pre></div>
-<pre><code>## [1] &quot;Kelsey&quot; &quot;Javier&quot; &quot;Joe&quot;    &quot;Li&quot;</code></pre>
-<p>Last last thing: You can call each column as a vector using the <code>$</code> command (in data frames)</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="basic-r-2-data-frames.html#cb51-1" aria-hidden="true" tabindex="-1"></a>age.table<span class="sc">$</span>names</span></code></pre></div>
-<pre><code>## [1] &quot;Kelsey&quot; &quot;Javier&quot; &quot;Joe&quot;    &quot;Li&quot;</code></pre>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="basic-r-2-data-frames.html#cb53-1" aria-hidden="true" tabindex="-1"></a>age.table<span class="sc">$</span>age</span></code></pre></div>
-<pre><code>## [1] 22 34 15 50</code></pre>
-<hr />
+<li>You can run it multiple times without having to retype anything.</li>
+<li>You can leave yourself comments for next time you open the file.</li>
+</ul>
 <div class="rmdquestion">
 <h4 id="question-1">
 Question 1
 </h4>
-<ul>
-<li>
-Create a data frame using three vectors: <code>colors</code>, <code>candy</code>, <code>numbers</code>. Add the code and the table.
-</li>
-<li>
-What are the classes for each column?
-</li>
+<p>
+Go back to Chapter 11. Create an m file to help you answer Questions 2 and 3. Make sure to include comments.
+</p>
+</div></li>
 </ul>
 </div>
-<hr />
-</div>
-</div>
-<div id="data-frames-versus-matrices" class="section level2 hasAnchor" number="8.2">
-<h2><span class="header-section-number">8.2</span> Data frames versus matrices<a href="basic-r-2-data-frames.html#data-frames-versus-matrices" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Data frames and matrices are two-dimensional data structures used in R.</p>
-<p><strong>Data frames</strong>, as shown by the <code>age.table</code> example, can hold on to many different types of one dimensional data structures (such as mix of numeric, character or factor vectors).</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="basic-r-2-data-frames.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Checking that our data frame IS a data frame</span></span>
-<span id="cb55-2"><a href="basic-r-2-data-frames.html#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(age.table)</span></code></pre></div>
-<pre><code>## [1] &quot;data.frame&quot;</code></pre>
-<p><strong>Matrices</strong> are numerical two dimensional data structures that only contain numerical values. These matrices are useful for arithmetic operations and other elements of calculus.</p>
-<p>We can create a matrix by using a vector that includes the data of interest and then specifying on the function how many rows and columns are necessary.</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="basic-r-2-data-frames.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a matrix</span></span>
-<span id="cb57-2"><a href="basic-r-2-data-frames.html#cb57-2" aria-hidden="true" tabindex="-1"></a>num.matrix <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">data =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">12</span>), <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">byrow =</span> <span class="dv">4</span>)</span>
-<span id="cb57-3"><a href="basic-r-2-data-frames.html#cb57-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Checking that the matrix is indeed a matrix</span></span>
-<span id="cb57-4"><a href="basic-r-2-data-frames.html#cb57-4" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(num.matrix)</span></code></pre></div>
-<pre><code>## [1] &quot;matrix&quot; &quot;array&quot;</code></pre>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="basic-r-2-data-frames.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extracting the first column of the matrix</span></span>
-<span id="cb59-2"><a href="basic-r-2-data-frames.html#cb59-2" aria-hidden="true" tabindex="-1"></a>num.matrix[,<span class="dv">1</span>]</span></code></pre></div>
-<pre><code>## [1] 1 5 9</code></pre>
-<p>And now we can do some math:</p>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="basic-r-2-data-frames.html#cb61-1" aria-hidden="true" tabindex="-1"></a>num.matrix <span class="sc">+</span> <span class="dv">1</span></span></code></pre></div>
-<pre><code>##      [,1] [,2] [,3] [,4]
-## [1,]    2    3    4    5
-## [2,]    6    7    8    9
-## [3,]   10   11   12   13</code></pre>
+<div id="functions" class="section level2 hasAnchor" number="12.2">
+<h2><span class="header-section-number">12.2</span> functions<a href="m-files-functions-and-simple-plotting-tools.html#functions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><p>Creating a function</p>
+<ul>
+<li><p><code>New</code> –<span class="math inline">\(&gt;\)</span> <code>Script</code></p></li>
+<li><p><code>File</code> –<span class="math inline">\(&gt;\)</span> <code>Save As..</code></p></li>
+<li><p>Name your file (the .m will again automatically be added) and make sure it is saved in your <code>Current Folder</code></p>
+<p>Note: MATLAB <code>functions</code> are a special type of <code>m file</code></p></li>
+<li><p>The first line of the file must tell MATLAB that this is a function. Important parts include:</p>
+<ol style="list-style-type: decimal">
+<li>The word <code>function</code></li>
+<li>The function output(s) in square brackets</li>
+<li>The name of the function (<em>this MUST match the file name</em>)</li>
+<li>The function input(s)
+<img src="fun1.png" alt="fun1" /></li>
+</ol></li>
+</ul></li>
+<li><p>Calling a function</p>
+<ul>
+<li>Go back to the <code>Command Window</code></li>
+<li>Type in the name of your function and any input(s) in parentheses</li>
+<li>When you hit enter, MATLAB will execute the function and display the output
+<img src="fun1_run.png" alt="fun1execute" />
 <div class="rmdquestion">
 <h4 id="question-2">
 Question 2
 </h4>
 <ul>
 <li>
-Create a data frame using three vectors: <code>colors</code>, <code>candy</code>, <code>numbers</code>. Add the code and the table.
+<p>
+Write a MATLAB function that converts Celcius to Farenheit, according to the function <span class="math inline"><span class="math inline">\(F = \cfrac{9}{5}C+32\)</span></span>
+</p>
 </li>
 <li>
-What are the classes for each column?
+<p>
+What is the <code>independent variable</code> and what is the <code>dependent variable</code>?
+</p>
+</li>
+<li>
+<p>
+Run your function to convert the following temperatures (given in <span class="math inline"><span class="math inline">\(^{\circ}\)</span></span>C) to <span class="math inline"><span class="math inline">\(^{\circ}\)</span></span>F.
+</p>
+<p>
+12<span class="math inline"><span class="math inline">\(^{\circ}\)</span></span> C, 26.4<span class="math inline"><span class="math inline">\(^{\circ}\)</span></span> C, and -6<span class="math inline"><span class="math inline">\(^{\circ}\)</span></span> C
+</p>
 </li>
 </ul>
-</div>
-<hr />
-</div>
-<div id="combining-different-two-dimensional-data-structures" class="section level2 hasAnchor" number="8.3">
-<h2><span class="header-section-number">8.3</span> Combining different two-dimensional data structures<a href="basic-r-2-data-frames.html#combining-different-two-dimensional-data-structures" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>R can be used to bind different data structures <strong>as long as the dimensions are compatible</strong>.</p>
-<div id="combining-by-rows" class="section level3 hasAnchor" number="8.3.1">
-<h3><span class="header-section-number">8.3.1</span> Combining by rows<a href="basic-r-2-data-frames.html#combining-by-rows" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>For example, if you want to add two tables together by rows, you can use the <code>rbind</code> function:</p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="basic-r-2-data-frames.html#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Let&#39;s create a new data frame with has the same column names as age.table but with different data</span></span>
-<span id="cb63-2"><a href="basic-r-2-data-frames.html#cb63-2" aria-hidden="true" tabindex="-1"></a>names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Fran&quot;</span>,<span class="st">&quot;Yeyi&quot;</span>,<span class="st">&quot;Andy&quot;</span>,<span class="st">&quot;John&quot;</span>)</span>
-<span id="cb63-3"><a href="basic-r-2-data-frames.html#cb63-3" aria-hidden="true" tabindex="-1"></a>age <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">31</span>, <span class="dv">32</span>, <span class="dv">17</span>, <span class="dv">40</span>)</span>
-<span id="cb63-4"><a href="basic-r-2-data-frames.html#cb63-4" aria-hidden="true" tabindex="-1"></a>age.table2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(names, age, <span class="at">stringsAsFactors =</span> F)</span>
-<span id="cb63-5"><a href="basic-r-2-data-frames.html#cb63-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Now, we can try and combine those tables by rows:</span></span>
-<span id="cb63-6"><a href="basic-r-2-data-frames.html#cb63-6" aria-hidden="true" tabindex="-1"></a>large.age.table <span class="ot">&lt;-</span> <span class="fu">rbind</span>(age.table, age.table2)</span>
-<span id="cb63-7"><a href="basic-r-2-data-frames.html#cb63-7" aria-hidden="true" tabindex="-1"></a>large.age.table</span></code></pre></div>
-<pre><code>##    names age
-## 1 Kelsey  22
-## 2 Javier  34
-## 3    Joe  15
-## 4     Li  50
-## 5   Fran  31
-## 6   Yeyi  32
-## 7   Andy  17
-## 8   John  40</code></pre>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="basic-r-2-data-frames.html#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We can also check if the dimensions are different than in the original age.table</span></span>
-<span id="cb65-2"><a href="basic-r-2-data-frames.html#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(age.table)</span></code></pre></div>
-<pre><code>## [1] 4 2</code></pre>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="basic-r-2-data-frames.html#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(age.table2)</span></code></pre></div>
-<pre><code>## [1] 4 2</code></pre>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="basic-r-2-data-frames.html#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(large.age.table)</span></code></pre></div>
-<pre><code>## [1] 8 2</code></pre>
-</div>
-<div id="combining-by-columns" class="section level3 hasAnchor" number="8.3.2">
-<h3><span class="header-section-number">8.3.2</span> Combining by columns<a href="basic-r-2-data-frames.html#combining-by-columns" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>However, we have to be careful about combining tables. Since <code>age.table</code> and <code>age.table2</code> have the same dimensions, you can combine them by columns using <code>cbind</code>:</p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="basic-r-2-data-frames.html#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(age.table, age.table2)</span></code></pre></div>
-<pre><code>##    names age names age
-## 1 Kelsey  22  Fran  31
-## 2 Javier  34  Yeyi  32
-## 3    Joe  15  Andy  17
-## 4     Li  50  John  40</code></pre>
-<p>But this table would not be very useful in the future as it has repeated column names and that can be a problem for R.</p>
+</div></li>
+</ul></li>
+<li><p>Writing a function with multiple inputs (multiple <code>independent variables</code> and/or <code>parameters</code>)</p>
+<ul>
+<li>There are 2 standard ways of doing this
+<ol style="list-style-type: decimal">
+<li>have multiple inputs in a list, separated by commas
+<img src="quadfun.png" /></li>
+<li>have a ‘single’ input with multiple values - i.e. input a <em>vector</em> of inputs
+<img src="fun2.png" />
+Note: in this example, the output is also a vector.</li>
+</ol></li>
+</ul></li>
+<li><p>We can have multiple outputs in a list as well:
+<img src="malth.png" /></p>
+<p>What is the advantage to outputting a vector of independent variable values and a vector of corresponding dependent variable values?</p>
+<p>We can use them for plotting and visualize our model!</p>
 <div class="rmdquestion">
 <h4 id="question-3">
 Question 3
 </h4>
+<p>
+Lets think about modeling drug dosage. If the recommended adult dosage for a drug is <span class="math inline"><span class="math inline">\(D\)</span></span> (in mg), then to determine the appropriate dosage <span class="math inline"><span class="math inline">\(c\)</span></span> for a child of age <span class="math inline"><span class="math inline">\(a\)</span></span> (in years), pharmacists use the equation <span class="math inline"><span class="math inline">\(c = 0.0417D\left(a+1\right)\)</span></span>.
+</p>
 <ul>
 <li>
-Create a new data frame with three columns of your liking and combine them with the larger age table. Add the code and the dimensions
+Write a MATLAB function that takes as inputs a range of ages (i.e. a vector of <span class="math inline"><span class="math inline">\(a\)</span></span> values) and the recommended adult dosage for a specific drug, <span class="math inline"><span class="math inline">\(D\)</span></span>. The function should output the appropriate dosages (i.e. <span class="math inline"><span class="math inline">\(c\)</span></span> values) for children of ages corresponding to the vector of <span class="math inline"><span class="math inline">\(a\)</span></span> values. Hint: you may want to use a <code>for-loop</code> as in fun2 above.
 </li>
 <li>
-Try to add an additional column that has a different length. What happens? Explain to the best of your knowledge
+Identify the <code>independent variable</code>, <code>dependent variable</code>, and <code>parameter</code>.
+</li>
+<li>
+The recommended adult dosage for amoxicillin is 500 mg. Use your function to determine the appropriate dosage for children ages 2 - 12 years.
 </li>
 </ul>
+</div></li>
+</ul>
 </div>
-<hr />
-</div>
-<div id="reading-in-data-tables" class="section level3 hasAnchor" number="8.3.3">
-<h3><span class="header-section-number">8.3.3</span> Reading in data tables<a href="basic-r-2-data-frames.html#reading-in-data-tables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Finally, we will learn how to read various types of data tables.</p>
-<div id="reading-text-delimited-files-.txt-or-.tsv" class="section level4 hasAnchor" number="8.3.3.1">
-<h4><span class="header-section-number">8.3.3.1</span> Reading text delimited files (<code>.txt</code> or <code>.tsv</code>)<a href="basic-r-2-data-frames.html#reading-text-delimited-files-.txt-or-.tsv" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p><strong>Text delimited files</strong> are a simple type of file that contains <strong>any</strong> type of simplified, unformatted text.</p>
-<p>This means that the text does not have different fonts, colors, styles, ect.</p>
-<p>Its just plain and literal text.</p>
-<p>In the case of data frames, these files separate each column by a <code>tab</code> (The character that appears in the screen when you press the tab key in your keyboard). <strong>Tabs are different than spaces!</strong> This means, then, that a word that says <code>hello how are you</code> is separated by spaces (That in coding langage are known as <code>\s</code>) while two columns are separated by the character <code>\t</code>, which is how a tab is seen by the computer.</p>
-<p>For example, a table like this:</p>
-<table>
-<thead>
-<tr class="header">
-<th>Name</th>
-<th>Number of cats</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Javier</td>
-<td>3</td>
-</tr>
-<tr class="even">
-<td>Jackie</td>
-<td>1</td>
-</tr>
-<tr class="odd">
-<td>Brenda</td>
-<td>0</td>
-</tr>
-<tr class="even">
-<td>Bea</td>
-<td>6</td>
-</tr>
-</tbody>
-</table>
-<p>Will look, to you, as</p>
-<pre><code>Name    Number of cats
-Javier  3
-Jackie  1
-Brenda  0
-Bea 6</code></pre>
-<p>Will look (to the computer) like this:</p>
-<pre><code>Name\tNumber\sof\scats
-Javier\t3
-Jackie\t1
-Brenda\t0
-Bea\t6</code></pre>
-<p>Do we see the difference?</p>
-<p>So, to read these data tables separated by tabs, we use the command <code>read.table</code></p>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="basic-r-2-data-frames.html#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.table</span>(<span class="at">file =</span> <span class="st">&quot;Lab_5/data_table.txt&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">header =</span> T)</span></code></pre></div>
-<pre><code>##     Name Number.of.cats
-## 1 Javier              3
-## 2 Jackie              1
-## 3 Brenda              0
-## 4    Bea              6</code></pre>
+<div id="plotting-function-output-model-predictions" class="section level2 hasAnchor" number="12.3">
+<h2><span class="header-section-number">12.3</span> Plotting function output / model predictions<a href="m-files-functions-and-simple-plotting-tools.html#plotting-function-output-model-predictions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><p>Scatter Plots</p>
+<p>When dealing with two numerical variables (whether it is experimental data or simulated data), the best way to visualize their relationship is by using a scatter plot. Luckily, this is very easy to do in MATLAB.</p>
+<p>Important things to know:</p>
+<ul>
+<li>The MATLAB function to use is <code>scatter</code></li>
+<li>When using the <code>scatter</code> function, you need to make sure you input the <code>independent</code> and <code>dependent</code> variable values as vectors, in the correct order. You also NEED THE VECTORS TO BE THE SAME SIZE!!!! Why? Because you are giving MATLAB the coordinates of points to plot. If you try to scatter two vectors of different length, MATLAB will give you an error message.</li>
+</ul>
+<p><img src="scatter_command.png" />
+<img src="scatter_fig.png" /></p></li>
+<li><p>Line Plots</p>
+<p>Sometimes we want to highlight trends in the relationship between two numerical variables. Thus, instead of a simple scatter plot, we turn to a line plot. This is a plot that connects the data points using line segments, and is the most popular way to visualize modeling results in MATLAB.</p>
+<p>Important things to know:</p>
+<ul>
+<li>The MATLAB function to use is <code>plot</code></li>
+<li>The inputs for this function are the same as the <code>scatter</code> function. When using the <code>plot</code> function, you need to make sure you input the <code>independent</code> and <code>dependent</code> variable values as vectors, in the correct order. You again NEED THE VECTORS TO BE THE SAME SIZE!!!!<br />
+</li>
+<li>Caution:
+<ol style="list-style-type: lower-alpha">
+<li>If you try to plot two vectors of different length, MATLAB will give you an error message.</li>
+<li>If you forget to include one variable (i.e. you only give the plot function a single vector input), it will simple plot that vector as the dependent variable values, assuming the independent variable values are simply 1,2,3,…</li>
+</ol></li>
+</ul>
+<p><img src="plot_command.png" />
+<img src="plot_fig.png" /></p></li>
+<li><p>Editing Figures in MATLAB</p>
+<p>There are lots of ways to edit Figures in MATLAB. Next chapter, we will learn how to edit figures using various commands within mfiles, functions or the Command Window. However, you can also edit plots interactively using the toolbar or drop-down menus of any figure.</p>
+<ul>
+<li><p>You can add Axes Labels and a Title
+<img src="labels.png" /></p></li>
+<li><p>You can edit your Font Size or other Axes Properties
+<img src="axes_props_drop.png" />
+<img src="axes_props.png" /></p></li>
+<li><p>You can edit the color or width of the line by double clicking the line.</p>
+<p>Note: In a scatter plot, you can edits the <code>Markers</code> (i.e. circles corresponding to your data) by double clicking on any one of them.
+<img src="line_edit.png" /></p></li>
+<li><p>You can save your beautiful figure in many different formats with a simple <code>File</code> –<span class="math inline">\(&gt;\)</span> <code>Save As..</code>
+<img src="pretty_fig.png" /></p>
 <div class="rmdquestion">
 <h4 id="question-4">
 Question 4
 </h4>
-<ul>
-<li>
-Download the table from <a href="https://raw.githubusercontent.com/Tabima/QuantBio_BIO120/main/Lab_5/data_table.txt">here</a> and read it into <code>R</code>. Add the code.
-</li>
-<li>
-What do the options <code>sep</code> and <code>header</code> mean? (Remember to use <code>?read.table</code> to help you when you have no idea what a function does)
-</li>
-<li>
-What happens if I remove the <code>sep</code> and <code>header</code> options?
-</li>
-<li>
-What are the classes and lengths of each column? Add the code
-</li>
-</ul>
+<p>
+Using either a scatter plot or line plot, visualize your results from Question 3.
+</p>
+<p>
+Make sure your plot has your axes labeled (with units) and includes a Title.
+</p>
 </div>
-</div>
-<div id="reading-comma-separated-value-files-.csv" class="section level4 hasAnchor" number="8.3.3.2">
-<h4><span class="header-section-number">8.3.3.2</span> Reading comma-separated value files (<code>.csv</code>)<a href="basic-r-2-data-frames.html#reading-comma-separated-value-files-.csv" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p><strong>Comma-separated value files <code>(CSV files)</code></strong> are fancy versions of tab separated text files but that have commas instead of tabs:</p>
-<pre><code>Name,Number of cats
-Javier,3
-Jackie,1
-Brenda,0
-Bea,6</code></pre>
-<p>CSV’s are super common in sciences and data management. Some of you have noticed that when you copy the data from Google Sheets to your text file it creates commas to separate the columns.</p>
-<p>To read CSV you can use the <code>read.csv</code> function</p>
 <div class="rmdquestion">
 <h4 id="question-5">
 Question 5
 </h4>
-<ul>
-<li>
-Download the table from <a href="https://raw.githubusercontent.com/Tabima/QuantBio_BIO120/main/Lab_5/data_table.csv">here</a> and read it into <code>R</code> using the <code>read.csv</code> function. Read the help and add the code and an explanation of the code syntax
-</li>
-<li>
-Is this table any different from the table in question 4?
-</li>
+<p>
+Write an m file that uses your function from Question 2 and generates a figure (either a scatter plot or line plot) showing the relationship between temperatures measured in Celsius vs. Farenheit. This graph should include a range of temperatures appropriate for someone trying to convert daily temperatures in Massachusetts over a typical calendar year.
+</p>
+<p>
+Make sure your plot has your axes labeled (with units) and includes a Title.
+</p>
+</div></li>
+</ul></li>
 </ul>
-</div>
-</div>
-<div id="reading-excel-files-.xlsx" class="section level4 hasAnchor" number="8.3.3.3">
-<h4><span class="header-section-number">8.3.3.3</span> Reading Excel files (.xlsx)<a href="basic-r-2-data-frames.html#reading-excel-files-.xlsx" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>We talked in class how Excel files are not necessarily the best but in most cases they are super important to store information, specially for people that are not well versed in computational stuff.</p>
-<p>Well, we can also read those files using the <code>read_xlsx</code> command from the package <code>readxl</code></p>
-<div class="rmdquestion">
-<h4 id="question-6">
-Question 6
-</h4>
-<ul>
-<li>
-Check your <a href="datasets.html#datasets">datasets</a> chapter and based on this info, install the <code>readxl</code> package in your R session
-</li>
-<li>
-Download the excel spreadsheet from <a href="https://raw.githubusercontent.com/Tabima/QuantBio_BIO120/main/Lab_5/data_table.xlsx">here</a>
-</li>
-<li>
-Using the <code>read_xlsx</code> command, read the <code>cats</code> spreadsheet into one object and the <code>dogs</code> spreadsheet in a different one. Both (Check your spreadsheet in excel or google sheets before hand) - Is this table any different from the table in questions 4 and 5?
-</li>
-</ul>
-</div>
 
-</div>
-</div>
 </div>
 </div>
             </section>
@@ -595,8 +490,8 @@ Using the <code>read_xlsx</code> command, read the <code>cats</code> spreadsheet
           </div>
         </div>
       </div>
-<a href="vectors.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="sumarizing-and-subsetting-data-frames.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="using-matlab-as-a-powerful-calculator.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="model-fitting-a.k.a.-parameter-estimation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -627,7 +522,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/06-dataR2.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/10-mFiles_functions_plots.Rmd",
 "text": "Edit"
 },
 "history": {

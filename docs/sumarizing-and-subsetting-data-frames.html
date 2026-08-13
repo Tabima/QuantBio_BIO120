@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Professors Jackie Dresch and Javier F. Tabima Restrepo" />
 
 
-<meta name="date" content="2022-10-24" />
+<meta name="date" content="2022-11-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -242,6 +242,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.3.3" data-path="using-matlab-as-a-powerful-calculator.html"><a href="using-matlab-as-a-powerful-calculator.html#multiplying-two-vectorsmatrices"><i class="fa fa-check"></i><b>11.3.3</b> Multiplying two vectors/matrices:</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="12" data-path="m-files-functions-and-simple-plotting-tools.html"><a href="m-files-functions-and-simple-plotting-tools.html"><i class="fa fa-check"></i><b>12</b> m files, functions, and Simple Plotting Tools</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="m-files-functions-and-simple-plotting-tools.html"><a href="m-files-functions-and-simple-plotting-tools.html#m-files"><i class="fa fa-check"></i><b>12.1</b> m files</a></li>
+<li class="chapter" data-level="12.2" data-path="m-files-functions-and-simple-plotting-tools.html"><a href="m-files-functions-and-simple-plotting-tools.html#functions"><i class="fa fa-check"></i><b>12.2</b> functions</a></li>
+<li class="chapter" data-level="12.3" data-path="m-files-functions-and-simple-plotting-tools.html"><a href="m-files-functions-and-simple-plotting-tools.html#plotting-function-output-model-predictions"><i class="fa fa-check"></i><b>12.3</b> Plotting function output / model predictions</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="model-fitting-a.k.a.-parameter-estimation.html"><a href="model-fitting-a.k.a.-parameter-estimation.html"><i class="fa fa-check"></i><b>13</b> Model Fitting (A.K.A. parameter estimation)</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="model-fitting-a.k.a.-parameter-estimation.html"><a href="model-fitting-a.k.a.-parameter-estimation.html#importing-numerical-data"><i class="fa fa-check"></i><b>13.1</b> Importing Numerical Data</a></li>
+<li class="chapter" data-level="13.2" data-path="model-fitting-a.k.a.-parameter-estimation.html"><a href="model-fitting-a.k.a.-parameter-estimation.html#creating-a-model-function"><i class="fa fa-check"></i><b>13.2</b> Creating a Model Function</a></li>
+<li class="chapter" data-level="13.3" data-path="model-fitting-a.k.a.-parameter-estimation.html"><a href="model-fitting-a.k.a.-parameter-estimation.html#creating-an-objective-error-function"><i class="fa fa-check"></i><b>13.3</b> Creating an Objective / Error Function</a></li>
+<li class="chapter" data-level="13.4" data-path="model-fitting-a.k.a.-parameter-estimation.html"><a href="model-fitting-a.k.a.-parameter-estimation.html#fitting-your-model-to-your-data"><i class="fa fa-check"></i><b>13.4</b> Fitting your Model to your Data</a>
+<ul>
+<li class="chapter" data-level="13.4.1" data-path="model-fitting-a.k.a.-parameter-estimation.html"><a href="model-fitting-a.k.a.-parameter-estimation.html#running-fminsearch"><i class="fa fa-check"></i><b>13.4.1</b> Running fminsearch()</a></li>
+<li class="chapter" data-level="13.4.2" data-path="model-fitting-a.k.a.-parameter-estimation.html"><a href="model-fitting-a.k.a.-parameter-estimation.html#visualizing-the-best-fit"><i class="fa fa-check"></i><b>13.4.2</b> Visualizing the Best Fit</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="investigating-a-numerical-data-set.html"><a href="investigating-a-numerical-data-set.html"><i class="fa fa-check"></i><b>14</b> Investigating a Numerical Data Set</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="investigating-a-numerical-data-set.html"><a href="investigating-a-numerical-data-set.html#extracting-and-combining-subsets-of-data"><i class="fa fa-check"></i><b>14.1</b> Extracting (and Combining) Subsets of Data</a></li>
+<li class="chapter" data-level="14.2" data-path="investigating-a-numerical-data-set.html"><a href="investigating-a-numerical-data-set.html#simple-summary-statistics"><i class="fa fa-check"></i><b>14.2</b> Simple Summary Statistics</a></li>
+<li class="chapter" data-level="14.3" data-path="investigating-a-numerical-data-set.html"><a href="investigating-a-numerical-data-set.html#writing-saving-numerical-data"><i class="fa fa-check"></i><b>14.3</b> Writing / Saving Numerical Data</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -335,7 +358,7 @@ For example, in the case of our <code>candy_table</code> data frame, our element
 So, if you want to look at the <code>color</code> column of <code>candy_table</code>, all you have to do is write:
 </p>
 </div>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="sumarizing-and-subsetting-data-frames.html#cb81-1" aria-hidden="true" tabindex="-1"></a>candy_table<span class="sc">$</span>color</span></code></pre></div>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="sumarizing-and-subsetting-data-frames.html#cb79-1" aria-hidden="true" tabindex="-1"></a>candy_table<span class="sc">$</span>color</span></code></pre></div>
 <pre><code>##  [1] &quot;red&quot;    &quot;red&quot;    &quot;red&quot;    &quot;red&quot;    &quot;orange&quot; &quot;orange&quot; &quot;yellow&quot; &quot;yellow&quot; &quot;yellow&quot; &quot;yellow&quot; &quot;green&quot;  &quot;green&quot;  &quot;green&quot; 
 ## [14] &quot;blue&quot;   &quot;blue&quot;   &quot;brown&quot;  &quot;brown&quot;  &quot;pink&quot;</code></pre>
 <div class="rmdquestion">
@@ -352,10 +375,10 @@ How would you look at the <code>acent</code> column in the <code>candy_table</co
 <h3><span class="header-section-number">9.2.1</span> Summarizing data<a href="sumarizing-and-subsetting-data-frames.html#summarizing-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Lets say we want to know what is the total number of colors. Sure, you can count them, but you can also let <code>R</code> count them for you.</p>
 <p>First, you need to know how many <strong>unique</strong> colors do we have in our column. To do so, use the <code>unique</code> function:</p>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="sumarizing-and-subsetting-data-frames.html#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(candy_table<span class="sc">$</span>color)</span></code></pre></div>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="sumarizing-and-subsetting-data-frames.html#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(candy_table<span class="sc">$</span>color)</span></code></pre></div>
 <pre><code>## [1] &quot;red&quot;    &quot;orange&quot; &quot;yellow&quot; &quot;green&quot;  &quot;blue&quot;   &quot;brown&quot;  &quot;pink&quot;</code></pre>
 <p>Simple. We see that <strong>red, orange, yellow, green, blue, brown, pink</strong> are our colors. We can count them by hand, or we can ask <code>R</code> to count them for us:</p>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="sumarizing-and-subsetting-data-frames.html#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(<span class="fu">unique</span>(candy_table<span class="sc">$</span>color))</span></code></pre></div>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="sumarizing-and-subsetting-data-frames.html#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(<span class="fu">unique</span>(candy_table<span class="sc">$</span>color))</span></code></pre></div>
 <pre><code>## [1] 7</code></pre>
 <hr />
 <div class="rmdinfo">
@@ -435,12 +458,12 @@ Which column has the highest amount of categories?
 </div>
 <p>Finally, we can also summarize the number of samples of a category using the command <code>table</code>.</p>
 <p>If we want to know the number of candies that are of each color we can do it like this:</p>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="sumarizing-and-subsetting-data-frames.html#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(candy_table<span class="sc">$</span>color)</span></code></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="sumarizing-and-subsetting-data-frames.html#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(candy_table<span class="sc">$</span>color)</span></code></pre></div>
 <pre><code>## 
 ##   blue  brown  green orange   pink    red yellow 
 ##      2      2      3      2      1      4      4</code></pre>
 <p>Easy! If you want to order them, then just use the <code>sort</code> function in the <code>table</code>:</p>
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="sumarizing-and-subsetting-data-frames.html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(<span class="fu">table</span>(candy_table<span class="sc">$</span>color))</span></code></pre></div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="sumarizing-and-subsetting-data-frames.html#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(<span class="fu">table</span>(candy_table<span class="sc">$</span>color))</span></code></pre></div>
 <pre><code>## 
 ##   pink   blue  brown orange  green    red yellow 
 ##      1      2      2      2      3      4      4</code></pre>
@@ -472,8 +495,8 @@ Based on your results, which of the columns has the least <strong>useful informa
 <h3><span class="header-section-number">9.2.2</span> Summarizing data<a href="sumarizing-and-subsetting-data-frames.html#summarizing-data-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Now that we understand the content of the columns, the next step is to remove the columns that do not have any information and start to summarize your results.</p>
 <p>In my case, I think that the <code>scent</code> column is unnecessary, so I want to remove it.</p>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="sumarizing-and-subsetting-data-frames.html#cb91-1" aria-hidden="true" tabindex="-1"></a>ct.no_scent <span class="ot">&lt;-</span> <span class="fu">subset</span>(candy_table, <span class="at">select =</span> <span class="sc">-</span><span class="fu">c</span>(scent))</span>
-<span id="cb91-2"><a href="sumarizing-and-subsetting-data-frames.html#cb91-2" aria-hidden="true" tabindex="-1"></a>ct.no_scent</span></code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="sumarizing-and-subsetting-data-frames.html#cb89-1" aria-hidden="true" tabindex="-1"></a>ct.no_scent <span class="ot">&lt;-</span> <span class="fu">subset</span>(candy_table, <span class="at">select =</span> <span class="sc">-</span><span class="fu">c</span>(scent))</span>
+<span id="cb89-2"><a href="sumarizing-and-subsetting-data-frames.html#cb89-2" aria-hidden="true" tabindex="-1"></a>ct.no_scent</span></code></pre></div>
 <pre><code>##     color      flavor       type scent.category
 ## 1     red  strawberry    skittle          fruit
 ## 2     red      cherry  starburst       non-food
@@ -508,13 +531,13 @@ Remove another column (other tan flavor) and explain why you decided to remove i
 <ol style="list-style-type: decimal">
 <li>Create a subset per type (I will only use skittle):</li>
 </ol>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="sumarizing-and-subsetting-data-frames.html#cb93-1" aria-hidden="true" tabindex="-1"></a>skit.ct <span class="ot">&lt;-</span> <span class="fu">subset</span>(ct.no_scent, type <span class="sc">==</span> <span class="st">&quot;skittle&quot;</span>)</span>
-<span id="cb93-2"><a href="sumarizing-and-subsetting-data-frames.html#cb93-2" aria-hidden="true" tabindex="-1"></a>skit.ct <span class="ot">&lt;-</span> <span class="fu">table</span>(skit.ct<span class="sc">$</span>scent.category)</span></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="sumarizing-and-subsetting-data-frames.html#cb91-1" aria-hidden="true" tabindex="-1"></a>skit.ct <span class="ot">&lt;-</span> <span class="fu">subset</span>(ct.no_scent, type <span class="sc">==</span> <span class="st">&quot;skittle&quot;</span>)</span>
+<span id="cb91-2"><a href="sumarizing-and-subsetting-data-frames.html#cb91-2" aria-hidden="true" tabindex="-1"></a>skit.ct <span class="ot">&lt;-</span> <span class="fu">table</span>(skit.ct<span class="sc">$</span>scent.category)</span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>Transform the list to a data frame and give it column names that are more representative of the data</li>
 </ol>
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="sumarizing-and-subsetting-data-frames.html#cb94-1" aria-hidden="true" tabindex="-1"></a>skit.ct <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(skit.ct)</span>
-<span id="cb94-2"><a href="sumarizing-and-subsetting-data-frames.html#cb94-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(skit.ct) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Flavor&quot;</span>, <span class="st">&quot;Skittle&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="sumarizing-and-subsetting-data-frames.html#cb92-1" aria-hidden="true" tabindex="-1"></a>skit.ct <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(skit.ct)</span>
+<span id="cb92-2"><a href="sumarizing-and-subsetting-data-frames.html#cb92-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(skit.ct) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Flavor&quot;</span>, <span class="st">&quot;Skittle&quot;</span>)</span></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
 <li>Do it for all different colors</li>
 </ol>
@@ -529,11 +552,11 @@ Create summary dataframes for all other types of candy
 </ul>
 </div>
 <p>4.Merge all the data into a single table using the command <code>merge</code></p>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="sumarizing-and-subsetting-data-frames.html#cb95-1" aria-hidden="true" tabindex="-1"></a>tb1 <span class="ot">&lt;-</span> <span class="fu">merge</span>(skit.ct, starburst.ct, <span class="at">by=</span><span class="st">&quot;Flavor&quot;</span>, <span class="at">all =</span> T)</span>
-<span id="cb95-2"><a href="sumarizing-and-subsetting-data-frames.html#cb95-2" aria-hidden="true" tabindex="-1"></a>tb2 <span class="ot">&lt;-</span> <span class="fu">merge</span>(mm.ct, pean.ct, <span class="at">by=</span><span class="st">&quot;Flavor&quot;</span>, <span class="at">all =</span> T)</span>
-<span id="cb95-3"><a href="sumarizing-and-subsetting-data-frames.html#cb95-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb95-4"><a href="sumarizing-and-subsetting-data-frames.html#cb95-4" aria-hidden="true" tabindex="-1"></a>tb.all <span class="ot">&lt;-</span> <span class="fu">merge</span>(tb1, tb2, <span class="at">by =</span> <span class="st">&quot;Flavor&quot;</span>, <span class="at">all =</span> T)</span>
-<span id="cb95-5"><a href="sumarizing-and-subsetting-data-frames.html#cb95-5" aria-hidden="true" tabindex="-1"></a>tb.all</span></code></pre></div>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="sumarizing-and-subsetting-data-frames.html#cb93-1" aria-hidden="true" tabindex="-1"></a>tb1 <span class="ot">&lt;-</span> <span class="fu">merge</span>(skit.ct, starburst.ct, <span class="at">by=</span><span class="st">&quot;Flavor&quot;</span>, <span class="at">all =</span> T)</span>
+<span id="cb93-2"><a href="sumarizing-and-subsetting-data-frames.html#cb93-2" aria-hidden="true" tabindex="-1"></a>tb2 <span class="ot">&lt;-</span> <span class="fu">merge</span>(mm.ct, pean.ct, <span class="at">by=</span><span class="st">&quot;Flavor&quot;</span>, <span class="at">all =</span> T)</span>
+<span id="cb93-3"><a href="sumarizing-and-subsetting-data-frames.html#cb93-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb93-4"><a href="sumarizing-and-subsetting-data-frames.html#cb93-4" aria-hidden="true" tabindex="-1"></a>tb.all <span class="ot">&lt;-</span> <span class="fu">merge</span>(tb1, tb2, <span class="at">by =</span> <span class="st">&quot;Flavor&quot;</span>, <span class="at">all =</span> T)</span>
+<span id="cb93-5"><a href="sumarizing-and-subsetting-data-frames.html#cb93-5" aria-hidden="true" tabindex="-1"></a>tb.all</span></code></pre></div>
 <pre><code>##      Flavor Skittle Starburst M&amp;M Peanut M&amp;M
 ## 1     fruit       5        NA  NA         NA
 ## 2  non-food      NA         3   3          1

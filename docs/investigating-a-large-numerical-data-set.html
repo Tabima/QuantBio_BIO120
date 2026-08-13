@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 13 Investigating a Large Numerical Data Set | BIOL120 Excercise Guidebook</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 13 Investigating a Large Numerical Data Set | BIOL120 Excercise Guidebook" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 13 Investigating a Large Numerical Data Set | BIOL120 Excercise Guidebook" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="Professors Jackie Dresch and Javier F. Tabima Restrepo" />
+
+
+<meta name="date" content="2022-11-21" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="model-fitting-a.k.a.-parameter-estimation.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Quantitative Biology (BIOL120)</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> url: your book url like <span>https://bookdown.org/yihui/bookdown</span></a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#additional-information-about-the-professor"><i class="fa fa-check"></i>Additional information about the professor</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="structure-of-the-guidebook-and-faqs.html"><a href="structure-of-the-guidebook-and-faqs.html"><i class="fa fa-check"></i><b>2</b> Structure of the Guidebook and FAQs</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="structure-of-the-guidebook-and-faqs.html"><a href="structure-of-the-guidebook-and-faqs.html#what-do-we-need-for-lab-sessions"><i class="fa fa-check"></i><b>2.1</b> What do we need for lab sessions?</a></li>
+<li class="chapter" data-level="2.2" data-path="structure-of-the-guidebook-and-faqs.html"><a href="structure-of-the-guidebook-and-faqs.html#why-are-we-using-these-programs"><i class="fa fa-check"></i><b>2.2</b> Why are we using these programs?</a></li>
+<li class="chapter" data-level="2.3" data-path="structure-of-the-guidebook-and-faqs.html"><a href="structure-of-the-guidebook-and-faqs.html#do-we-need-to-know-how-to-program"><i class="fa fa-check"></i><b>2.3</b> Do we need to know how to program?</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="software.html"><a href="software.html"><i class="fa fa-check"></i><b>3</b> Software for class</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="software.html"><a href="software.html#how-to-install-r"><i class="fa fa-check"></i><b>3.1</b> How to install R?</a></li>
+<li class="chapter" data-level="3.2" data-path="software.html"><a href="software.html#how-to-install-rstudio"><i class="fa fa-check"></i><b>3.2</b> How to install RStudio?</a></li>
+<li class="chapter" data-level="3.3" data-path="software.html"><a href="software.html#how-to-install-atom"><i class="fa fa-check"></i><b>3.3</b> How to install Atom?</a></li>
+<li class="chapter" data-level="3.4" data-path="software.html"><a href="software.html#how-to-install-matlab"><i class="fa fa-check"></i><b>3.4</b> How to install MATLAB?</a></li>
+<li class="chapter" data-level="3.5" data-path="software.html"><a href="software.html#testing-r-and-rstudio"><i class="fa fa-check"></i><b>3.5</b> Testing R and RStudio</a></li>
+<li class="chapter" data-level="3.6" data-path="software.html"><a href="software.html#testing-atom"><i class="fa fa-check"></i><b>3.6</b> Testing Atom</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="rmark.html"><a href="rmark.html"><i class="fa fa-check"></i><b>4</b> Introduction to electronic notebooks in R Markdown</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="rmark.html"><a href="rmark.html#markdown-formats"><i class="fa fa-check"></i><b>4.1</b> Markdown formats</a></li>
+<li class="chapter" data-level="4.2" data-path="rmark.html"><a href="rmark.html#basics-of-markdown"><i class="fa fa-check"></i><b>4.2</b> Basics of Markdown</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="rmark.html"><a href="rmark.html#basic-syntax"><i class="fa fa-check"></i><b>4.2.1</b> Basic syntax</a></li>
+<li class="chapter" data-level="4.2.2" data-path="rmark.html"><a href="rmark.html#lines-of-code"><i class="fa fa-check"></i><b>4.2.2</b> Lines of code</a></li>
+<li class="chapter" data-level="4.2.3" data-path="rmark.html"><a href="rmark.html#lists"><i class="fa fa-check"></i><b>4.2.3</b> Lists</a></li>
+<li class="chapter" data-level="4.2.4" data-path="rmark.html"><a href="rmark.html#horizontal-rules"><i class="fa fa-check"></i><b>4.2.4</b> Horizontal rules</a></li>
+<li class="chapter" data-level="4.2.5" data-path="rmark.html"><a href="rmark.html#links-figures-and-tables"><i class="fa fa-check"></i><b>4.2.5</b> Links, figures and tables</a></li>
+<li class="chapter" data-level="4.2.6" data-path="rmark.html"><a href="rmark.html#tables"><i class="fa fa-check"></i><b>4.2.6</b> Tables</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="rmark.html"><a href="rmark.html#r-markdown-excerise"><i class="fa fa-check"></i><b>4.3</b> R Markdown Excerise:</a></li>
+<li class="chapter" data-level="4.4" data-path="rmark.html"><a href="rmark.html#additional-information-on-markdown"><i class="fa fa-check"></i><b>4.4</b> Additional information on Markdown</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="datasets.html"><a href="datasets.html"><i class="fa fa-check"></i><b>5</b> Creating datasets and replicability</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="datasets.html"><a href="datasets.html#creating-basic-datasets"><i class="fa fa-check"></i><b>5.1</b> Creating basic datasets</a></li>
+<li class="chapter" data-level="5.2" data-path="datasets.html"><a href="datasets.html#asking-biological-questions-and-identifying-measurable-outcomes"><i class="fa fa-check"></i><b>5.2</b> Asking biological questions and identifying measurable outcomes</a></li>
+<li class="chapter" data-level="5.3" data-path="datasets.html"><a href="datasets.html#creating-a-clean-raw-dataset"><i class="fa fa-check"></i><b>5.3</b> Creating a clean raw dataset</a></li>
+<li class="chapter" data-level="5.4" data-path="datasets.html"><a href="datasets.html#creating-basic-basic-plots-in-r"><i class="fa fa-check"></i><b>5.4</b> Creating basic (basic) plots in R</a></li>
+<li class="chapter" data-level="5.5" data-path="datasets.html"><a href="datasets.html#comparisons-between-groups."><i class="fa fa-check"></i><b>5.5</b> Comparisons between groups.</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="vectors.html"><a href="vectors.html"><i class="fa fa-check"></i><b>6</b> Basic R (1): Vectors</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="vectors.html"><a href="vectors.html#basic-data-structures-in-r"><i class="fa fa-check"></i><b>6.1</b> Basic data structures in R</a></li>
+<li class="chapter" data-level="6.2" data-path="vectors.html"><a href="vectors.html#unidimensional-objects-vectors"><i class="fa fa-check"></i><b>6.2</b> Unidimensional objects: Vectors</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="vectors.html"><a href="vectors.html#classes-of-vectors"><i class="fa fa-check"></i><b>6.2.1</b> Classes of vectors</a></li>
+<li class="chapter" data-level="6.2.2" data-path="vectors.html"><a href="vectors.html#expanding-vectors"><i class="fa fa-check"></i><b>6.2.2</b> Expanding vectors</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="basic-r-2-data-frames.html"><a href="basic-r-2-data-frames.html"><i class="fa fa-check"></i><b>7</b> Basic R (2) : Data frames</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="basic-r-2-data-frames.html"><a href="basic-r-2-data-frames.html#creating-tables-using-vectors"><i class="fa fa-check"></i><b>7.1</b> Creating tables using vectors</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="basic-r-2-data-frames.html"><a href="basic-r-2-data-frames.html#accessing-specific-rows-and-columns"><i class="fa fa-check"></i><b>7.1.1</b> Accessing specific rows and columns</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="basic-r-2-data-frames.html"><a href="basic-r-2-data-frames.html#data-frames-versus-matrices"><i class="fa fa-check"></i><b>7.2</b> Data frames versus matrices</a></li>
+<li class="chapter" data-level="7.3" data-path="basic-r-2-data-frames.html"><a href="basic-r-2-data-frames.html#combining-different-two-dimensional-data-structures"><i class="fa fa-check"></i><b>7.3</b> Combining different two-dimensional data structures</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="basic-r-2-data-frames.html"><a href="basic-r-2-data-frames.html#combining-by-rows"><i class="fa fa-check"></i><b>7.3.1</b> Combining by rows</a></li>
+<li class="chapter" data-level="7.3.2" data-path="basic-r-2-data-frames.html"><a href="basic-r-2-data-frames.html#combining-by-columns"><i class="fa fa-check"></i><b>7.3.2</b> Combining by columns</a></li>
+<li class="chapter" data-level="7.3.3" data-path="basic-r-2-data-frames.html"><a href="basic-r-2-data-frames.html#reading-in-data-tables"><i class="fa fa-check"></i><b>7.3.3</b> Reading in data tables</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="sumarizing-and-subsetting-data-frames.html"><a href="sumarizing-and-subsetting-data-frames.html"><i class="fa fa-check"></i><b>8</b> Sumarizing and subsetting data frames</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="sumarizing-and-subsetting-data-frames.html"><a href="sumarizing-and-subsetting-data-frames.html#reading-in-the-dataframe"><i class="fa fa-check"></i><b>8.1</b> Reading in the dataframe</a></li>
+<li class="chapter" data-level="8.2" data-path="sumarizing-and-subsetting-data-frames.html"><a href="sumarizing-and-subsetting-data-frames.html#summarizing-and-subsetting-data"><i class="fa fa-check"></i><b>8.2</b> Summarizing and subsetting data</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="sumarizing-and-subsetting-data-frames.html"><a href="sumarizing-and-subsetting-data-frames.html#summarizing-data"><i class="fa fa-check"></i><b>8.2.1</b> Summarizing data</a></li>
+<li class="chapter" data-level="8.2.2" data-path="sumarizing-and-subsetting-data-frames.html"><a href="sumarizing-and-subsetting-data-frames.html#summarizing-data-1"><i class="fa fa-check"></i><b>8.2.2</b> Summarizing data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="plots.html"><a href="plots.html"><i class="fa fa-check"></i><b>9</b> Plotting data</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="plots.html"><a href="plots.html#using-ggplot2-to-plot-in-r"><i class="fa fa-check"></i><b>9.1</b> Using <code>ggplot2</code> to plot in <code>R</code></a></li>
+<li class="chapter" data-level="9.2" data-path="plots.html"><a href="plots.html#different-types-of-plots"><i class="fa fa-check"></i><b>9.2</b> Different types of plots</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="plots.html"><a href="plots.html#histogram"><i class="fa fa-check"></i><b>9.2.1</b> Histogram</a></li>
+<li class="chapter" data-level="9.2.2" data-path="plots.html"><a href="plots.html#barplots"><i class="fa fa-check"></i><b>9.2.2</b> Barplots</a></li>
+<li class="chapter" data-level="9.2.3" data-path="plots.html"><a href="plots.html#scatterplots"><i class="fa fa-check"></i><b>9.2.3</b> Scatterplots</a></li>
+<li class="chapter" data-level="9.2.4" data-path="plots.html"><a href="plots.html#boxplots-violin-plots-and-distributions"><i class="fa fa-check"></i><b>9.2.4</b> Boxplots, violin plots and distributions</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="plots.html"><a href="plots.html#more-resources-on-ggplot2"><i class="fa fa-check"></i><b>9.3</b> More resources on <code>ggplot2</code></a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="using-matlab-as-a-powerful-calculator.html"><a href="using-matlab-as-a-powerful-calculator.html"><i class="fa fa-check"></i><b>10</b> Using MATLAB as a Powerful Calculator</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="using-matlab-as-a-powerful-calculator.html"><a href="using-matlab-as-a-powerful-calculator.html#matlab-basics-for-calculation"><i class="fa fa-check"></i><b>10.1</b> MATLAB Basics for calculation:</a></li>
+<li class="chapter" data-level="10.2" data-path="using-matlab-as-a-powerful-calculator.html"><a href="using-matlab-as-a-powerful-calculator.html#early-words-of-caution"><i class="fa fa-check"></i><b>10.2</b> Early words of caution:</a></li>
+<li class="chapter" data-level="10.3" data-path="using-matlab-as-a-powerful-calculator.html"><a href="using-matlab-as-a-powerful-calculator.html#dealing-with-vectorsmatrices"><i class="fa fa-check"></i><b>10.3</b> Dealing with vectors/matrices:</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="using-matlab-as-a-powerful-calculator.html"><a href="using-matlab-as-a-powerful-calculator.html#defining-a-vectormatrix"><i class="fa fa-check"></i><b>10.3.1</b> Defining a vector/matrix:</a></li>
+<li class="chapter" data-level="10.3.2" data-path="using-matlab-as-a-powerful-calculator.html"><a href="using-matlab-as-a-powerful-calculator.html#accessing-elements-adding-and-subtracting"><i class="fa fa-check"></i><b>10.3.2</b> Accessing Elements, Adding, and Subtracting</a></li>
+<li class="chapter" data-level="10.3.3" data-path="using-matlab-as-a-powerful-calculator.html"><a href="using-matlab-as-a-powerful-calculator.html#multiplying-two-vectorsmatrices"><i class="fa fa-check"></i><b>10.3.3</b> Multiplying two vectors/matrices:</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="m-files-functions-and-simple-plotting-tools.html"><a href="m-files-functions-and-simple-plotting-tools.html"><i class="fa fa-check"></i><b>11</b> m files, functions, and Simple Plotting Tools</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="m-files-functions-and-simple-plotting-tools.html"><a href="m-files-functions-and-simple-plotting-tools.html#m-files"><i class="fa fa-check"></i><b>11.1</b> m files</a></li>
+<li class="chapter" data-level="11.2" data-path="m-files-functions-and-simple-plotting-tools.html"><a href="m-files-functions-and-simple-plotting-tools.html#functions"><i class="fa fa-check"></i><b>11.2</b> functions</a></li>
+<li class="chapter" data-level="11.3" data-path="m-files-functions-and-simple-plotting-tools.html"><a href="m-files-functions-and-simple-plotting-tools.html#plotting-function-output-model-predictions"><i class="fa fa-check"></i><b>11.3</b> Plotting function output / model predictions</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="model-fitting-a.k.a.-parameter-estimation.html"><a href="model-fitting-a.k.a.-parameter-estimation.html"><i class="fa fa-check"></i><b>12</b> Model Fitting (A.K.A. parameter estimation)</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="model-fitting-a.k.a.-parameter-estimation.html"><a href="model-fitting-a.k.a.-parameter-estimation.html#importing-numerical-data"><i class="fa fa-check"></i><b>12.1</b> Importing Numerical Data</a></li>
+<li class="chapter" data-level="12.2" data-path="model-fitting-a.k.a.-parameter-estimation.html"><a href="model-fitting-a.k.a.-parameter-estimation.html#creating-a-model-function"><i class="fa fa-check"></i><b>12.2</b> Creating a Model Function</a></li>
+<li class="chapter" data-level="12.3" data-path="model-fitting-a.k.a.-parameter-estimation.html"><a href="model-fitting-a.k.a.-parameter-estimation.html#creating-an-objective-error-function"><i class="fa fa-check"></i><b>12.3</b> Creating an Objective / Error Function</a></li>
+<li class="chapter" data-level="12.4" data-path="model-fitting-a.k.a.-parameter-estimation.html"><a href="model-fitting-a.k.a.-parameter-estimation.html#fitting-your-model-to-your-data"><i class="fa fa-check"></i><b>12.4</b> Fitting your Model to your Data</a>
+<ul>
+<li class="chapter" data-level="12.4.1" data-path="model-fitting-a.k.a.-parameter-estimation.html"><a href="model-fitting-a.k.a.-parameter-estimation.html#running-fminsearch"><i class="fa fa-check"></i><b>12.4.1</b> Running fminsearch()</a></li>
+<li class="chapter" data-level="12.4.2" data-path="model-fitting-a.k.a.-parameter-estimation.html"><a href="model-fitting-a.k.a.-parameter-estimation.html#visualizing-the-best-fit"><i class="fa fa-check"></i><b>12.4.2</b> Visualizing the Best Fit</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="investigating-a-large-numerical-data-set.html"><a href="investigating-a-large-numerical-data-set.html"><i class="fa fa-check"></i><b>13</b> Investigating a Large Numerical Data Set</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="investigating-a-large-numerical-data-set.html"><a href="investigating-a-large-numerical-data-set.html#extracting-and-combining-subsets-of-data"><i class="fa fa-check"></i><b>13.1</b> Extracting (and Combining) Subsets of Data</a></li>
+<li class="chapter" data-level="13.2" data-path="investigating-a-large-numerical-data-set.html"><a href="investigating-a-large-numerical-data-set.html#simple-summary-statistics"><i class="fa fa-check"></i><b>13.2</b> Simple Summary Statistics</a></li>
+<li class="chapter" data-level="13.3" data-path="investigating-a-large-numerical-data-set.html"><a href="investigating-a-large-numerical-data-set.html#writing-saving-numerical-data"><i class="fa fa-check"></i><b>13.3</b> Writing / Saving Numerical Data</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">BIOL120 Excercise Guidebook</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="investigating-a-large-numerical-data-set" class="section level1 hasAnchor" number="13">
+<h1><span class="header-section-number">Chapter 13</span> Investigating a Large Numerical Data Set<a href="investigating-a-large-numerical-data-set.html#investigating-a-large-numerical-data-set" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Large data sets are saved in many different formats. The BDTNP data has been organized into separate files for each mRNA species. In each file, the columns correspond to different timepoints in development (70, 80, 90, 100, 110, and 120 minutes). The rows correspond to the 52 nuclei in the middle of the embryo (Dorsal-Vetral) from 10 - 90 % Anterior-Posterior. Each value is the average normalized [mRNA].</p>
+<div id="extracting-and-combining-subsets-of-data" class="section level2 hasAnchor" number="13.1">
+<h2><span class="header-section-number">13.1</span> Extracting (and Combining) Subsets of Data<a href="investigating-a-large-numerical-data-set.html#extracting-and-combining-subsets-of-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>When dealing with data in this format (i.e. a matrix), remember:</p>
+<ul>
+<li>If I have a matrix, <code>M</code>, and I want to extract a single columnm (for example, column 2), I can use the command:</li>
+</ul>
+<p><code>M(:,2)</code></p>
+<ul>
+<li>If I want to extract a single row (for example, row 26), I can use the command:</li>
+</ul>
+<p><code>M(26,:)</code></p>
+<ul>
+<li>This also means I can combine subsets of my data.
+<ul>
+<li>Example:
+If I want eve mRNA and ftz mRNA at 100 minutes (i.e. timepoint 5) into development in a new matrix, M, I type:<br />
+<img src="subset.png" width="600" /></li>
+</ul></li>
+</ul>
+<div class="rmdquestion">
+<h4 id="question-1">
+Question 1
+</h4>
+<p>
+Download the data files (there are 8 total mRNA data files) and the BDTNP.m file from the course moodle.
+</p>
+<ol style="list-style-type: lower-alpha">
+<li>
+<p>
+Plot at least one mRNA concentration at all 6 timepoints (using <code>hold on</code>).
+</p>
+</li>
+<li>
+<p>
+Plot all 8 mRNA concentrations at a single timepoint. (Hint: Make sure you use a timepoint that you have data for all 8 mRNAs for).
+</p>
+</li>
+</ol>
+<p>
+For both figures, make sure to include axes labels and a legend.
+</p>
+</div>
+</div>
+<div id="simple-summary-statistics" class="section level2 hasAnchor" number="13.2">
+<h2><span class="header-section-number">13.2</span> Simple Summary Statistics<a href="investigating-a-large-numerical-data-set.html#simple-summary-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><p>Using min(), max(), mean(), median(), or mode() on a matrix of data returns a vector containing the minimum, maximum, mean, median, or mode respectively of each COLUMN. <br />
+Example: <br />
+<img src="simplestats.png" width="800" /></p></li>
+<li><p>If you want the min, max, mean, median, or mode of each ROW, there are two ways of doing this:<br /></p>
+<ol style="list-style-type: decimal">
+<li>Use the same commands on the <em>transpose</em> of the matrix (i.e. M’)<br />
+Example:<br />
+<code>min(M')</code><br />
+OR<br /></li>
+<li>You can call the same commands across the second dimension <br />
+Example for min or max:<br />
+<code>min(M,[],2)</code><br />
+Example for mean, median or mode: <br />
+<code>mean(M,2)</code></li>
+</ol></li>
+<li><p>To visualize the spread of data, one often uses a box plot. To do this in MATLAB, use the <code>boxplot()</code> command.<br />
+When using <code>boxplot()</code> with a matrix of data, each box summarizes a column of data, the central mark indicates the median, and the bottom and top edges of the box indicate the 25th and 75th percentiles, respectively. The whiskers extend to the most extreme data points not considered outliers, and the outliers are plotted individually using the ‘+’ marker symbol.<br />
+Example: <br />
+<img src="boxplot.png" /></p></li>
+</ul>
+<div class="rmdquestion">
+<h4 id="question-2">
+Question 2
+</h4>
+<ol style="list-style-type: lower-alpha">
+<li>
+<p>
+Scatter the 6 timepoints vs. the maximum mRNA concentration across all nuclei (Note: time should be the independent variable and maximum mRNA concentration should be the dependent variable). You can do this for a single mRNA or show the data from multiple mRNA on a single figure (just remember to use the command <code>hold on</code>)
+</p>
+</li>
+<li>
+<p>
+Create a box plot for one of the mRNA concentrations. What observation(s) can you make from your figure? (Hint: Possible observations could include a general trend as time increases or a change in the spread of the data from one timepoint to another).
+</p>
+</li>
+</ol>
+<p>
+For both figures, make sure to include axes labels. If you have more than one mRNA on a single figure, make sure to include a legend also.
+</p>
+</div>
+</div>
+<div id="writing-saving-numerical-data" class="section level2 hasAnchor" number="13.3">
+<h2><span class="header-section-number">13.3</span> Writing / Saving Numerical Data<a href="investigating-a-large-numerical-data-set.html#writing-saving-numerical-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Any numerical data you have in a matrix, <code>M</code>, can be written to a tab-delimited file (i.e. one you can open with Notepad, Atom, or Excel) with one easy line of code: <br />
+<code>dlmwrite('mydata_name.txt',M)</code></li>
+</ul>
+<p>Note: Your file will be saved in your <code>Current Folder</code>.</p>
+<div class="rmdquestion">
+<h4 id="question-3">
+Question 3
+</h4>
+<ol style="list-style-type: lower-alpha">
+<li>
+<p>
+Take the data you plotted in Question 1 b), organize it in a matrix, and save it as a .txt file using <code>dlmwrite()</code>.
+</p>
+</li>
+<li>
+<p>
+Take the data you plotted in Question 2 a), organize it in a matrix, and save it as a .txt file using <code>dlmwrite()</code>.
+</p>
+</li>
+</ol>
+</div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="model-fitting-a.k.a.-parameter-estimation.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/12-SummarizingData.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

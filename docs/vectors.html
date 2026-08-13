@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Professors Jackie Dresch and Javier F. Tabima Restrepo" />
 
 
-<meta name="date" content="2022-10-24" />
+<meta name="date" content="2022-11-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -242,6 +242,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.3.3" data-path="using-matlab-as-a-powerful-calculator.html"><a href="using-matlab-as-a-powerful-calculator.html#multiplying-two-vectorsmatrices"><i class="fa fa-check"></i><b>11.3.3</b> Multiplying two vectors/matrices:</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="12" data-path="m-files-functions-and-simple-plotting-tools.html"><a href="m-files-functions-and-simple-plotting-tools.html"><i class="fa fa-check"></i><b>12</b> m files, functions, and Simple Plotting Tools</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="m-files-functions-and-simple-plotting-tools.html"><a href="m-files-functions-and-simple-plotting-tools.html#m-files"><i class="fa fa-check"></i><b>12.1</b> m files</a></li>
+<li class="chapter" data-level="12.2" data-path="m-files-functions-and-simple-plotting-tools.html"><a href="m-files-functions-and-simple-plotting-tools.html#functions"><i class="fa fa-check"></i><b>12.2</b> functions</a></li>
+<li class="chapter" data-level="12.3" data-path="m-files-functions-and-simple-plotting-tools.html"><a href="m-files-functions-and-simple-plotting-tools.html#plotting-function-output-model-predictions"><i class="fa fa-check"></i><b>12.3</b> Plotting function output / model predictions</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="model-fitting-a.k.a.-parameter-estimation.html"><a href="model-fitting-a.k.a.-parameter-estimation.html"><i class="fa fa-check"></i><b>13</b> Model Fitting (A.K.A. parameter estimation)</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="model-fitting-a.k.a.-parameter-estimation.html"><a href="model-fitting-a.k.a.-parameter-estimation.html#importing-numerical-data"><i class="fa fa-check"></i><b>13.1</b> Importing Numerical Data</a></li>
+<li class="chapter" data-level="13.2" data-path="model-fitting-a.k.a.-parameter-estimation.html"><a href="model-fitting-a.k.a.-parameter-estimation.html#creating-a-model-function"><i class="fa fa-check"></i><b>13.2</b> Creating a Model Function</a></li>
+<li class="chapter" data-level="13.3" data-path="model-fitting-a.k.a.-parameter-estimation.html"><a href="model-fitting-a.k.a.-parameter-estimation.html#creating-an-objective-error-function"><i class="fa fa-check"></i><b>13.3</b> Creating an Objective / Error Function</a></li>
+<li class="chapter" data-level="13.4" data-path="model-fitting-a.k.a.-parameter-estimation.html"><a href="model-fitting-a.k.a.-parameter-estimation.html#fitting-your-model-to-your-data"><i class="fa fa-check"></i><b>13.4</b> Fitting your Model to your Data</a>
+<ul>
+<li class="chapter" data-level="13.4.1" data-path="model-fitting-a.k.a.-parameter-estimation.html"><a href="model-fitting-a.k.a.-parameter-estimation.html#running-fminsearch"><i class="fa fa-check"></i><b>13.4.1</b> Running fminsearch()</a></li>
+<li class="chapter" data-level="13.4.2" data-path="model-fitting-a.k.a.-parameter-estimation.html"><a href="model-fitting-a.k.a.-parameter-estimation.html#visualizing-the-best-fit"><i class="fa fa-check"></i><b>13.4.2</b> Visualizing the Best Fit</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="investigating-a-numerical-data-set.html"><a href="investigating-a-numerical-data-set.html"><i class="fa fa-check"></i><b>14</b> Investigating a Numerical Data Set</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="investigating-a-numerical-data-set.html"><a href="investigating-a-numerical-data-set.html#extracting-and-combining-subsets-of-data"><i class="fa fa-check"></i><b>14.1</b> Extracting (and Combining) Subsets of Data</a></li>
+<li class="chapter" data-level="14.2" data-path="investigating-a-numerical-data-set.html"><a href="investigating-a-numerical-data-set.html#simple-summary-statistics"><i class="fa fa-check"></i><b>14.2</b> Simple Summary Statistics</a></li>
+<li class="chapter" data-level="14.3" data-path="investigating-a-numerical-data-set.html"><a href="investigating-a-numerical-data-set.html#writing-saving-numerical-data"><i class="fa fa-check"></i><b>14.3</b> Writing / Saving Numerical Data</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -291,13 +314,13 @@ To learn how to differentiate types of vectors
 <li>Two-dimensional data structures such as <strong>data frames</strong> or <strong>matrices</strong></li>
 <li>N-dimensional data structures such as <strong>lists</strong> (Dont worry about lists for class)</li>
 </ol>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="vectors.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># One dimensional objects</span></span>
-<span id="cb15-2"><a href="vectors.html#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="vectors.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># One dimensional objects</span></span>
+<span id="cb13-2"><a href="vectors.html#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>)</span></code></pre></div>
 <pre><code>## [1] 1 2 3 4 5</code></pre>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="vectors.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">&quot;A&quot;</span>,<span class="st">&quot;B&quot;</span>,<span class="st">&quot;C&quot;</span>,<span class="st">&quot;D&quot;</span>,<span class="st">&quot;E&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="vectors.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">&quot;A&quot;</span>,<span class="st">&quot;B&quot;</span>,<span class="st">&quot;C&quot;</span>,<span class="st">&quot;D&quot;</span>,<span class="st">&quot;E&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;A&quot; &quot;B&quot; &quot;C&quot; &quot;D&quot; &quot;E&quot;</code></pre>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="vectors.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Two dimensional objects</span></span>
-<span id="cb19-2"><a href="vectors.html#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>), <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>,<span class="st">&quot;B&quot;</span>,<span class="st">&quot;C&quot;</span>,<span class="st">&quot;D&quot;</span>,<span class="st">&quot;E&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="vectors.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Two dimensional objects</span></span>
+<span id="cb17-2"><a href="vectors.html#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>), <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>,<span class="st">&quot;B&quot;</span>,<span class="st">&quot;C&quot;</span>,<span class="st">&quot;D&quot;</span>,<span class="st">&quot;E&quot;</span>))</span></code></pre></div>
 <pre><code>##   c.1..2..3..4..5. c..A....B....C....D....E..
 ## 1                1                          A
 ## 2                2                          B
@@ -315,7 +338,7 @@ Objects
 For example, if we want to store the set of numbers in the previous example in an object called <code>numbers</code> we will do the following:
 </p>
 </div>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="vectors.html#cb21-1" aria-hidden="true" tabindex="-1"></a>numbers <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="vectors.html#cb19-1" aria-hidden="true" tabindex="-1"></a>numbers <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>)</span></code></pre></div>
 <div class="rmdinfo">
 <p>
 You will see in your Environment pane (upper right) that a new object, called <code>numbers</code> is there:
@@ -330,7 +353,7 @@ That means your object has been created.
 To check that your object exists, then just write the name of your object in either the <code>R</code> console or your R markdown <code>R</code> chunk block and execute it (hit the play button ion your chunk)
 </p>
 </div>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="vectors.html#cb22-1" aria-hidden="true" tabindex="-1"></a>numbers</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="vectors.html#cb20-1" aria-hidden="true" tabindex="-1"></a>numbers</span></code></pre></div>
 <pre><code>## [1] 1 2 3 4 5</code></pre>
 <hr />
 </div>
@@ -338,13 +361,13 @@ To check that your object exists, then just write the name of your object in eit
 <h2><span class="header-section-number">7.2</span> Unidimensional objects: Vectors<a href="vectors.html#unidimensional-objects-vectors" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>It has only one dimension, like a table that only has either columns or rows. So, a “list” of infinite objects in only one direction.</p>
 <p>This one-dimension object is called a <strong>vector</strong>, vectors look like this:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="vectors.html#cb24-1" aria-hidden="true" tabindex="-1"></a>numbers <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>)</span>
-<span id="cb24-2"><a href="vectors.html#cb24-2" aria-hidden="true" tabindex="-1"></a>letters <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>,<span class="st">&quot;B&quot;</span>,<span class="st">&quot;C&quot;</span>,<span class="st">&quot;D&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="vectors.html#cb22-1" aria-hidden="true" tabindex="-1"></a>numbers <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>)</span>
+<span id="cb22-2"><a href="vectors.html#cb22-2" aria-hidden="true" tabindex="-1"></a>letters <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>,<span class="st">&quot;B&quot;</span>,<span class="st">&quot;C&quot;</span>,<span class="st">&quot;D&quot;</span>)</span></code></pre></div>
 <p>To initiate a vector object, use the <code>c()</code> style. This will invoke a vector that will be filled with the content separated by commas.</p>
 <p>so, when we call them in R, they look like this:</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="vectors.html#cb25-1" aria-hidden="true" tabindex="-1"></a>numbers</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="vectors.html#cb23-1" aria-hidden="true" tabindex="-1"></a>numbers</span></code></pre></div>
 <pre><code>## [1] 1 2 3 4 5</code></pre>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="vectors.html#cb27-1" aria-hidden="true" tabindex="-1"></a>letters</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="vectors.html#cb25-1" aria-hidden="true" tabindex="-1"></a>letters</span></code></pre></div>
 <pre><code>## [1] &quot;A&quot; &quot;B&quot; &quot;C&quot; &quot;D&quot;</code></pre>
 <p>Note that there is no info about rows or columns. That means you are working with vectors.</p>
 <div class="rmdinfo">
@@ -370,7 +393,7 @@ The way the <code>R</code> syntax works is like this:
 So, for example, if you want to measure the length of an object you use the function <code>length</code> and the object between parenthesis:
 </p>
 </div>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="vectors.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(numbers)</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="vectors.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(numbers)</span></code></pre></div>
 <pre><code>## [1] 5</code></pre>
 <div class="rmdquestion">
 <h4 id="question-1">
@@ -399,9 +422,9 @@ Show the code you used to create the vectors
 <div id="classes-of-vectors" class="section level3 hasAnchor" number="7.2.1">
 <h3><span class="header-section-number">7.2.1</span> Classes of vectors<a href="vectors.html#classes-of-vectors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Another important command to know if your object is a vector is the <code>class</code> command:</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="vectors.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(numbers)</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="vectors.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(numbers)</span></code></pre></div>
 <pre><code>## [1] &quot;numeric&quot;</code></pre>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="vectors.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(letters)</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="vectors.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(letters)</span></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
 <p>The results shows that we either have <code>integers</code> or <code>characters</code>. These represent vectors of the same type: An integer vector is comprised by numbers, while a character vector is comprised by letters (or other letter-like characters). <strong>Character</strong> vectors can be identified because the elements in the vector are surrounded by quotation marks (“), while an integer is not</p>
 <div class="rmdquestion">
@@ -419,17 +442,17 @@ Which are the classes of the <code>words</code>, <code>numbers</code> and <code>
 <div id="expanding-vectors" class="section level3 hasAnchor" number="7.2.2">
 <h3><span class="header-section-number">7.2.2</span> Expanding vectors<a href="vectors.html#expanding-vectors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>If you have two vectors of the same class, you can expand them by using the <code>c()</code> command again:</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="vectors.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># I want to create a vector of letters times 2 (So each letter twice)</span></span>
-<span id="cb35-2"><a href="vectors.html#cb35-2" aria-hidden="true" tabindex="-1"></a>double.letters <span class="ot">&lt;-</span> <span class="fu">c</span>(letters, letters)</span>
-<span id="cb35-3"><a href="vectors.html#cb35-3" aria-hidden="true" tabindex="-1"></a>double.letters</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="vectors.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># I want to create a vector of letters times 2 (So each letter twice)</span></span>
+<span id="cb33-2"><a href="vectors.html#cb33-2" aria-hidden="true" tabindex="-1"></a>double.letters <span class="ot">&lt;-</span> <span class="fu">c</span>(letters, letters)</span>
+<span id="cb33-3"><a href="vectors.html#cb33-3" aria-hidden="true" tabindex="-1"></a>double.letters</span></code></pre></div>
 <pre><code>## [1] &quot;A&quot; &quot;B&quot; &quot;C&quot; &quot;D&quot; &quot;A&quot; &quot;B&quot; &quot;C&quot; &quot;D&quot;</code></pre>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="vectors.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Same with numbers</span></span>
-<span id="cb37-2"><a href="vectors.html#cb37-2" aria-hidden="true" tabindex="-1"></a>double.numbers <span class="ot">&lt;-</span> <span class="fu">c</span>(numbers, numbers)</span>
-<span id="cb37-3"><a href="vectors.html#cb37-3" aria-hidden="true" tabindex="-1"></a>double.numbers</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="vectors.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Same with numbers</span></span>
+<span id="cb35-2"><a href="vectors.html#cb35-2" aria-hidden="true" tabindex="-1"></a>double.numbers <span class="ot">&lt;-</span> <span class="fu">c</span>(numbers, numbers)</span>
+<span id="cb35-3"><a href="vectors.html#cb35-3" aria-hidden="true" tabindex="-1"></a>double.numbers</span></code></pre></div>
 <pre><code>##  [1] 1 2 3 4 5 1 2 3 4 5</code></pre>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="vectors.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Or I want to add more numbers to my vector:</span></span>
-<span id="cb39-2"><a href="vectors.html#cb39-2" aria-hidden="true" tabindex="-1"></a>more.numbers <span class="ot">&lt;-</span> <span class="fu">c</span>(numbers, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>)</span>
-<span id="cb39-3"><a href="vectors.html#cb39-3" aria-hidden="true" tabindex="-1"></a>more.numbers</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="vectors.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Or I want to add more numbers to my vector:</span></span>
+<span id="cb37-2"><a href="vectors.html#cb37-2" aria-hidden="true" tabindex="-1"></a>more.numbers <span class="ot">&lt;-</span> <span class="fu">c</span>(numbers, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>)</span>
+<span id="cb37-3"><a href="vectors.html#cb37-3" aria-hidden="true" tabindex="-1"></a>more.numbers</span></code></pre></div>
 <pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
 <div class="rmdquestion">
 <h4 id="question-3">

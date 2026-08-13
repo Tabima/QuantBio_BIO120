@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 11 m files and functions | BIOL120 Excercise Guidebook</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 11 m files and functions | BIOL120 Excercise Guidebook" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 11 m files and functions | BIOL120 Excercise Guidebook" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="Professors Jackie Dresch and Javier F. Tabima Restrepo" />
+
+
+<meta name="date" content="2022-11-02" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="using-matlab-as-a-powerful-calculator.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Quantitative Biology (BIOL120)</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> url: your book url like <span>https://bookdown.org/yihui/bookdown</span></a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#additional-information-about-the-professor"><i class="fa fa-check"></i>Additional information about the professor</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="structure-of-the-guidebook-and-faqs.html"><a href="structure-of-the-guidebook-and-faqs.html"><i class="fa fa-check"></i><b>2</b> Structure of the Guidebook and FAQs</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="structure-of-the-guidebook-and-faqs.html"><a href="structure-of-the-guidebook-and-faqs.html#what-do-we-need-for-lab-sessions"><i class="fa fa-check"></i><b>2.1</b> What do we need for lab sessions?</a></li>
+<li class="chapter" data-level="2.2" data-path="structure-of-the-guidebook-and-faqs.html"><a href="structure-of-the-guidebook-and-faqs.html#why-are-we-using-these-programs"><i class="fa fa-check"></i><b>2.2</b> Why are we using these programs?</a></li>
+<li class="chapter" data-level="2.3" data-path="structure-of-the-guidebook-and-faqs.html"><a href="structure-of-the-guidebook-and-faqs.html#do-we-need-to-know-how-to-program"><i class="fa fa-check"></i><b>2.3</b> Do we need to know how to program?</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="software.html"><a href="software.html"><i class="fa fa-check"></i><b>3</b> Software for class</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="software.html"><a href="software.html#how-to-install-r"><i class="fa fa-check"></i><b>3.1</b> How to install R?</a></li>
+<li class="chapter" data-level="3.2" data-path="software.html"><a href="software.html#how-to-install-rstudio"><i class="fa fa-check"></i><b>3.2</b> How to install RStudio?</a></li>
+<li class="chapter" data-level="3.3" data-path="software.html"><a href="software.html#how-to-install-atom"><i class="fa fa-check"></i><b>3.3</b> How to install Atom?</a></li>
+<li class="chapter" data-level="3.4" data-path="software.html"><a href="software.html#how-to-install-matlab"><i class="fa fa-check"></i><b>3.4</b> How to install MATLAB?</a></li>
+<li class="chapter" data-level="3.5" data-path="software.html"><a href="software.html#testing-r-and-rstudio"><i class="fa fa-check"></i><b>3.5</b> Testing R and RStudio</a></li>
+<li class="chapter" data-level="3.6" data-path="software.html"><a href="software.html#testing-atom"><i class="fa fa-check"></i><b>3.6</b> Testing Atom</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="rmark.html"><a href="rmark.html"><i class="fa fa-check"></i><b>4</b> Introduction to electronic notebooks in R Markdown</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="rmark.html"><a href="rmark.html#markdown-formats"><i class="fa fa-check"></i><b>4.1</b> Markdown formats</a></li>
+<li class="chapter" data-level="4.2" data-path="rmark.html"><a href="rmark.html#basics-of-markdown"><i class="fa fa-check"></i><b>4.2</b> Basics of Markdown</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="rmark.html"><a href="rmark.html#basic-syntax"><i class="fa fa-check"></i><b>4.2.1</b> Basic syntax</a></li>
+<li class="chapter" data-level="4.2.2" data-path="rmark.html"><a href="rmark.html#lines-of-code"><i class="fa fa-check"></i><b>4.2.2</b> Lines of code</a></li>
+<li class="chapter" data-level="4.2.3" data-path="rmark.html"><a href="rmark.html#lists"><i class="fa fa-check"></i><b>4.2.3</b> Lists</a></li>
+<li class="chapter" data-level="4.2.4" data-path="rmark.html"><a href="rmark.html#horizontal-rules"><i class="fa fa-check"></i><b>4.2.4</b> Horizontal rules</a></li>
+<li class="chapter" data-level="4.2.5" data-path="rmark.html"><a href="rmark.html#links-figures-and-tables"><i class="fa fa-check"></i><b>4.2.5</b> Links, figures and tables</a></li>
+<li class="chapter" data-level="4.2.6" data-path="rmark.html"><a href="rmark.html#tables"><i class="fa fa-check"></i><b>4.2.6</b> Tables</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="rmark.html"><a href="rmark.html#r-markdown-excerise"><i class="fa fa-check"></i><b>4.3</b> R Markdown Excerise:</a></li>
+<li class="chapter" data-level="4.4" data-path="rmark.html"><a href="rmark.html#additional-information-on-markdown"><i class="fa fa-check"></i><b>4.4</b> Additional information on Markdown</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="datasets.html"><a href="datasets.html"><i class="fa fa-check"></i><b>5</b> Creating datasets and replicability</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="datasets.html"><a href="datasets.html#creating-basic-datasets"><i class="fa fa-check"></i><b>5.1</b> Creating basic datasets</a></li>
+<li class="chapter" data-level="5.2" data-path="datasets.html"><a href="datasets.html#asking-biological-questions-and-identifying-measurable-outcomes"><i class="fa fa-check"></i><b>5.2</b> Asking biological questions and identifying measurable outcomes</a></li>
+<li class="chapter" data-level="5.3" data-path="datasets.html"><a href="datasets.html#creating-a-clean-raw-dataset"><i class="fa fa-check"></i><b>5.3</b> Creating a clean raw dataset</a></li>
+<li class="chapter" data-level="5.4" data-path="datasets.html"><a href="datasets.html#creating-basic-basic-plots-in-r"><i class="fa fa-check"></i><b>5.4</b> Creating basic (basic) plots in R</a></li>
+<li class="chapter" data-level="5.5" data-path="datasets.html"><a href="datasets.html#comparisons-between-groups."><i class="fa fa-check"></i><b>5.5</b> Comparisons between groups.</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="vectors.html"><a href="vectors.html"><i class="fa fa-check"></i><b>6</b> Basic R (1): Vectors</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="vectors.html"><a href="vectors.html#basic-data-structures-in-r"><i class="fa fa-check"></i><b>6.1</b> Basic data structures in R</a></li>
+<li class="chapter" data-level="6.2" data-path="vectors.html"><a href="vectors.html#unidimensional-objects-vectors"><i class="fa fa-check"></i><b>6.2</b> Unidimensional objects: Vectors</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="vectors.html"><a href="vectors.html#classes-of-vectors"><i class="fa fa-check"></i><b>6.2.1</b> Classes of vectors</a></li>
+<li class="chapter" data-level="6.2.2" data-path="vectors.html"><a href="vectors.html#expanding-vectors"><i class="fa fa-check"></i><b>6.2.2</b> Expanding vectors</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="basic-r-2-data-frames.html"><a href="basic-r-2-data-frames.html"><i class="fa fa-check"></i><b>7</b> Basic R (2) : Data frames</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="basic-r-2-data-frames.html"><a href="basic-r-2-data-frames.html#creating-tables-using-vectors"><i class="fa fa-check"></i><b>7.1</b> Creating tables using vectors</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="basic-r-2-data-frames.html"><a href="basic-r-2-data-frames.html#accessing-specific-rows-and-columns"><i class="fa fa-check"></i><b>7.1.1</b> Accessing specific rows and columns</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="basic-r-2-data-frames.html"><a href="basic-r-2-data-frames.html#data-frames-versus-matrices"><i class="fa fa-check"></i><b>7.2</b> Data frames versus matrices</a></li>
+<li class="chapter" data-level="7.3" data-path="basic-r-2-data-frames.html"><a href="basic-r-2-data-frames.html#combining-different-two-dimensional-data-structures"><i class="fa fa-check"></i><b>7.3</b> Combining different two-dimensional data structures</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="basic-r-2-data-frames.html"><a href="basic-r-2-data-frames.html#combining-by-rows"><i class="fa fa-check"></i><b>7.3.1</b> Combining by rows</a></li>
+<li class="chapter" data-level="7.3.2" data-path="basic-r-2-data-frames.html"><a href="basic-r-2-data-frames.html#combining-by-columns"><i class="fa fa-check"></i><b>7.3.2</b> Combining by columns</a></li>
+<li class="chapter" data-level="7.3.3" data-path="basic-r-2-data-frames.html"><a href="basic-r-2-data-frames.html#reading-in-data-tables"><i class="fa fa-check"></i><b>7.3.3</b> Reading in data tables</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="sumarizing-and-subsetting-data-frames.html"><a href="sumarizing-and-subsetting-data-frames.html"><i class="fa fa-check"></i><b>8</b> Sumarizing and subsetting data frames</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="sumarizing-and-subsetting-data-frames.html"><a href="sumarizing-and-subsetting-data-frames.html#reading-in-the-dataframe"><i class="fa fa-check"></i><b>8.1</b> Reading in the dataframe</a></li>
+<li class="chapter" data-level="8.2" data-path="sumarizing-and-subsetting-data-frames.html"><a href="sumarizing-and-subsetting-data-frames.html#summarizing-and-subsetting-data"><i class="fa fa-check"></i><b>8.2</b> Summarizing and subsetting data</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="sumarizing-and-subsetting-data-frames.html"><a href="sumarizing-and-subsetting-data-frames.html#summarizing-data"><i class="fa fa-check"></i><b>8.2.1</b> Summarizing data</a></li>
+<li class="chapter" data-level="8.2.2" data-path="sumarizing-and-subsetting-data-frames.html"><a href="sumarizing-and-subsetting-data-frames.html#summarizing-data-1"><i class="fa fa-check"></i><b>8.2.2</b> Summarizing data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="plots.html"><a href="plots.html"><i class="fa fa-check"></i><b>9</b> Plotting data</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="plots.html"><a href="plots.html#using-ggplot2-to-plot-in-r"><i class="fa fa-check"></i><b>9.1</b> Using <code>ggplot2</code> to plot in <code>R</code></a></li>
+<li class="chapter" data-level="9.2" data-path="plots.html"><a href="plots.html#different-types-of-plots"><i class="fa fa-check"></i><b>9.2</b> Different types of plots</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="plots.html"><a href="plots.html#histogram"><i class="fa fa-check"></i><b>9.2.1</b> Histogram</a></li>
+<li class="chapter" data-level="9.2.2" data-path="plots.html"><a href="plots.html#barplots"><i class="fa fa-check"></i><b>9.2.2</b> Barplots</a></li>
+<li class="chapter" data-level="9.2.3" data-path="plots.html"><a href="plots.html#scatterplots"><i class="fa fa-check"></i><b>9.2.3</b> Scatterplots</a></li>
+<li class="chapter" data-level="9.2.4" data-path="plots.html"><a href="plots.html#boxplots-violin-plots-and-distributions"><i class="fa fa-check"></i><b>9.2.4</b> Boxplots, violin plots and distributions</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="plots.html"><a href="plots.html#more-resources-on-ggplot2"><i class="fa fa-check"></i><b>9.3</b> More resources on <code>ggplot2</code></a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="using-matlab-as-a-powerful-calculator.html"><a href="using-matlab-as-a-powerful-calculator.html"><i class="fa fa-check"></i><b>10</b> Using MATLAB as a Powerful Calculator</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="using-matlab-as-a-powerful-calculator.html"><a href="using-matlab-as-a-powerful-calculator.html#matlab-basics-for-calculation"><i class="fa fa-check"></i><b>10.1</b> MATLAB Basics for calculation:</a></li>
+<li class="chapter" data-level="10.2" data-path="using-matlab-as-a-powerful-calculator.html"><a href="using-matlab-as-a-powerful-calculator.html#early-words-of-caution"><i class="fa fa-check"></i><b>10.2</b> Early words of caution:</a></li>
+<li class="chapter" data-level="10.3" data-path="using-matlab-as-a-powerful-calculator.html"><a href="using-matlab-as-a-powerful-calculator.html#dealing-with-vectorsmatrices"><i class="fa fa-check"></i><b>10.3</b> Dealing with vectors/matrices:</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="using-matlab-as-a-powerful-calculator.html"><a href="using-matlab-as-a-powerful-calculator.html#defining-a-vectormatrix"><i class="fa fa-check"></i><b>10.3.1</b> Defining a vector/matrix:</a></li>
+<li class="chapter" data-level="10.3.2" data-path="using-matlab-as-a-powerful-calculator.html"><a href="using-matlab-as-a-powerful-calculator.html#accessing-elements-adding-and-subtracting"><i class="fa fa-check"></i><b>10.3.2</b> Accessing Elements, Adding, and Subtracting</a></li>
+<li class="chapter" data-level="10.3.3" data-path="using-matlab-as-a-powerful-calculator.html"><a href="using-matlab-as-a-powerful-calculator.html#multiplying-two-vectorsmatrices"><i class="fa fa-check"></i><b>10.3.3</b> Multiplying two vectors/matrices:</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="m-files-and-functions.html"><a href="m-files-and-functions.html"><i class="fa fa-check"></i><b>11</b> m files and functions</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="m-files-and-functions.html"><a href="m-files-and-functions.html#m-files"><i class="fa fa-check"></i><b>11.1</b> m files:</a></li>
+<li class="chapter" data-level="11.2" data-path="m-files-and-functions.html"><a href="m-files-and-functions.html#functions"><i class="fa fa-check"></i><b>11.2</b> functions:</a></li>
+<li class="chapter" data-level="11.3" data-path="m-files-and-functions.html"><a href="m-files-and-functions.html#plotting-function-output-model-predictions"><i class="fa fa-check"></i><b>11.3</b> Plotting function output / model predictions:</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">BIOL120 Excercise Guidebook</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="m-files-and-functions" class="section level1 hasAnchor" number="11">
+<h1><span class="header-section-number">Chapter 11</span> m files and functions<a href="m-files-and-functions.html#m-files-and-functions" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="m-files" class="section level2 hasAnchor" number="11.1">
+<h2><span class="header-section-number">11.1</span> m files:<a href="m-files-and-functions.html#m-files" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><p>Creating an m file</p>
+<ul>
+<li><p><code>New</code> –<span class="math inline">\(&gt;\)</span> <code>Script</code></p></li>
+<li><p><code>Save</code> –<span class="math inline">\(&gt;\)</span> <code>Save As..</code></p></li>
+<li><p>Name your file (the .m will automatically be added) and make sure it is saved in your <code>Current Folder</code>.</p>
+<p>Note: the <code>Current Folder</code> can be set using the curved arrow on the top of your main MATLAB window:
+<img src="MATLAB_open_CurrentFolder.png" alt="current folder" /></p></li>
+</ul></li>
+<li><p>What to put in an m file?</p>
+<ul>
+<li><p>Any MATLAB commands you want to run (exacly as you would put them into the Command Window).</p></li>
+<li><p>Comments (i.e. notes to yourself regarding what your code does)</p>
+<p>Comments in MATLAB are any text that follows a <code>%</code> symbol.</p>
+<p>The <code>%</code> symbol tells MATLAB not to execute that line of code.</p>
+<p><img src="mfile.png" /></p></li>
+</ul></li>
+<li><p>Running an m file</p>
+<ul>
+<li>Go back to the <code>Command Window</code></li>
+<li>Type in the name of your m file (without the .m)</li>
+<li>When you hit enter, whatever MATLAB code is in your file will run</li>
+<li>If your m file doesn’t run, there is a good chance that your m file was not saved to your `Current Director’. Double check that you have saved it in the correct location!</li>
+<li>You can check that your m file ran by calling any of the variables that were defined in your m file (In the example below, I ran mfile.m and then checked the vector y.)
+<img src="mfile_run.png" /></li>
+</ul></li>
+<li><p>What’s the advantage to using an m file?</p>
+<ul>
+<li>All of your code is saved!<br />
+</li>
+<li>You can run it multiple times without having to retype anything.</li>
+<li>You can leave yourself comments for next time you open the file.</li>
+</ul>
+<div class="rmdquestion">
+<h4 id="question-1">
+Question 1
+</h4>
+<p>
+Go back to Chapter 11. Create an m file to help you answer Questions 2 and 3. Make sure to include comments.
+</p>
+</div></li>
+</ul>
+</div>
+<div id="functions" class="section level2 hasAnchor" number="11.2">
+<h2><span class="header-section-number">11.2</span> functions:<a href="m-files-and-functions.html#functions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><p>Creating a function</p>
+<ul>
+<li><p><code>New</code> –<span class="math inline">\(&gt;\)</span> <code>Script</code></p></li>
+<li><p><code>File</code> –<span class="math inline">\(&gt;\)</span> <code>Save As..</code></p></li>
+<li><p>Name your file (the .m will again automatically be added) and make sure it is saved in your <code>Current Folder</code></p>
+<p>Note: MATLAB <code>functions</code> are a special type of <code>m file</code></p></li>
+<li><p>The first line of the file must tell MATLAB that this is a function. Important parts include:</p>
+<ol style="list-style-type: decimal">
+<li>The word <code>function</code></li>
+<li>The function output(s) in square brackets</li>
+<li>The name of the function (<em>this MUST match the file name</em>)</li>
+<li>The function input(s)
+<img src="fun1.png" alt="fun1" /></li>
+</ol></li>
+</ul></li>
+<li><p>Calling a function</p>
+<ul>
+<li>Go back to the <code>Command Window</code></li>
+<li>Type in the name of your function and any input(s) in parentheses</li>
+<li>When you hit enter, MATLAB will execute the function and display the output
+<img src="fun1_run.png" alt="fun1execute" />
+<div class="rmdquestion">
+<h4 id="question-2">
+Question 2
+</h4>
+<ul>
+<li>
+<p>
+Write a MATLAB function that converts Celcius to Farenheit, according to the function <span class="math inline"><span class="math inline">\(F\left(C\right) = \cfrac{9}{5}C+32\)</span></span>
+</p>
+</li>
+<li>
+<p>
+What is the <code>independent variable</code> and what is the <code>dependent variable</code>?
+</p>
+</li>
+<li>
+<p>
+Run your function to convert the following temperatures (given in <span class="math inline"><span class="math inline">\(^{\circ}\)</span></span>C) to <span class="math inline"><span class="math inline">\(^{\circ}\)</span></span>F.
+</p>
+<p>
+12<span class="math inline"><span class="math inline">\(^{\circ}\)</span></span> C, 26.4<span class="math inline"><span class="math inline">\(^{\circ}\)</span></span> C, and -6<span class="math inline"><span class="math inline">\(^{\circ}\)</span></span> C
+</p>
+</li>
+</ul>
+</div></li>
+</ul></li>
+<li><p>Writing a function with multiple inputs (multiple <code>independent variables</code> and/or <code>parameters</code>)</p>
+<ul>
+<li>There are 2 standard ways of doing this
+<ol style="list-style-type: decimal">
+<li>have multiple inputs in a list, separated by commas
+<img src="quadfun.png" /></li>
+<li>have a ‘single’ input with multiple values - i.e. input a <em>vector</em> of inputs
+<img src="fun2.png" />
+Note: in this example, the output is also a vector.</li>
+</ol></li>
+</ul></li>
+<li><p>We can have multiple outputs in a list as well:
+<img src="malth.png" /></p>
+<p>What is the advantage to outputting a vector of independent variable values and a vector of corresponding dependent variable values?</p>
+<p>We can use them for plotting and visualize our model!</p>
+<div class="rmdquestion">
+<h4 id="question-3">
+Question 3
+</h4>
+<p>
+Lets think about modeling drug dosage. If the recommended adult dosage for a drug is <span class="math inline"><span class="math inline">\(D\)</span></span> (in mg), then to determine the appropriate dosage <span class="math inline"><span class="math inline">\(c\)</span></span> for a child of age <span class="math inline"><span class="math inline">\(a\)</span></span> (in years), pharmacists use the equation <span class="math inline"><span class="math inline">\(c = 0.0417D\left(a+1\right)\)</span></span>.
+</p>
+<ul>
+<li>
+Write a MATLAB function that takes as inputs a range of ages (i.e. a vector of <span class="math inline"><span class="math inline">\(a\)</span></span> values) and the recommended adult dosage for a specific drug, <span class="math inline"><span class="math inline">\(D\)</span></span>. The function should output the appropriate dosages (i.e. <span class="math inline"><span class="math inline">\(c\)</span></span> values) for children of ages corresponding to the vector of <span class="math inline"><span class="math inline">\(a\)</span></span> values. Hint: you may want to use a <code>for-loop</code> as in fun2 above.
+</li>
+<li>
+Identify the <code>independent variable</code>, <code>dependent variable</code>, and <code>parameter</code>.
+</li>
+<li>
+The recommended adult dosage for amoxicillin is 500 mg. Use your function to determine the appropriate dosage for children ages 2 - 12 years.
+</li>
+</ul>
+</div></li>
+</ul>
+</div>
+<div id="plotting-function-output-model-predictions" class="section level2 hasAnchor" number="11.3">
+<h2><span class="header-section-number">11.3</span> Plotting function output / model predictions:<a href="m-files-and-functions.html#plotting-function-output-model-predictions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><p>Scatter Plots</p>
+<p>When dealing with two numerical variables (whether it is experimental data or simulated data), the best way to visualize their relationship is by using a scatter plot. Luckily, this is very easy to do in MATLAB.</p>
+<p>Important things to know:</p>
+<ul>
+<li>The MATLAB function to use is <code>scatter</code></li>
+<li>When using the <code>scatter</code> function, you need to make sure you input the <code>independent</code> and <code>dependent</code> variable values as vectors, in the correct order. You also NEED THE VECTORS TO BE THE SAME SIZE!!!! Why? Because you are giving MATLAB the coordinates of points to plot. If you try to scatter two vectors of different length, MATLAB will give you an error message.</li>
+</ul>
+<p><img src="scatter_command.png" />
+<img src="scatter_fig.png" /></p></li>
+<li><p>Line Plots</p>
+<p>Sometimes we want to highlight trends in the relationship between two numerical variables. Thus, instead of a simple scatter plot, we turn to a line plot. This is a plot that connects the data points using line segments, and is the most popular way to visualize modeling results in MATLAB.</p>
+<p>Important things to know:</p>
+<ul>
+<li>The MATLAB function to use is <code>plot</code></li>
+<li>The inputs for this function are the same as the <code>scatter</code> function. When using the <code>plot</code> function, you need to make sure you input the <code>independent</code> and <code>dependent</code> variable values as vectors, in the correct order. You again NEED THE VECTORS TO BE THE SAME SIZE!!!!<br />
+</li>
+<li>Caution:
+<ol style="list-style-type: lower-alpha">
+<li>If you try to plot two vectors of different length, MATLAB will give you an error message.</li>
+<li>If you forget to include one variable (i.e. you only give the plot function a single vector input), it will simple plot that vector as the dependent variable values, assuming the independent variable values are simply 1,2,3,…</li>
+</ol></li>
+</ul>
+<p><img src="plot_command.png" />
+<img src="plot_fig.png" /></p></li>
+<li><p>Editing Figures in MATLAB</p>
+<p>There are lots of ways to edit Figures in MATLAB. Next chapter, we will learn how to edit figures using various commands within mfiles, functions or the Command Window. However, you can also edit plots interactively using the toolbar or drop-down menus of any figure.</p>
+<ul>
+<li><p>You can add Axes Labels and a Title
+<img src="labels.png" /></p></li>
+<li><p>You can edit your Font Size or other Axes Properties
+<img src="axes_props_drop.png" />
+<img src="axes_props.png" /></p></li>
+<li><p>You can edit the color or width of the line by double clicking the line.</p>
+<p>Note: In a scatter plot, you can edits the <code>Markers</code> (i.e. circles corresponding to your data) by double clicking on any one of them.
+<img src="line_edit.png" /></p></li>
+<li><p>You can save your beautiful figure in many different formats with a simple File-&gt;Save As
+<img src="pretty_fig.png" /></p>
+<div class="rmdquestion">
+<h4 id="question-4">
+Question 4
+</h4>
+<p>
+Using either a scatter plot or line plot to visualize your results from Question 3.
+</p>
+<p>
+Make sure your plot has your axes labeled (with units) and includes a Title.
+</p>
+</div>
+<div class="rmdquestion">
+<h4 id="question-5">
+Question 5
+</h4>
+<p>
+Write an m file that uses your function from Question 2 and generates a figure (either a scatter plot or line plot) showing the relationship between temperatures measured in Celsius vs. Farenheit. This graph should include a range of temperatures appropriate for someone trying to convert daily temperatures in Massachusetts over a typical calendar year.
+</p>
+<p>
+Make sure your plot has your axes labeled (with units) and includes a Title.
+</p>
+</div></li>
+</ul></li>
+</ul>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="using-matlab-as-a-powerful-calculator.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/10-mFiles_DataSets.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
