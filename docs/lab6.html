@@ -8,7 +8,7 @@
   <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
 set in the _output.yml file.</p>" />
-  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.48 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 7 Lab 6: Biostatistics and Computational Testing in R | BIOL120 Excercise Guidebook" />
   <meta property="og:type" content="book" />
@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="ProfessorJavier F. Tabima Restrepo" />
 
 
-<meta name="date" content="2026-08-13" />
+<meta name="date" content="2026-09-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -202,11 +202,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="7" data-path="lab6.html"><a href="lab6.html"><i class="fa fa-check"></i><b>7</b> Lab 6: Biostatistics and Computational Testing in R</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="lab6.html"><a href="lab6.html#statistical-hypotheses"><i class="fa fa-check"></i><b>7.1</b> Statistical hypotheses</a></li>
-<li class="chapter" data-level="7.2" data-path="lab6.html"><a href="lab6.html#the-t-test-comparing-two-groups"><i class="fa fa-check"></i><b>7.2</b> The t-test: comparing two groups</a></li>
-<li class="chapter" data-level="7.3" data-path="lab6.html"><a href="lab6.html#anova-comparing-more-than-two-groups"><i class="fa fa-check"></i><b>7.3</b> ANOVA: comparing more than two groups</a></li>
-<li class="chapter" data-level="7.4" data-path="lab6.html"><a href="lab6.html#chi-squared-test-comparing-categorical-variables"><i class="fa fa-check"></i><b>7.4</b> Chi-squared test: comparing categorical variables</a></li>
-<li class="chapter" data-level="7.5" data-path="lab6.html"><a href="lab6.html#choosing-the-right-test"><i class="fa fa-check"></i><b>7.5</b> Choosing the right test</a></li>
+<li class="chapter" data-level="7.1" data-path="lab6.html"><a href="lab6.html#the-data-set-risk-factors-for-low-infant-birth-weight"><i class="fa fa-check"></i><b>7.1</b> The data set: risk factors for low infant birth weight</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="lab6.html"><a href="lab6.html#understanding-the-columns"><i class="fa fa-check"></i><b>7.1.1</b> Understanding the columns</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="lab6.html"><a href="lab6.html#statistical-hypotheses-and-p-values"><i class="fa fa-check"></i><b>7.2</b> Statistical hypotheses and p-values</a></li>
+<li class="chapter" data-level="7.3" data-path="lab6.html"><a href="lab6.html#visual-exploration-before-testing"><i class="fa fa-check"></i><b>7.3</b> Visual exploration before testing</a></li>
+<li class="chapter" data-level="7.4" data-path="lab6.html"><a href="lab6.html#the-t-test-comparing-two-groups"><i class="fa fa-check"></i><b>7.4</b> The t-test: comparing two groups</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="lab6.html"><a href="lab6.html#checking-the-t-tests-assumptions"><i class="fa fa-check"></i><b>7.4.1</b> Checking the t-test’s assumptions</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="lab6.html"><a href="lab6.html#anova-comparing-more-than-two-groups"><i class="fa fa-check"></i><b>7.5</b> ANOVA: comparing more than two groups</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="lab6.html"><a href="lab6.html#post-hoc-comparisons-which-groups-actually-differ"><i class="fa fa-check"></i><b>7.5.1</b> Post-hoc comparisons: which groups actually differ?</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="lab6.html"><a href="lab6.html#chi-squared-test-comparing-two-categorical-variables"><i class="fa fa-check"></i><b>7.6</b> Chi-squared test: comparing two categorical variables</a></li>
+<li class="chapter" data-level="7.7" data-path="lab6.html"><a href="lab6.html#bringing-it-together-choosing-the-right-test"><i class="fa fa-check"></i><b>7.7</b> Bringing it together: choosing the right test</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="lab7.html"><a href="lab7.html"><i class="fa fa-check"></i><b>8</b> Lab 7: R Markdown and Literate Programming</a>
 <ul>
@@ -274,171 +285,441 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </p>
 <ol style="list-style-type: decimal">
 <li>
-To understand what a statistical hypothesis is
+To understand what a statistical hypothesis is, and the logic behind
+p-values
 </li>
 <li>
-To execute and interpret a t-test
+To explore and summarize a real, publicly available human health
+data set
 </li>
 <li>
-To execute and interpret a one-way ANOVA
+To execute and interpret a t-test, including checking its
+assumptions
 </li>
 <li>
-To execute and interpret a chi-squared test
+To execute and interpret a one-way ANOVA and post-hoc
+comparisons
+</li>
+<li>
+To execute and interpret a chi-squared test of association
+</li>
+<li>
+To connect statistical results back to a biological/clinical
+conclusion
 </li>
 </ol>
 </div>
-<p>Up to now we’ve described and visualized data. Today we take the next step: asking whether the patterns we see are likely to be real, or could plausibly be due to chance.</p>
-<div id="statistical-hypotheses" class="section level2 hasAnchor" number="7.1">
-<h2><span class="header-section-number">7.1</span> Statistical hypotheses<a href="lab6.html#statistical-hypotheses" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Every statistical test starts with two competing hypotheses:</p>
-<ul>
-<li><strong>Null hypothesis (<span class="math inline">\(H_0\)</span>):</strong> there is no difference / no relationship</li>
-<li><strong>Alternative hypothesis (<span class="math inline">\(H_1\)</span>):</strong> there is a difference / a relationship</li>
-</ul>
-<p>A test gives us a <strong>p-value</strong>: the probability of observing data this extreme (or more extreme) if the null hypothesis were true. By convention in biology, we often use <span class="math inline">\(\alpha = 0.05\)</span> as our threshold — if <span class="math inline">\(p &lt; 0.05\)</span>, we reject <span class="math inline">\(H_0\)</span>.</p>
+<p>Up to now we’ve described and visualized data. Today we take the next step: asking whether the patterns we see are likely to be real, or could plausibly be due to chance. We’ll do this using a real, publicly available human health data set instead of a simulated one.</p>
+<hr />
+<div id="the-data-set-risk-factors-for-low-infant-birth-weight" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> The data set: risk factors for low infant birth weight<a href="lab6.html#the-data-set-risk-factors-for-low-infant-birth-weight" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We will use the <code>birthwt</code> data set, which comes bundled with the <code>MASS</code> package (installed automatically with <code>R</code>). It was collected at Baystate Medical Center, Springfield, Massachusetts, and has been used for decades as a teaching data set in biostatistics because it’s real clinical data with a clear, important public health question behind it: <strong>what maternal risk factors are associated with low infant birth weight?</strong></p>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="lab6.html#cb119-1" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb119-2"><a href="lab6.html#cb119-2" tabindex="-1"></a><span class="fu">data</span>(birthwt)</span></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="lab6.html#cb120-1" tabindex="-1"></a><span class="fu">str</span>(birthwt)</span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    189 obs. of  10 variables:
+##  $ low  : int  0 0 0 0 0 0 0 0 0 0 ...
+##  $ age  : int  19 33 20 21 18 21 22 17 29 26 ...
+##  $ lwt  : int  182 155 105 108 107 124 118 103 123 113 ...
+##  $ race : int  2 3 1 1 1 3 1 3 1 1 ...
+##  $ smoke: int  0 0 1 1 1 0 0 0 1 1 ...
+##  $ ptl  : int  0 0 0 0 0 0 0 0 0 0 ...
+##  $ ht   : int  0 0 0 0 0 0 0 0 0 0 ...
+##  $ ui   : int  1 0 0 1 1 0 0 0 0 0 ...
+##  $ ftv  : int  0 3 1 2 0 0 1 1 1 0 ...
+##  $ bwt  : int  2523 2551 2557 2594 2600 2622 2637 2637 2663 2665 ...</code></pre>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="lab6.html#cb122-1" tabindex="-1"></a><span class="fu">head</span>(birthwt)</span></code></pre></div>
+<pre><code>##    low age lwt race smoke ptl ht ui ftv  bwt
+## 85   0  19 182    2     0   0  0  1   0 2523
+## 86   0  33 155    3     0   0  0  0   3 2551
+## 87   0  20 105    1     1   0  0  0   1 2557
+## 88   0  21 108    1     1   0  0  1   2 2594
+## 89   0  18 107    1     1   0  0  1   0 2600
+## 91   0  21 124    3     0   0  0  0   0 2622</code></pre>
+<div id="understanding-the-columns" class="section level3 hasAnchor" number="7.1.1">
+<h3><span class="header-section-number">7.1.1</span> Understanding the columns<a href="lab6.html#understanding-the-columns" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<table>
+<thead>
+<tr class="header">
+<th>Column</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>low</code></td>
+<td>1 = birth weight &lt; 2.5 kg (low), 0 = normal birth weight</td>
+</tr>
+<tr class="even">
+<td><code>age</code></td>
+<td>mother’s age in years</td>
+</tr>
+<tr class="odd">
+<td><code>lwt</code></td>
+<td>mother’s weight (lbs) at last menstrual period</td>
+</tr>
+<tr class="even">
+<td><code>race</code></td>
+<td>1 = white, 2 = black, 3 = other</td>
+</tr>
+<tr class="odd">
+<td><code>smoke</code></td>
+<td>smoking status during pregnancy (1 = yes, 0 = no)</td>
+</tr>
+<tr class="even">
+<td><code>ptl</code></td>
+<td>number of previous premature labors</td>
+</tr>
+<tr class="odd">
+<td><code>ht</code></td>
+<td>history of hypertension (1 = yes, 0 = no)</td>
+</tr>
+<tr class="even">
+<td><code>ui</code></td>
+<td>presence of uterine irritability (1 = yes, 0 = no)</td>
+</tr>
+<tr class="odd">
+<td><code>ftv</code></td>
+<td>number of physician visits in the first trimester</td>
+</tr>
+<tr class="even">
+<td><code>bwt</code></td>
+<td>birth weight in grams (the actual continuous outcome)</td>
+</tr>
+</tbody>
+</table>
+<p>Notice that several of these columns are stored as plain numbers (<code>0</code>/<code>1</code>, or <code>1</code>/<code>2</code>/<code>3</code>) even though they represent <strong>categories</strong>, not quantities. Before we can analyze them properly, we need to relabel them as factors with meaningful names — otherwise <code>R</code> (and anyone reading our plots) will treat <code>smoke = 1</code> as a number rather than “yes.”</p>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="lab6.html#cb124-1" tabindex="-1"></a>birthwt<span class="sc">$</span>smoke_f <span class="ot">&lt;-</span> <span class="fu">factor</span>(birthwt<span class="sc">$</span>smoke, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Non-smoker&quot;</span>,<span class="st">&quot;Smoker&quot;</span>))</span>
+<span id="cb124-2"><a href="lab6.html#cb124-2" tabindex="-1"></a>birthwt<span class="sc">$</span>race_f  <span class="ot">&lt;-</span> <span class="fu">factor</span>(birthwt<span class="sc">$</span>race, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;White&quot;</span>,<span class="st">&quot;Black&quot;</span>,<span class="st">&quot;Other&quot;</span>))</span>
+<span id="cb124-3"><a href="lab6.html#cb124-3" tabindex="-1"></a>birthwt<span class="sc">$</span>low_f   <span class="ot">&lt;-</span> <span class="fu">factor</span>(birthwt<span class="sc">$</span>low, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Normal weight&quot;</span>,<span class="st">&quot;Low weight&quot;</span>))</span>
+<span id="cb124-4"><a href="lab6.html#cb124-4" tabindex="-1"></a>birthwt<span class="sc">$</span>ht_f    <span class="ot">&lt;-</span> <span class="fu">factor</span>(birthwt<span class="sc">$</span>ht, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;No hypertension&quot;</span>,<span class="st">&quot;Hypertension&quot;</span>))</span>
+<span id="cb124-5"><a href="lab6.html#cb124-5" tabindex="-1"></a></span>
+<span id="cb124-6"><a href="lab6.html#cb124-6" tabindex="-1"></a><span class="fu">head</span>(birthwt[, <span class="fu">c</span>(<span class="st">&quot;bwt&quot;</span>,<span class="st">&quot;smoke_f&quot;</span>,<span class="st">&quot;race_f&quot;</span>,<span class="st">&quot;low_f&quot;</span>,<span class="st">&quot;ht_f&quot;</span>)])</span></code></pre></div>
+<pre><code>##     bwt    smoke_f race_f         low_f            ht_f
+## 85 2523 Non-smoker  Black Normal weight No hypertension
+## 86 2551 Non-smoker  Other Normal weight No hypertension
+## 87 2557     Smoker  White Normal weight No hypertension
+## 88 2594     Smoker  White Normal weight No hypertension
+## 89 2600     Smoker  White Normal weight No hypertension
+## 91 2622 Non-smoker  Other Normal weight No hypertension</code></pre>
 <div class="rmdquestion">
 <h4 id="question-1">
 Question 1
 </h4>
 <ul>
 <li>
-In your own words, what does a p-value of 0.03 mean?
+How many mothers are in this data set? (Hint:
+<code>nrow()</code>)
 </li>
 <li>
-What does it NOT mean? (Hint: it is not “the probability the null
-hypothesis is true”)
+Using <code>table()</code>, how many mothers smoked during
+pregnancy, and how many did not?
+</li>
+<li>
+Using <code>summary()</code> on the <code>bwt</code> column, report
+the minimum, mean, and maximum birth weight in the data set (in
+grams)
 </li>
 </ul>
 </div>
+<hr />
 </div>
-<div id="the-t-test-comparing-two-groups" class="section level2 hasAnchor" number="7.2">
-<h2><span class="header-section-number">7.2</span> The t-test: comparing two groups<a href="lab6.html#the-t-test-comparing-two-groups" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>A t-test compares the means of two groups of a continuous variable. Let’s use the <code>penguins</code> data set from Lab 4.</p>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="lab6.html#cb124-1" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
-<span id="cb124-2"><a href="lab6.html#cb124-2" tabindex="-1"></a><span class="fu">data</span>(penguins)</span>
-<span id="cb124-3"><a href="lab6.html#cb124-3" tabindex="-1"></a>penguins <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(penguins)</span></code></pre></div>
-<p>Do Adelie and Chinstrap penguins differ in bill length?</p>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="lab6.html#cb125-1" tabindex="-1"></a>adelie_chinstrap <span class="ot">&lt;-</span> <span class="fu">subset</span>(penguins, species <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Adelie&quot;</span>,<span class="st">&quot;Chinstrap&quot;</span>))</span>
-<span id="cb125-2"><a href="lab6.html#cb125-2" tabindex="-1"></a><span class="fu">t.test</span>(bill_length_mm <span class="sc">~</span> species, <span class="at">data =</span> adelie_chinstrap)</span></code></pre></div>
-<pre><code>## 
-##  Welch Two Sample t-test
-## 
-## data:  bill_length_mm by species
-## t = -21.712, df = 108.17, p-value &lt; 2.2e-16
-## alternative hypothesis: true difference in means between group Adelie and group Chinstrap is not equal to 0
-## 95 percent confidence interval:
-##  -10.92365  -9.09605
-## sample estimates:
-##    mean in group Adelie mean in group Chinstrap 
-##                38.82397                48.83382</code></pre>
-<p>Look at the <code>p-value</code> in the output. A very small p-value (well below 0.05) tells us the two species’ mean bill lengths are very unlikely to be this different by chance alone.</p>
+</div>
+<div id="statistical-hypotheses-and-p-values" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">7.2</span> Statistical hypotheses and p-values<a href="lab6.html#statistical-hypotheses-and-p-values" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Every statistical test starts with two competing hypotheses:</p>
+<ul>
+<li><strong>Null hypothesis (<span class="math inline">\(H_0\)</span>):</strong> there is no difference / no relationship (e.g., smoking status has no relationship with birth weight)</li>
+<li><strong>Alternative hypothesis (<span class="math inline">\(H_1\)</span>):</strong> there is a difference / a relationship</li>
+</ul>
+<p>A test gives us a <strong>p-value</strong>: the probability of observing data this extreme (or more extreme) <em>if the null hypothesis were actually true</em>. By convention in biology and medicine, we typically use <span class="math inline">\(\alpha = 0.05\)</span> as our threshold — if <span class="math inline">\(p &lt; 0.05\)</span>, we reject <span class="math inline">\(H_0\)</span> in favor of <span class="math inline">\(H_1\)</span>.</p>
+<div class="rmdinfo">
+<h4 id="a-common-misconception">
+A common misconception
+</h4>
+<p>
+A p-value of 0.03 does <strong>not</strong> mean “there’s a 3% chance
+the null hypothesis is true,” and it does <strong>not</strong> mean
+“there’s a 97% chance our result is correct.” It means: <em>if smoking
+truly had no effect on birth weight, we’d see a difference this large
+(or larger) only 3% of the time by chance alone.</em> That’s a subtle
+but important distinction.
+</p>
+</div>
 <div class="rmdquestion">
 <h4 id="question-2">
 Question 2
 </h4>
 <ul>
 <li>
-Run a t-test comparing <code>flipper_length_mm</code> between Gentoo
-and Adelie penguins. Add the code and the output.
+In your own words, restate what a p-value of 0.01 would mean in the
+context of this data set (choose any one of the variables above)
 </li>
 <li>
-Based on the p-value, would you reject or fail to reject the null
-hypothesis? State your conclusion in a full sentence.
+Why is <span class="math inline"><span class="math inline">\(\alpha = 0.05\)</span></span> a
+<em>convention</em> rather than a law of nature? What would change about
+our conclusions if we used <span class="math inline"><span class="math inline">\(\alpha =
+0.01\)</span></span> instead?
 </li>
 </ul>
 </div>
+<hr />
 </div>
-<div id="anova-comparing-more-than-two-groups" class="section level2 hasAnchor" number="7.3">
-<h2><span class="header-section-number">7.3</span> ANOVA: comparing more than two groups<a href="lab6.html#anova-comparing-more-than-two-groups" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>A t-test only compares two groups. When you have three or more groups, use an <strong>ANOVA</strong> (Analysis of Variance) instead.</p>
-<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="lab6.html#cb127-1" tabindex="-1"></a>anova_model <span class="ot">&lt;-</span> <span class="fu">aov</span>(bill_length_mm <span class="sc">~</span> species, <span class="at">data =</span> penguins)</span>
-<span id="cb127-2"><a href="lab6.html#cb127-2" tabindex="-1"></a><span class="fu">summary</span>(anova_model)</span></code></pre></div>
-<pre><code>##              Df Sum Sq Mean Sq F value Pr(&gt;F)    
-## species       2   7015    3508   397.3 &lt;2e-16 ***
-## Residuals   330   2914       9                   
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<p>Look at the <code>Pr(&gt;F)</code> value in the summary table — this is your p-value for the ANOVA.</p>
+<div id="visual-exploration-before-testing" class="section level2 hasAnchor" number="7.3">
+<h2><span class="header-section-number">7.3</span> Visual exploration before testing<a href="lab6.html#visual-exploration-before-testing" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Before running any test, it’s good practice to <em>look</em> at your data (recall Labs 4 and 9).</p>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="lab6.html#cb126-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb126-2"><a href="lab6.html#cb126-2" tabindex="-1"></a></span>
+<span id="cb126-3"><a href="lab6.html#cb126-3" tabindex="-1"></a><span class="fu">ggplot</span>(birthwt, <span class="fu">aes</span>(<span class="at">x =</span> smoke_f, <span class="at">y =</span> bwt, <span class="at">fill =</span> smoke_f)) <span class="sc">+</span></span>
+<span id="cb126-4"><a href="lab6.html#cb126-4" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb126-5"><a href="lab6.html#cb126-5" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.1</span>, <span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb126-6"><a href="lab6.html#cb126-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Birth weight by maternal smoking status&quot;</span>,</span>
+<span id="cb126-7"><a href="lab6.html#cb126-7" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Maternal smoking status&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Birth weight (g)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb126-8"><a href="lab6.html#cb126-8" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb126-9"><a href="lab6.html#cb126-9" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-75-1.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="lab6.html#cb127-1" tabindex="-1"></a><span class="fu">ggplot</span>(birthwt, <span class="fu">aes</span>(<span class="at">x =</span> race_f, <span class="at">y =</span> bwt, <span class="at">fill =</span> race_f)) <span class="sc">+</span></span>
+<span id="cb127-2"><a href="lab6.html#cb127-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb127-3"><a href="lab6.html#cb127-3" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.1</span>, <span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb127-4"><a href="lab6.html#cb127-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Birth weight by maternal race&quot;</span>,</span>
+<span id="cb127-5"><a href="lab6.html#cb127-5" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Race&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Birth weight (g)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb127-6"><a href="lab6.html#cb127-6" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb127-7"><a href="lab6.html#cb127-7" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-76-1.png" alt="" width="672" /></p>
+<p>It’s also useful to look at a categorical-vs-categorical relationship before we test it formally. Here’s the proportion of low- versus normal-birth-weight babies within each smoking group. This plot uses the <code>scales</code> package to format the y-axis as a percentage — install it once with <code>install.packages("scales")</code> if you don’t already have it:</p>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="lab6.html#cb128-1" tabindex="-1"></a><span class="fu">ggplot</span>(birthwt, <span class="fu">aes</span>(<span class="at">x =</span> smoke_f, <span class="at">fill =</span> low_f)) <span class="sc">+</span></span>
+<span id="cb128-2"><a href="lab6.html#cb128-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">&quot;fill&quot;</span>) <span class="sc">+</span></span>
+<span id="cb128-3"><a href="lab6.html#cb128-3" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent) <span class="sc">+</span></span>
+<span id="cb128-4"><a href="lab6.html#cb128-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Proportion of low birth weight by maternal smoking status&quot;</span>,</span>
+<span id="cb128-5"><a href="lab6.html#cb128-5" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Maternal smoking status&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Percent of births&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;Birth weight category&quot;</span>) <span class="sc">+</span></span>
+<span id="cb128-6"><a href="lab6.html#cb128-6" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-77-1.png" alt="" width="672" /></p>
+<p><code>position = "fill"</code> rescales each bar to 100%, which makes it easy to compare <em>proportions</em> between groups of different sizes — exactly the kind of relationship a chi-squared test (below) will test formally.</p>
 <div class="rmdquestion">
 <h4 id="question-3">
 Question 3
 </h4>
 <ul>
 <li>
-Run an ANOVA testing whether <code>body_mass_g</code> differs across
-all three penguin species. Add the code and output.
+Based on the first boxplot, does it look like smokers and
+non-smokers have different average birth weights? Which group looks
+lower?
 </li>
 <li>
-What does the ANOVA tell you that a single t-test could not?
+Based on the second boxplot, does one racial group appear visually
+different from the others in birth weight?
 </li>
 <li>
-ANOVA tells you <em>that</em> groups differ, but not <em>which</em>
-groups differ. Look up <code>TukeyHSD()</code> and run it on your model.
-Which specific pairs of species are significantly different?
+Based on the stacked bar chart, which smoking group has a visually
+higher proportion of low-birth-weight babies?
 </li>
 </ul>
 </div>
+<hr />
 </div>
-<div id="chi-squared-test-comparing-categorical-variables" class="section level2 hasAnchor" number="7.4">
-<h2><span class="header-section-number">7.4</span> Chi-squared test: comparing categorical variables<a href="lab6.html#chi-squared-test-comparing-categorical-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>A chi-squared test asks whether two <strong>categorical</strong> variables are associated. For example: is <code>island</code> associated with <code>species</code>?</p>
-<p>First, build a contingency table:</p>
-<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="lab6.html#cb129-1" tabindex="-1"></a>island_species_table <span class="ot">&lt;-</span> <span class="fu">table</span>(penguins<span class="sc">$</span>island, penguins<span class="sc">$</span>species)</span>
-<span id="cb129-2"><a href="lab6.html#cb129-2" tabindex="-1"></a>island_species_table</span></code></pre></div>
-<pre><code>##            
-##             Adelie Chinstrap Gentoo
-##   Biscoe        44         0    119
-##   Dream         55        68      0
-##   Torgersen     47         0      0</code></pre>
-<p>Then test it:</p>
-<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="lab6.html#cb131-1" tabindex="-1"></a><span class="fu">chisq.test</span>(island_species_table)</span></code></pre></div>
+<div id="the-t-test-comparing-two-groups" class="section level2 hasAnchor" number="7.4">
+<h2><span class="header-section-number">7.4</span> The t-test: comparing two groups<a href="lab6.html#the-t-test-comparing-two-groups" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A t-test compares the means of two groups of a continuous variable. Here we ask: <strong>does maternal smoking status affect birth weight?</strong></p>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="lab6.html#cb129-1" tabindex="-1"></a><span class="fu">t.test</span>(bwt <span class="sc">~</span> smoke_f, <span class="at">data =</span> birthwt)</span></code></pre></div>
 <pre><code>## 
-##  Pearson&#39;s Chi-squared test
+##  Welch Two Sample t-test
 ## 
-## data:  island_species_table
-## X-squared = 284.59, df = 4, p-value &lt; 2.2e-16</code></pre>
+## data:  bwt by smoke_f
+## t = 2.7299, df = 170.1, p-value = 0.007003
+## alternative hypothesis: true difference in means between group Non-smoker and group Smoker is not equal to 0
+## 95 percent confidence interval:
+##   78.57486 488.97860
+## sample estimates:
+## mean in group Non-smoker     mean in group Smoker 
+##                 3055.696                 2771.919</code></pre>
+<div id="checking-the-t-tests-assumptions" class="section level3 hasAnchor" number="7.4.1">
+<h3><span class="header-section-number">7.4.1</span> Checking the t-test’s assumptions<a href="lab6.html#checking-the-t-tests-assumptions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A standard t-test assumes each group is roughly normally distributed. We can check this visually with a histogram, or formally with a Shapiro-Wilk test (introduced further in Lab 10):</p>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="lab6.html#cb131-1" tabindex="-1"></a><span class="fu">shapiro.test</span>(birthwt<span class="sc">$</span>bwt[birthwt<span class="sc">$</span>smoke_f <span class="sc">==</span> <span class="st">&quot;Smoker&quot;</span>])</span></code></pre></div>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  birthwt$bwt[birthwt$smoke_f == &quot;Smoker&quot;]
+## W = 0.98296, p-value = 0.4195</code></pre>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="lab6.html#cb133-1" tabindex="-1"></a><span class="fu">shapiro.test</span>(birthwt<span class="sc">$</span>bwt[birthwt<span class="sc">$</span>smoke_f <span class="sc">==</span> <span class="st">&quot;Non-smoker&quot;</span>])</span></code></pre></div>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  birthwt$bwt[birthwt$smoke_f == &quot;Non-smoker&quot;]
+## W = 0.98694, p-value = 0.3337</code></pre>
+<p>A p-value <strong>above</strong> 0.05 in a Shapiro-Wilk test suggests the data don’t significantly deviate from normal — safe to trust the t-test. If either group’s p-value were well below 0.05, we’d consider the non-parametric alternative, <code>wilcox.test()</code> (same syntax, just swap the function name).</p>
 <div class="rmdquestion">
 <h4 id="question-4">
 Question 4
 </h4>
 <ul>
 <li>
-Build a contingency table of <code>species</code> versus
-<code>sex</code>, and run a chi-squared test on it. Add the code and
-output.
+Report the t-test’s p-value comparing <code>bwt</code> between
+smokers and non-smokers. State a full-sentence conclusion: do you reject
+or fail to reject <span class="math inline"><span class="math inline">\(H_0\)</span></span>?
 </li>
 <li>
-Based on the p-value, is there a statistically significant
-association between species and sex in this data set? Explain what that
-would mean biologically if there were.
+Based on the Shapiro-Wilk results, was the standard t-test an
+appropriate choice here? Justify your answer.
+</li>
+<li>
+Look at the <code>t.test()</code> output again: it also reports a
+95% confidence interval for the difference in means. What does that
+interval tell you, in plain language?
 </li>
 </ul>
 </div>
+<hr />
 </div>
-<div id="choosing-the-right-test" class="section level2 hasAnchor" number="7.5">
-<h2><span class="header-section-number">7.5</span> Choosing the right test<a href="lab6.html#choosing-the-right-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="anova-comparing-more-than-two-groups" class="section level2 hasAnchor" number="7.5">
+<h2><span class="header-section-number">7.5</span> ANOVA: comparing more than two groups<a href="lab6.html#anova-comparing-more-than-two-groups" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A t-test only compares two groups. <code>race_f</code> has three categories, so we need a one-way <strong>ANOVA</strong> (Analysis of Variance) instead: <strong>does birth weight differ across maternal race categories?</strong></p>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="lab6.html#cb135-1" tabindex="-1"></a>race_model <span class="ot">&lt;-</span> <span class="fu">aov</span>(bwt <span class="sc">~</span> race_f, <span class="at">data =</span> birthwt)</span>
+<span id="cb135-2"><a href="lab6.html#cb135-2" tabindex="-1"></a><span class="fu">summary</span>(race_model)</span></code></pre></div>
+<pre><code>##              Df   Sum Sq Mean Sq F value  Pr(&gt;F)   
+## race_f        2  5015725 2507863   4.913 0.00834 **
+## Residuals   186 94953931  510505                   
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>Look at the <code>Pr(&gt;F)</code> value in the summary table — this is your p-value for the overall ANOVA.</p>
+<div id="post-hoc-comparisons-which-groups-actually-differ" class="section level3 hasAnchor" number="7.5.1">
+<h3><span class="header-section-number">7.5.1</span> Post-hoc comparisons: which groups actually differ?<a href="lab6.html#post-hoc-comparisons-which-groups-actually-differ" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>ANOVA tells you <em>that</em> the groups differ overall, but not <em>which specific pairs</em> differ. For that, use Tukey’s Honest Significant Difference test:</p>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="lab6.html#cb137-1" tabindex="-1"></a><span class="fu">TukeyHSD</span>(race_model)</span></code></pre></div>
+<pre><code>##   Tukey multiple comparisons of means
+##     95% family-wise confidence level
+## 
+## Fit: aov(formula = bwt ~ race_f, data = birthwt)
+## 
+## $race_f
+##                   diff       lwr        upr     p adj
+## Black-White -383.02644 -756.2363  -9.816581 0.0428037
+## Other-White -297.43517 -566.1652 -28.705095 0.0260124
+## Other-Black   85.59127 -304.4521 475.634630 0.8624372</code></pre>
+<p>Each row compares one pair of groups; the <code>p adj</code> column has already been corrected for the fact that we’re running multiple comparisons at once (a preview of the multiple-testing problem covered in more depth in Lab 10).</p>
 <div class="rmdquestion">
 <h4 id="question-5">
 Question 5
 </h4>
+<ul>
+<li>
+Is the overall ANOVA for <code>bwt ~ race_f</code> statistically
+significant? Report the p-value.
+</li>
+<li>
+According to <code>TukeyHSD()</code>, which specific pair(s) of
+racial groups have a significant difference in mean birth weight (p adj
+&lt; 0.05)?
+</li>
+<li>
+Now test whether <code>bwt</code> differs by <code>ftv</code>
+(number of first-trimester physician visits) treated as a categorical
+grouping variable — you’ll first need to convert it with
+<code>factor(birthwt$ftv)</code>. Are there any groups with very few
+observations? Why might that be a problem for ANOVA?
+</li>
+</ul>
+</div>
+<hr />
+</div>
+</div>
+<div id="chi-squared-test-comparing-two-categorical-variables" class="section level2 hasAnchor" number="7.6">
+<h2><span class="header-section-number">7.6</span> Chi-squared test: comparing two categorical variables<a href="lab6.html#chi-squared-test-comparing-two-categorical-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A chi-squared test asks whether two <strong>categorical</strong> variables are associated. Here’s a genuinely important clinical question: <strong>is maternal smoking associated with having a low-birth-weight baby?</strong></p>
+<p>First, build a contingency table:</p>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="lab6.html#cb139-1" tabindex="-1"></a>smoke_low_table <span class="ot">&lt;-</span> <span class="fu">table</span>(birthwt<span class="sc">$</span>smoke_f, birthwt<span class="sc">$</span>low_f)</span>
+<span id="cb139-2"><a href="lab6.html#cb139-2" tabindex="-1"></a>smoke_low_table</span></code></pre></div>
+<pre><code>##             
+##              Normal weight Low weight
+##   Non-smoker            86         29
+##   Smoker                44         30</code></pre>
+<p>Then test it:</p>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="lab6.html#cb141-1" tabindex="-1"></a><span class="fu">chisq.test</span>(smoke_low_table)</span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test with Yates&#39; continuity correction
+## 
+## data:  smoke_low_table
+## X-squared = 4.2359, df = 1, p-value = 0.03958</code></pre>
+<div class="rmdinfo">
+<h4 id="a-note-on-small-samples">
+A note on small samples
+</h4>
 <p>
-For each of the following biological questions, name the test you
-would use (t-test, ANOVA, or chi-squared) and explain why:
+The chi-squared test relies on a large-sample approximation.
+<code>R</code> will print a warning if any expected cell count is below
+5, in which case Fisher’s Exact Test (<code>fisher.test()</code>) is a
+safer choice — same syntax, just swap the function.
+</p>
+</div>
+<div class="rmdquestion">
+<h4 id="question-6">
+Question 6
+</h4>
+<ul>
+<li>
+Report the chi-squared statistic and p-value for the
+smoking/low-birth-weight association. Is it statistically
+significant?
+</li>
+<li>
+Build a contingency table of <code>ht_f</code> (hypertension) versus
+<code>low_f</code>, and run a chi-squared (or Fisher’s exact, if you get
+a warning) test on it. State your conclusion.
+</li>
+<li>
+Calculate the proportion of low-birth-weight babies among smokers
+versus non-smokers by hand from your contingency table (e.g.,
+<code>prop.table(smoke_low_table, margin = 1)</code>). Does this match
+the direction of the association reported by the test?
+</li>
+</ul>
+</div>
+<hr />
+</div>
+<div id="bringing-it-together-choosing-the-right-test" class="section level2 hasAnchor" number="7.7">
+<h2><span class="header-section-number">7.7</span> Bringing it together: choosing the right test<a href="lab6.html#bringing-it-together-choosing-the-right-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="rmdquestion">
+<h4 id="question-7">
+Question 7
+</h4>
+<p>
+For each of the following questions you could ask of the
+<code>birthwt</code> data set, name which test you would use (t-test,
+ANOVA, or chi-squared) and explain why:
 </p>
 <ul>
 <li>
-Does average tail length differ between two subspecies of
-lizard?
+Does mother’s age (<code>age</code>) differ between mothers who did
+and did not smoke?
 </li>
 <li>
-Does flower color (red/yellow/white) differ in frequency between two
-habitats?
+Is history of hypertension (<code>ht_f</code>) associated with race
+(<code>race_f</code>)?
 </li>
 <li>
-Does average enzyme activity differ across four temperature
-treatments?
+Does mother’s weight at last menstrual period (<code>lwt</code>)
+differ across the three race categories?
 </li>
 </ul>
+<p>
+Then actually run <strong>one</strong> of the three tests above, and
+report your code, output, and a full-sentence biological conclusion.
+</p>
+</div>
+<div class="rmdquestion">
+<h4 id="question-8-synthesis">
+Question 8 (synthesis)
+</h4>
+<p>
+Write a short paragraph (4-6 sentences), as if for the results
+section of a report, summarizing what this data set suggests about risk
+factors for low birth weight. Cite at least two of the specific
+statistical results you obtained in this lab (test name, statistic or
+p-value, and your interpretation). Be careful with your language: a
+significant association does not, by itself, prove that one variable
+<em>causes</em> the other.
+</p>
 </div>
 
 </div>

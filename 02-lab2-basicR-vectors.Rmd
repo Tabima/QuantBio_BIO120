@@ -29,7 +29,7 @@ R follows the standard order of operations (PEMDAS), and you can use parentheses
 ```{block, type='rmdquestion'}
 #### Question 1
    - Use the R console to calculate the area of a circle with radius 4.5 (Hint: `pi` is a built-in constant in R)
-   - Calculate $ \frac{(12+8)}{4^2} $ using R. Add the code and the result.
+   - Calculate `(12+8)/4^2` using R. Add the code and the result.
 ```
 
 ## Objects

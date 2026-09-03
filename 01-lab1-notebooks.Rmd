@@ -134,7 +134,7 @@ Tip: use [tablesgenerator.com](https://www.tablesgenerator.com/markdown_tables) 
 
 ## Executable code chunks
 
-```{block, type='rmdinfo'}
+````{block, type='rmdinfo'}
 
 #### Executable Code Chunks
 
@@ -147,7 +147,7 @@ code goes here
 ```</code></pre>
 
 We can use `bash`, `R`, and even `python` (with the right packages installed) inside an R Markdown document.
-```
+````
 
 An example using `bash` to get the current date:
 

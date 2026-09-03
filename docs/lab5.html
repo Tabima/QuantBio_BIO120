@@ -8,7 +8,7 @@
   <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
 set in the _output.yml file.</p>" />
-  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.48 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 6 Lab 5: Chaining Data Operations and Pipelines for Public Health Data | BIOL120 Excercise Guidebook" />
   <meta property="og:type" content="book" />
@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="ProfessorJavier F. Tabima Restrepo" />
 
 
-<meta name="date" content="2026-08-13" />
+<meta name="date" content="2026-09-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -202,11 +202,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="7" data-path="lab6.html"><a href="lab6.html"><i class="fa fa-check"></i><b>7</b> Lab 6: Biostatistics and Computational Testing in R</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="lab6.html"><a href="lab6.html#statistical-hypotheses"><i class="fa fa-check"></i><b>7.1</b> Statistical hypotheses</a></li>
-<li class="chapter" data-level="7.2" data-path="lab6.html"><a href="lab6.html#the-t-test-comparing-two-groups"><i class="fa fa-check"></i><b>7.2</b> The t-test: comparing two groups</a></li>
-<li class="chapter" data-level="7.3" data-path="lab6.html"><a href="lab6.html#anova-comparing-more-than-two-groups"><i class="fa fa-check"></i><b>7.3</b> ANOVA: comparing more than two groups</a></li>
-<li class="chapter" data-level="7.4" data-path="lab6.html"><a href="lab6.html#chi-squared-test-comparing-categorical-variables"><i class="fa fa-check"></i><b>7.4</b> Chi-squared test: comparing categorical variables</a></li>
-<li class="chapter" data-level="7.5" data-path="lab6.html"><a href="lab6.html#choosing-the-right-test"><i class="fa fa-check"></i><b>7.5</b> Choosing the right test</a></li>
+<li class="chapter" data-level="7.1" data-path="lab6.html"><a href="lab6.html#the-data-set-risk-factors-for-low-infant-birth-weight"><i class="fa fa-check"></i><b>7.1</b> The data set: risk factors for low infant birth weight</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="lab6.html"><a href="lab6.html#understanding-the-columns"><i class="fa fa-check"></i><b>7.1.1</b> Understanding the columns</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="lab6.html"><a href="lab6.html#statistical-hypotheses-and-p-values"><i class="fa fa-check"></i><b>7.2</b> Statistical hypotheses and p-values</a></li>
+<li class="chapter" data-level="7.3" data-path="lab6.html"><a href="lab6.html#visual-exploration-before-testing"><i class="fa fa-check"></i><b>7.3</b> Visual exploration before testing</a></li>
+<li class="chapter" data-level="7.4" data-path="lab6.html"><a href="lab6.html#the-t-test-comparing-two-groups"><i class="fa fa-check"></i><b>7.4</b> The t-test: comparing two groups</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="lab6.html"><a href="lab6.html#checking-the-t-tests-assumptions"><i class="fa fa-check"></i><b>7.4.1</b> Checking the t-test’s assumptions</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="lab6.html"><a href="lab6.html#anova-comparing-more-than-two-groups"><i class="fa fa-check"></i><b>7.5</b> ANOVA: comparing more than two groups</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="lab6.html"><a href="lab6.html#post-hoc-comparisons-which-groups-actually-differ"><i class="fa fa-check"></i><b>7.5.1</b> Post-hoc comparisons: which groups actually differ?</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="lab6.html"><a href="lab6.html#chi-squared-test-comparing-two-categorical-variables"><i class="fa fa-check"></i><b>7.6</b> Chi-squared test: comparing two categorical variables</a></li>
+<li class="chapter" data-level="7.7" data-path="lab6.html"><a href="lab6.html#bringing-it-together-choosing-the-right-test"><i class="fa fa-check"></i><b>7.7</b> Bringing it together: choosing the right test</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="lab7.html"><a href="lab7.html"><i class="fa fa-check"></i><b>8</b> Lab 7: R Markdown and Literate Programming</a>
 <ul>
@@ -292,22 +303,22 @@ To apply a pipeline to a public health data set
 <div id="the-problem-with-nested-functions" class="section level2 hasAnchor" number="6.1">
 <h2><span class="header-section-number">6.1</span> The problem with nested functions<a href="lab5.html#the-problem-with-nested-functions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Recall from earlier labs that we can nest functions, like <code>length(unique(x))</code>. This works for two steps, but gets hard to read fast:</p>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="lab5.html#cb108-1" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">mean</span>(<span class="fu">subset</span>(my_data, group <span class="sc">==</span> <span class="st">&quot;A&quot;</span>)<span class="sc">$</span>value), <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="lab5.html#cb103-1" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">mean</span>(<span class="fu">subset</span>(my_data, group <span class="sc">==</span> <span class="st">&quot;A&quot;</span>)<span class="sc">$</span>value), <span class="dv">2</span>)</span></code></pre></div>
 <p>Reading this requires working from the inside out — the opposite order of how the steps actually happen.</p>
 </div>
 <div id="the-pipe-operator" class="section level2 hasAnchor" number="6.2">
 <h2><span class="header-section-number">6.2</span> The pipe operator<a href="lab5.html#the-pipe-operator" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The pipe operator, written <code>%&gt;%</code> (from the <code>tidyverse</code> package) or <code>|&gt;</code> (built into base R since version 4.1), means <strong>“and then.”</strong> It takes the output of what’s on its left and feeds it as the first input to what’s on its right.</p>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="lab5.html#cb109-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="lab5.html#cb110-1" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">15</span>, <span class="dv">16</span>, <span class="dv">23</span>, <span class="dv">42</span>) <span class="sc">%&gt;%</span> <span class="fu">mean</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="lab5.html#cb104-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="lab5.html#cb105-1" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">15</span>, <span class="dv">16</span>, <span class="dv">23</span>, <span class="dv">42</span>) <span class="sc">%&gt;%</span> <span class="fu">mean</span>()</span></code></pre></div>
 <pre><code>## [1] 18</code></pre>
 <p>is the same as:</p>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="lab5.html#cb112-1" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">15</span>, <span class="dv">16</span>, <span class="dv">23</span>, <span class="dv">42</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="lab5.html#cb107-1" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">15</span>, <span class="dv">16</span>, <span class="dv">23</span>, <span class="dv">42</span>))</span></code></pre></div>
 <pre><code>## [1] 18</code></pre>
 <p>The real benefit shows up once you chain several steps:</p>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="lab5.html#cb114-1" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">15</span>, <span class="dv">16</span>, <span class="dv">23</span>, <span class="dv">42</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb114-2"><a href="lab5.html#cb114-2" tabindex="-1"></a>  <span class="fu">mean</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb114-3"><a href="lab5.html#cb114-3" tabindex="-1"></a>  <span class="fu">round</span>(<span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="lab5.html#cb109-1" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">15</span>, <span class="dv">16</span>, <span class="dv">23</span>, <span class="dv">42</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb109-2"><a href="lab5.html#cb109-2" tabindex="-1"></a>  <span class="fu">mean</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb109-3"><a href="lab5.html#cb109-3" tabindex="-1"></a>  <span class="fu">round</span>(<span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## [1] 18</code></pre>
 <p>Each line reads like a sentence: “take this vector, and then take its mean, and then round it.”</p>
 <div class="rmdquestion">
@@ -329,13 +340,13 @@ In your own words, explain what “and then” means in the context of
 <div id="building-a-pipeline-on-a-data-frame" class="section level2 hasAnchor" number="6.3">
 <h2><span class="header-section-number">6.3</span> Building a pipeline on a data frame<a href="lab5.html#building-a-pipeline-on-a-data-frame" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Let’s build a small public health data set: daily case counts of a disease across a few counties.</p>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="lab5.html#cb116-1" tabindex="-1"></a>cases <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb116-2"><a href="lab5.html#cb116-2" tabindex="-1"></a>  <span class="at">county =</span> <span class="fu">c</span>(<span class="st">&quot;Worcester&quot;</span>,<span class="st">&quot;Worcester&quot;</span>,<span class="st">&quot;Middlesex&quot;</span>,<span class="st">&quot;Middlesex&quot;</span>,<span class="st">&quot;Suffolk&quot;</span>,<span class="st">&quot;Suffolk&quot;</span>),</span>
-<span id="cb116-3"><a href="lab5.html#cb116-3" tabindex="-1"></a>  <span class="at">day =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">2</span>),</span>
-<span id="cb116-4"><a href="lab5.html#cb116-4" tabindex="-1"></a>  <span class="at">new_cases =</span> <span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">18</span>, <span class="dv">5</span>, <span class="dv">9</span>, <span class="dv">30</span>, <span class="dv">25</span>),</span>
-<span id="cb116-5"><a href="lab5.html#cb116-5" tabindex="-1"></a>  <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span></span>
-<span id="cb116-6"><a href="lab5.html#cb116-6" tabindex="-1"></a>)</span>
-<span id="cb116-7"><a href="lab5.html#cb116-7" tabindex="-1"></a>cases</span></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="lab5.html#cb111-1" tabindex="-1"></a>cases <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb111-2"><a href="lab5.html#cb111-2" tabindex="-1"></a>  <span class="at">county =</span> <span class="fu">c</span>(<span class="st">&quot;Worcester&quot;</span>,<span class="st">&quot;Worcester&quot;</span>,<span class="st">&quot;Middlesex&quot;</span>,<span class="st">&quot;Middlesex&quot;</span>,<span class="st">&quot;Suffolk&quot;</span>,<span class="st">&quot;Suffolk&quot;</span>),</span>
+<span id="cb111-3"><a href="lab5.html#cb111-3" tabindex="-1"></a>  <span class="at">day =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">2</span>),</span>
+<span id="cb111-4"><a href="lab5.html#cb111-4" tabindex="-1"></a>  <span class="at">new_cases =</span> <span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">18</span>, <span class="dv">5</span>, <span class="dv">9</span>, <span class="dv">30</span>, <span class="dv">25</span>),</span>
+<span id="cb111-5"><a href="lab5.html#cb111-5" tabindex="-1"></a>  <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span></span>
+<span id="cb111-6"><a href="lab5.html#cb111-6" tabindex="-1"></a>)</span>
+<span id="cb111-7"><a href="lab5.html#cb111-7" tabindex="-1"></a>cases</span></code></pre></div>
 <pre><code>##      county day new_cases
 ## 1 Worcester   1        12
 ## 2 Worcester   2        18
@@ -344,16 +355,16 @@ In your own words, explain what “and then” means in the context of
 ## 5   Suffolk   1        30
 ## 6   Suffolk   2        25</code></pre>
 <p>A typical pipeline might: filter to a county of interest, calculate a summary statistic, and round the result — all in one chain:</p>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="lab5.html#cb118-1" tabindex="-1"></a>cases <span class="sc">%&gt;%</span></span>
-<span id="cb118-2"><a href="lab5.html#cb118-2" tabindex="-1"></a>  <span class="fu">filter</span>(county <span class="sc">==</span> <span class="st">&quot;Suffolk&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb118-3"><a href="lab5.html#cb118-3" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">total_cases =</span> <span class="fu">sum</span>(new_cases), <span class="at">avg_cases =</span> <span class="fu">mean</span>(new_cases))</span></code></pre></div>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="lab5.html#cb113-1" tabindex="-1"></a>cases <span class="sc">%&gt;%</span></span>
+<span id="cb113-2"><a href="lab5.html#cb113-2" tabindex="-1"></a>  <span class="fu">filter</span>(county <span class="sc">==</span> <span class="st">&quot;Suffolk&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb113-3"><a href="lab5.html#cb113-3" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">total_cases =</span> <span class="fu">sum</span>(new_cases), <span class="at">avg_cases =</span> <span class="fu">mean</span>(new_cases))</span></code></pre></div>
 <pre><code>##   total_cases avg_cases
 ## 1          55      27.5</code></pre>
 <p><code>filter()</code> and <code>summarize()</code> are <code>tidyverse</code> functions similar to <code>subset()</code> and the summary functions you’ve already used, but designed to work smoothly with the pipe.</p>
 <p>We can also group by a category before summarizing, using <code>group_by()</code>:</p>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="lab5.html#cb120-1" tabindex="-1"></a>cases <span class="sc">%&gt;%</span></span>
-<span id="cb120-2"><a href="lab5.html#cb120-2" tabindex="-1"></a>  <span class="fu">group_by</span>(county) <span class="sc">%&gt;%</span></span>
-<span id="cb120-3"><a href="lab5.html#cb120-3" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">total_cases =</span> <span class="fu">sum</span>(new_cases))</span></code></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="lab5.html#cb115-1" tabindex="-1"></a>cases <span class="sc">%&gt;%</span></span>
+<span id="cb115-2"><a href="lab5.html#cb115-2" tabindex="-1"></a>  <span class="fu">group_by</span>(county) <span class="sc">%&gt;%</span></span>
+<span id="cb115-3"><a href="lab5.html#cb115-3" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">total_cases =</span> <span class="fu">sum</span>(new_cases))</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 2
 ##   county    total_cases
 ##   &lt;chr&gt;           &lt;dbl&gt;
@@ -383,9 +394,9 @@ Add the code and the resulting table
 <div id="adding-a-new-calculated-column-mid-pipeline" class="section level2 hasAnchor" number="6.4">
 <h2><span class="header-section-number">6.4</span> Adding a new calculated column mid-pipeline<a href="lab5.html#adding-a-new-calculated-column-mid-pipeline" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The <code>mutate()</code> function adds a new column, and can be chained into your pipeline:</p>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="lab5.html#cb122-1" tabindex="-1"></a>cases <span class="sc">%&gt;%</span></span>
-<span id="cb122-2"><a href="lab5.html#cb122-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cases_per_1000 =</span> new_cases <span class="sc">/</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb122-3"><a href="lab5.html#cb122-3" tabindex="-1"></a>  <span class="fu">filter</span>(cases_per_1000 <span class="sc">&gt;</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="lab5.html#cb117-1" tabindex="-1"></a>cases <span class="sc">%&gt;%</span></span>
+<span id="cb117-2"><a href="lab5.html#cb117-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cases_per_1000 =</span> new_cases <span class="sc">/</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb117-3"><a href="lab5.html#cb117-3" tabindex="-1"></a>  <span class="fu">filter</span>(cases_per_1000 <span class="sc">&gt;</span> <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>##      county day new_cases cases_per_1000
 ## 1 Worcester   1        12            1.2
 ## 2 Worcester   2        18            1.8

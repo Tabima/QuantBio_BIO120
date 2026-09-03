@@ -8,7 +8,7 @@
   <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
 set in the _output.yml file.</p>" />
-  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.48 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 11 Lab 10: Inference and Statistical Testing in Genomics | BIOL120 Excercise Guidebook" />
   <meta property="og:type" content="book" />
@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="ProfessorJavier F. Tabima Restrepo" />
 
 
-<meta name="date" content="2026-08-13" />
+<meta name="date" content="2026-09-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -202,11 +202,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="7" data-path="lab6.html"><a href="lab6.html"><i class="fa fa-check"></i><b>7</b> Lab 6: Biostatistics and Computational Testing in R</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="lab6.html"><a href="lab6.html#statistical-hypotheses"><i class="fa fa-check"></i><b>7.1</b> Statistical hypotheses</a></li>
-<li class="chapter" data-level="7.2" data-path="lab6.html"><a href="lab6.html#the-t-test-comparing-two-groups"><i class="fa fa-check"></i><b>7.2</b> The t-test: comparing two groups</a></li>
-<li class="chapter" data-level="7.3" data-path="lab6.html"><a href="lab6.html#anova-comparing-more-than-two-groups"><i class="fa fa-check"></i><b>7.3</b> ANOVA: comparing more than two groups</a></li>
-<li class="chapter" data-level="7.4" data-path="lab6.html"><a href="lab6.html#chi-squared-test-comparing-categorical-variables"><i class="fa fa-check"></i><b>7.4</b> Chi-squared test: comparing categorical variables</a></li>
-<li class="chapter" data-level="7.5" data-path="lab6.html"><a href="lab6.html#choosing-the-right-test"><i class="fa fa-check"></i><b>7.5</b> Choosing the right test</a></li>
+<li class="chapter" data-level="7.1" data-path="lab6.html"><a href="lab6.html#the-data-set-risk-factors-for-low-infant-birth-weight"><i class="fa fa-check"></i><b>7.1</b> The data set: risk factors for low infant birth weight</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="lab6.html"><a href="lab6.html#understanding-the-columns"><i class="fa fa-check"></i><b>7.1.1</b> Understanding the columns</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="lab6.html"><a href="lab6.html#statistical-hypotheses-and-p-values"><i class="fa fa-check"></i><b>7.2</b> Statistical hypotheses and p-values</a></li>
+<li class="chapter" data-level="7.3" data-path="lab6.html"><a href="lab6.html#visual-exploration-before-testing"><i class="fa fa-check"></i><b>7.3</b> Visual exploration before testing</a></li>
+<li class="chapter" data-level="7.4" data-path="lab6.html"><a href="lab6.html#the-t-test-comparing-two-groups"><i class="fa fa-check"></i><b>7.4</b> The t-test: comparing two groups</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="lab6.html"><a href="lab6.html#checking-the-t-tests-assumptions"><i class="fa fa-check"></i><b>7.4.1</b> Checking the t-test’s assumptions</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="lab6.html"><a href="lab6.html#anova-comparing-more-than-two-groups"><i class="fa fa-check"></i><b>7.5</b> ANOVA: comparing more than two groups</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="lab6.html"><a href="lab6.html#post-hoc-comparisons-which-groups-actually-differ"><i class="fa fa-check"></i><b>7.5.1</b> Post-hoc comparisons: which groups actually differ?</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="lab6.html"><a href="lab6.html#chi-squared-test-comparing-two-categorical-variables"><i class="fa fa-check"></i><b>7.6</b> Chi-squared test: comparing two categorical variables</a></li>
+<li class="chapter" data-level="7.7" data-path="lab6.html"><a href="lab6.html#bringing-it-together-choosing-the-right-test"><i class="fa fa-check"></i><b>7.7</b> Bringing it together: choosing the right test</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="lab7.html"><a href="lab7.html"><i class="fa fa-check"></i><b>8</b> Lab 7: R Markdown and Literate Programming</a>
 <ul>
@@ -310,9 +321,9 @@ To interpret multiple-testing concerns in genomic data
 </tbody>
 </table>
 <p>You can check whether a variable looks normally distributed with a quick histogram, or formally with a Shapiro-Wilk test:</p>
-<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="lab10.html#cb175-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
-<span id="cb175-2"><a href="lab10.html#cb175-2" tabindex="-1"></a>expr_gene1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="at">mean =</span> <span class="dv">10</span>, <span class="at">sd =</span> <span class="dv">2</span>)</span>
-<span id="cb175-3"><a href="lab10.html#cb175-3" tabindex="-1"></a><span class="fu">shapiro.test</span>(expr_gene1)</span></code></pre></div>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="lab10.html#cb185-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb185-2"><a href="lab10.html#cb185-2" tabindex="-1"></a>expr_gene1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="at">mean =</span> <span class="dv">10</span>, <span class="at">sd =</span> <span class="dv">2</span>)</span>
+<span id="cb185-3"><a href="lab10.html#cb185-3" tabindex="-1"></a><span class="fu">shapiro.test</span>(expr_gene1)</span></code></pre></div>
 <pre><code>## 
 ##  Shapiro-Wilk normality test
 ## 
@@ -339,12 +350,12 @@ analyzing with a t-test, and which would you not?
 <div id="comparing-gene-expression-between-two-conditions" class="section level2 hasAnchor" number="11.2">
 <h2><span class="header-section-number">11.2</span> Comparing gene expression between two conditions<a href="lab10.html#comparing-gene-expression-between-two-conditions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Let’s build a small simulated expression data set: expression level of one gene, measured in a control group and a treatment group.</p>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="lab10.html#cb177-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
-<span id="cb177-2"><a href="lab10.html#cb177-2" tabindex="-1"></a>gene_expr <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb177-3"><a href="lab10.html#cb177-3" tabindex="-1"></a>  <span class="at">condition =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;control&quot;</span>,<span class="st">&quot;treatment&quot;</span>), <span class="at">each =</span> <span class="dv">15</span>),</span>
-<span id="cb177-4"><a href="lab10.html#cb177-4" tabindex="-1"></a>  <span class="at">expression =</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">15</span>, <span class="at">mean =</span> <span class="dv">8</span>, <span class="at">sd =</span> <span class="fl">1.5</span>), <span class="fu">rnorm</span>(<span class="dv">15</span>, <span class="at">mean =</span> <span class="dv">11</span>, <span class="at">sd =</span> <span class="fl">1.5</span>))</span>
-<span id="cb177-5"><a href="lab10.html#cb177-5" tabindex="-1"></a>)</span>
-<span id="cb177-6"><a href="lab10.html#cb177-6" tabindex="-1"></a><span class="fu">head</span>(gene_expr)</span></code></pre></div>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="lab10.html#cb187-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb187-2"><a href="lab10.html#cb187-2" tabindex="-1"></a>gene_expr <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb187-3"><a href="lab10.html#cb187-3" tabindex="-1"></a>  <span class="at">condition =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;control&quot;</span>,<span class="st">&quot;treatment&quot;</span>), <span class="at">each =</span> <span class="dv">15</span>),</span>
+<span id="cb187-4"><a href="lab10.html#cb187-4" tabindex="-1"></a>  <span class="at">expression =</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">15</span>, <span class="at">mean =</span> <span class="dv">8</span>, <span class="at">sd =</span> <span class="fl">1.5</span>), <span class="fu">rnorm</span>(<span class="dv">15</span>, <span class="at">mean =</span> <span class="dv">11</span>, <span class="at">sd =</span> <span class="fl">1.5</span>))</span>
+<span id="cb187-5"><a href="lab10.html#cb187-5" tabindex="-1"></a>)</span>
+<span id="cb187-6"><a href="lab10.html#cb187-6" tabindex="-1"></a><span class="fu">head</span>(gene_expr)</span></code></pre></div>
 <pre><code>##   condition expression
 ## 1   control  10.056438
 ## 2   control   7.152953
@@ -353,7 +364,7 @@ analyzing with a t-test, and which would you not?
 ## 5   control   8.606402
 ## 6   control   7.840813</code></pre>
 <p>If the data look roughly normal, a t-test is appropriate (Lab 6):</p>
-<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="lab10.html#cb179-1" tabindex="-1"></a><span class="fu">t.test</span>(expression <span class="sc">~</span> condition, <span class="at">data =</span> gene_expr)</span></code></pre></div>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="lab10.html#cb189-1" tabindex="-1"></a><span class="fu">t.test</span>(expression <span class="sc">~</span> condition, <span class="at">data =</span> gene_expr)</span></code></pre></div>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
@@ -366,7 +377,7 @@ analyzing with a t-test, and which would you not?
 ##   mean in group control mean in group treatment 
 ##                8.726351               10.479409</code></pre>
 <p>If not, use the non-parametric equivalent:</p>
-<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="lab10.html#cb181-1" tabindex="-1"></a><span class="fu">wilcox.test</span>(expression <span class="sc">~</span> condition, <span class="at">data =</span> gene_expr)</span></code></pre></div>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="lab10.html#cb191-1" tabindex="-1"></a><span class="fu">wilcox.test</span>(expression <span class="sc">~</span> condition, <span class="at">data =</span> gene_expr)</span></code></pre></div>
 <pre><code>## 
 ##  Wilcoxon rank sum exact test
 ## 
@@ -394,14 +405,14 @@ choice, then report the result of whichever test you chose.
 <div id="phenotypic-variation-across-environments" class="section level2 hasAnchor" number="11.3">
 <h2><span class="header-section-number">11.3</span> Phenotypic variation across environments<a href="lab10.html#phenotypic-variation-across-environments" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Genomic studies often ask whether a phenotype (an observable trait, potentially influenced by gene expression) varies across environments. This is the same question ANOVA answers, applied to an ecological/environmental design.</p>
-<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="lab10.html#cb183-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">7</span>)</span>
-<span id="cb183-2"><a href="lab10.html#cb183-2" tabindex="-1"></a>phenotype <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb183-3"><a href="lab10.html#cb183-3" tabindex="-1"></a>  <span class="at">environment =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;low_elev&quot;</span>,<span class="st">&quot;mid_elev&quot;</span>,<span class="st">&quot;high_elev&quot;</span>), <span class="at">each =</span> <span class="dv">12</span>),</span>
-<span id="cb183-4"><a href="lab10.html#cb183-4" tabindex="-1"></a>  <span class="at">trait_value =</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">12</span>, <span class="dv">5</span>, <span class="dv">1</span>), <span class="fu">rnorm</span>(<span class="dv">12</span>, <span class="fl">6.2</span>, <span class="dv">1</span>), <span class="fu">rnorm</span>(<span class="dv">12</span>, <span class="fl">7.5</span>, <span class="dv">1</span>))</span>
-<span id="cb183-5"><a href="lab10.html#cb183-5" tabindex="-1"></a>)</span>
-<span id="cb183-6"><a href="lab10.html#cb183-6" tabindex="-1"></a></span>
-<span id="cb183-7"><a href="lab10.html#cb183-7" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">aov</span>(trait_value <span class="sc">~</span> environment, <span class="at">data =</span> phenotype)</span>
-<span id="cb183-8"><a href="lab10.html#cb183-8" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="lab10.html#cb193-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">7</span>)</span>
+<span id="cb193-2"><a href="lab10.html#cb193-2" tabindex="-1"></a>phenotype <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb193-3"><a href="lab10.html#cb193-3" tabindex="-1"></a>  <span class="at">environment =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;low_elev&quot;</span>,<span class="st">&quot;mid_elev&quot;</span>,<span class="st">&quot;high_elev&quot;</span>), <span class="at">each =</span> <span class="dv">12</span>),</span>
+<span id="cb193-4"><a href="lab10.html#cb193-4" tabindex="-1"></a>  <span class="at">trait_value =</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">12</span>, <span class="dv">5</span>, <span class="dv">1</span>), <span class="fu">rnorm</span>(<span class="dv">12</span>, <span class="fl">6.2</span>, <span class="dv">1</span>), <span class="fu">rnorm</span>(<span class="dv">12</span>, <span class="fl">7.5</span>, <span class="dv">1</span>))</span>
+<span id="cb193-5"><a href="lab10.html#cb193-5" tabindex="-1"></a>)</span>
+<span id="cb193-6"><a href="lab10.html#cb193-6" tabindex="-1"></a></span>
+<span id="cb193-7"><a href="lab10.html#cb193-7" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">aov</span>(trait_value <span class="sc">~</span> environment, <span class="at">data =</span> phenotype)</span>
+<span id="cb193-8"><a href="lab10.html#cb193-8" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
 <pre><code>##             Df Sum Sq Mean Sq F value   Pr(&gt;F)    
 ## environment  2  29.50  14.748    12.6 8.62e-05 ***
 ## Residuals   33  38.64   1.171                     
@@ -428,18 +439,18 @@ environment pairs differ
 <h2><span class="header-section-number">11.4</span> Multiple testing: why 1000 genes ≠ 1 gene<a href="lab10.html#multiple-testing-why-1000-genes-1-gene" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>A critical issue in genomics: if you test 1,000 genes at <span class="math inline">\(\alpha = 0.05\)</span>, you’d expect roughly 50 “significant” results <strong>by chance alone</strong>, even if nothing is really going on. This is the multiple testing problem.</p>
 <p>A common correction is the <strong>Bonferroni correction</strong>: divide your significance threshold by the number of tests.</p>
-<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="lab10.html#cb185-1" tabindex="-1"></a>n_genes_tested <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
-<span id="cb185-2"><a href="lab10.html#cb185-2" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
-<span id="cb185-3"><a href="lab10.html#cb185-3" tabindex="-1"></a>bonferroni_threshold <span class="ot">&lt;-</span> alpha <span class="sc">/</span> n_genes_tested</span>
-<span id="cb185-4"><a href="lab10.html#cb185-4" tabindex="-1"></a>bonferroni_threshold</span></code></pre></div>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="lab10.html#cb195-1" tabindex="-1"></a>n_genes_tested <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb195-2"><a href="lab10.html#cb195-2" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb195-3"><a href="lab10.html#cb195-3" tabindex="-1"></a>bonferroni_threshold <span class="ot">&lt;-</span> alpha <span class="sc">/</span> n_genes_tested</span>
+<span id="cb195-4"><a href="lab10.html#cb195-4" tabindex="-1"></a>bonferroni_threshold</span></code></pre></div>
 <pre><code>## [1] 5e-05</code></pre>
 <p><code>R</code> can also adjust a whole vector of p-values at once with <code>p.adjust()</code>:</p>
-<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="lab10.html#cb187-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">3</span>)</span>
-<span id="cb187-2"><a href="lab10.html#cb187-2" tabindex="-1"></a>fake_pvalues <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">20</span>, <span class="dv">0</span>, <span class="fl">0.1</span>)  <span class="co"># 20 genes&#39; worth of p-values</span></span>
-<span id="cb187-3"><a href="lab10.html#cb187-3" tabindex="-1"></a><span class="fu">p.adjust</span>(fake_pvalues, <span class="at">method =</span> <span class="st">&quot;bonferroni&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="lab10.html#cb197-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">3</span>)</span>
+<span id="cb197-2"><a href="lab10.html#cb197-2" tabindex="-1"></a>fake_pvalues <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">20</span>, <span class="dv">0</span>, <span class="fl">0.1</span>)  <span class="co"># 20 genes&#39; worth of p-values</span></span>
+<span id="cb197-3"><a href="lab10.html#cb197-3" tabindex="-1"></a><span class="fu">p.adjust</span>(fake_pvalues, <span class="at">method =</span> <span class="st">&quot;bonferroni&quot;</span>)</span></code></pre></div>
 <pre><code>##  [1] 0.3360831 1.0000000 0.7698847 0.6554686 1.0000000 1.0000000 0.2492669 0.5892018 1.0000000 1.0000000 1.0000000 1.0000000 1.0000000 1.0000000
 ## [15] 1.0000000 1.0000000 0.2228983 1.0000000 1.0000000 0.5594651</code></pre>
-<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="lab10.html#cb189-1" tabindex="-1"></a><span class="fu">p.adjust</span>(fake_pvalues, <span class="at">method =</span> <span class="st">&quot;fdr&quot;</span>)  <span class="co"># a less conservative, commonly used alternative</span></span></code></pre></div>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="lab10.html#cb199-1" tabindex="-1"></a><span class="fu">p.adjust</span>(fake_pvalues, <span class="at">method =</span> <span class="st">&quot;fdr&quot;</span>)  <span class="co"># a less conservative, commonly used alternative</span></span></code></pre></div>
 <pre><code>##  [1] 0.08413057 0.08974883 0.08413057 0.08413057 0.08413057 0.08413057 0.08413057 0.08413057 0.08413057 0.08413057 0.08413057 0.08413057
 ## [13] 0.08413057 0.08413057 0.08974883 0.08974883 0.08413057 0.08796104 0.08974883 0.08413057</code></pre>
 <div class="rmdquestion">

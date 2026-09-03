@@ -8,7 +8,7 @@
   <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
 set in the _output.yml file.</p>" />
-  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.48 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 12 Lab 11: Computational Data Fitting and Predictive Modeling | BIOL120 Excercise Guidebook" />
   <meta property="og:type" content="book" />
@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="ProfessorJavier F. Tabima Restrepo" />
 
 
-<meta name="date" content="2026-08-13" />
+<meta name="date" content="2026-09-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -202,11 +202,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="7" data-path="lab6.html"><a href="lab6.html"><i class="fa fa-check"></i><b>7</b> Lab 6: Biostatistics and Computational Testing in R</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="lab6.html"><a href="lab6.html#statistical-hypotheses"><i class="fa fa-check"></i><b>7.1</b> Statistical hypotheses</a></li>
-<li class="chapter" data-level="7.2" data-path="lab6.html"><a href="lab6.html#the-t-test-comparing-two-groups"><i class="fa fa-check"></i><b>7.2</b> The t-test: comparing two groups</a></li>
-<li class="chapter" data-level="7.3" data-path="lab6.html"><a href="lab6.html#anova-comparing-more-than-two-groups"><i class="fa fa-check"></i><b>7.3</b> ANOVA: comparing more than two groups</a></li>
-<li class="chapter" data-level="7.4" data-path="lab6.html"><a href="lab6.html#chi-squared-test-comparing-categorical-variables"><i class="fa fa-check"></i><b>7.4</b> Chi-squared test: comparing categorical variables</a></li>
-<li class="chapter" data-level="7.5" data-path="lab6.html"><a href="lab6.html#choosing-the-right-test"><i class="fa fa-check"></i><b>7.5</b> Choosing the right test</a></li>
+<li class="chapter" data-level="7.1" data-path="lab6.html"><a href="lab6.html#the-data-set-risk-factors-for-low-infant-birth-weight"><i class="fa fa-check"></i><b>7.1</b> The data set: risk factors for low infant birth weight</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="lab6.html"><a href="lab6.html#understanding-the-columns"><i class="fa fa-check"></i><b>7.1.1</b> Understanding the columns</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="lab6.html"><a href="lab6.html#statistical-hypotheses-and-p-values"><i class="fa fa-check"></i><b>7.2</b> Statistical hypotheses and p-values</a></li>
+<li class="chapter" data-level="7.3" data-path="lab6.html"><a href="lab6.html#visual-exploration-before-testing"><i class="fa fa-check"></i><b>7.3</b> Visual exploration before testing</a></li>
+<li class="chapter" data-level="7.4" data-path="lab6.html"><a href="lab6.html#the-t-test-comparing-two-groups"><i class="fa fa-check"></i><b>7.4</b> The t-test: comparing two groups</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="lab6.html"><a href="lab6.html#checking-the-t-tests-assumptions"><i class="fa fa-check"></i><b>7.4.1</b> Checking the t-test’s assumptions</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="lab6.html"><a href="lab6.html#anova-comparing-more-than-two-groups"><i class="fa fa-check"></i><b>7.5</b> ANOVA: comparing more than two groups</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="lab6.html"><a href="lab6.html#post-hoc-comparisons-which-groups-actually-differ"><i class="fa fa-check"></i><b>7.5.1</b> Post-hoc comparisons: which groups actually differ?</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="lab6.html"><a href="lab6.html#chi-squared-test-comparing-two-categorical-variables"><i class="fa fa-check"></i><b>7.6</b> Chi-squared test: comparing two categorical variables</a></li>
+<li class="chapter" data-level="7.7" data-path="lab6.html"><a href="lab6.html#bringing-it-together-choosing-the-right-test"><i class="fa fa-check"></i><b>7.7</b> Bringing it together: choosing the right test</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="lab7.html"><a href="lab7.html"><i class="fa fa-check"></i><b>8</b> Lab 7: R Markdown and Literate Programming</a>
 <ul>
@@ -294,12 +305,12 @@ To use a fitted model to forecast/predict new values
 <p><span class="math display">\[y = \beta_0 + \beta_1 x + \epsilon\]</span></p>
 <p>where <span class="math inline">\(\beta_0\)</span> is the intercept, <span class="math inline">\(\beta_1\)</span> is the slope, and <span class="math inline">\(\epsilon\)</span> is the error term.</p>
 <p>Let’s use body measurements from the <code>penguins</code> data set (Lab 4/9) to model how flipper length predicts body mass.</p>
-<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="lab11.html#cb191-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb191-2"><a href="lab11.html#cb191-2" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
-<span id="cb191-3"><a href="lab11.html#cb191-3" tabindex="-1"></a><span class="fu">data</span>(penguins)</span>
-<span id="cb191-4"><a href="lab11.html#cb191-4" tabindex="-1"></a>penguins <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(penguins)</span></code></pre></div>
-<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="lab11.html#cb192-1" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(body_mass_g <span class="sc">~</span> flipper_length_mm, <span class="at">data =</span> penguins)</span>
-<span id="cb192-2"><a href="lab11.html#cb192-2" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="lab11.html#cb201-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb201-2"><a href="lab11.html#cb201-2" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb201-3"><a href="lab11.html#cb201-3" tabindex="-1"></a><span class="fu">data</span>(penguins)</span>
+<span id="cb201-4"><a href="lab11.html#cb201-4" tabindex="-1"></a>penguins <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(penguins)</span></code></pre></div>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="lab11.html#cb202-1" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(body_mass_g <span class="sc">~</span> flipper_length_mm, <span class="at">data =</span> penguins)</span>
+<span id="cb202-2"><a href="lab11.html#cb202-2" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = body_mass_g ~ flipper_length_mm, data = penguins)
@@ -346,13 +357,13 @@ Is the slope statistically significant? How do you know?
 </div>
 <div id="visualizing-the-fitted-line" class="section level2 hasAnchor" number="12.2">
 <h2><span class="header-section-number">12.2</span> Visualizing the fitted line<a href="lab11.html#visualizing-the-fitted-line" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="lab11.html#cb194-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
-<span id="cb194-2"><a href="lab11.html#cb194-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb194-3"><a href="lab11.html#cb194-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
-<span id="cb194-4"><a href="lab11.html#cb194-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Flipper length (mm)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Body mass (g)&quot;</span>) <span class="sc">+</span></span>
-<span id="cb194-5"><a href="lab11.html#cb194-5" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="lab11.html#cb204-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
+<span id="cb204-2"><a href="lab11.html#cb204-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb204-3"><a href="lab11.html#cb204-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb204-4"><a href="lab11.html#cb204-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Flipper length (mm)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Body mass (g)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb204-5"><a href="lab11.html#cb204-5" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-129-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-142-1.png" alt="" width="672" /></p>
 <p><code>geom_smooth(method="lm")</code> overlays the regression line, and <code>se=TRUE</code> shades a 95% confidence band around it.</p>
 <div class="rmdquestion">
 <h4 id="question-2">
@@ -370,8 +381,8 @@ or different?
 <div id="checking-the-fit-residuals" class="section level2 hasAnchor" number="12.3">
 <h2><span class="header-section-number">12.3</span> Checking the fit: residuals<a href="lab11.html#checking-the-fit-residuals" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>Residuals</strong> are the differences between observed and predicted values (<span class="math inline">\(y_{observed} - y_{predicted}\)</span>). A good linear fit should have residuals scattered randomly around zero, with no obvious pattern.</p>
-<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="lab11.html#cb196-1" tabindex="-1"></a><span class="fu">plot</span>(model, <span class="at">which =</span> <span class="dv">1</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-131-1.png" width="672" /></p>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="lab11.html#cb206-1" tabindex="-1"></a><span class="fu">plot</span>(model, <span class="at">which =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-144-1.png" alt="" width="672" /></p>
 <p>If you see a clear curve or funnel shape in this plot, a straight line may not be the right model for your data.</p>
 <div class="rmdquestion">
 <h4 id="question-3">
@@ -389,8 +400,8 @@ answer “yes” or “no.”
 <div id="making-predictions" class="section level2 hasAnchor" number="12.4">
 <h2><span class="header-section-number">12.4</span> Making predictions<a href="lab11.html#making-predictions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Once a model is fit, you can use it to predict new, unobserved values with <code>predict()</code>:</p>
-<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="lab11.html#cb197-1" tabindex="-1"></a>new_penguin <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">flipper_length_mm =</span> <span class="dv">210</span>)</span>
-<span id="cb197-2"><a href="lab11.html#cb197-2" tabindex="-1"></a><span class="fu">predict</span>(model, <span class="at">newdata =</span> new_penguin)</span></code></pre></div>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="lab11.html#cb207-1" tabindex="-1"></a>new_penguin <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">flipper_length_mm =</span> <span class="dv">210</span>)</span>
+<span id="cb207-2"><a href="lab11.html#cb207-2" tabindex="-1"></a><span class="fu">predict</span>(model, <span class="at">newdata =</span> new_penguin)</span></code></pre></div>
 <pre><code>##        1 
 ## 4660.093</code></pre>
 <div class="rmdquestion">
@@ -414,14 +425,14 @@ observed in the data with <code>range(penguins$flipper_length_mm)</code>
 <div id="curve-fitting-for-growth-and-conservation-trends" class="section level2 hasAnchor" number="12.5">
 <h2><span class="header-section-number">12.5</span> Curve fitting for growth and conservation trends<a href="lab11.html#curve-fitting-for-growth-and-conservation-trends" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Not all biological relationships are straight lines. Population growth, for example, is often better modeled with a curve. Here’s a simple example using <code>nls()</code> (nonlinear least squares) to fit an exponential growth curve to simulated population data:</p>
-<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="lab11.html#cb199-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">11</span>)</span>
-<span id="cb199-2"><a href="lab11.html#cb199-2" tabindex="-1"></a>year <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">15</span></span>
-<span id="cb199-3"><a href="lab11.html#cb199-3" tabindex="-1"></a>population <span class="ot">&lt;-</span> <span class="dv">50</span> <span class="sc">*</span> <span class="fu">exp</span>(<span class="fl">0.15</span> <span class="sc">*</span> year) <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">15</span>, <span class="dv">0</span>, <span class="dv">10</span>)</span>
-<span id="cb199-4"><a href="lab11.html#cb199-4" tabindex="-1"></a>pop_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(year, population)</span>
-<span id="cb199-5"><a href="lab11.html#cb199-5" tabindex="-1"></a></span>
-<span id="cb199-6"><a href="lab11.html#cb199-6" tabindex="-1"></a>growth_model <span class="ot">&lt;-</span> <span class="fu">nls</span>(population <span class="sc">~</span> N0 <span class="sc">*</span> <span class="fu">exp</span>(r <span class="sc">*</span> year), <span class="at">data =</span> pop_data,</span>
-<span id="cb199-7"><a href="lab11.html#cb199-7" tabindex="-1"></a>                     <span class="at">start =</span> <span class="fu">list</span>(<span class="at">N0 =</span> <span class="dv">50</span>, <span class="at">r =</span> <span class="fl">0.1</span>))</span>
-<span id="cb199-8"><a href="lab11.html#cb199-8" tabindex="-1"></a><span class="fu">summary</span>(growth_model)</span></code></pre></div>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="lab11.html#cb209-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">11</span>)</span>
+<span id="cb209-2"><a href="lab11.html#cb209-2" tabindex="-1"></a>year <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">15</span></span>
+<span id="cb209-3"><a href="lab11.html#cb209-3" tabindex="-1"></a>population <span class="ot">&lt;-</span> <span class="dv">50</span> <span class="sc">*</span> <span class="fu">exp</span>(<span class="fl">0.15</span> <span class="sc">*</span> year) <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">15</span>, <span class="dv">0</span>, <span class="dv">10</span>)</span>
+<span id="cb209-4"><a href="lab11.html#cb209-4" tabindex="-1"></a>pop_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(year, population)</span>
+<span id="cb209-5"><a href="lab11.html#cb209-5" tabindex="-1"></a></span>
+<span id="cb209-6"><a href="lab11.html#cb209-6" tabindex="-1"></a>growth_model <span class="ot">&lt;-</span> <span class="fu">nls</span>(population <span class="sc">~</span> N0 <span class="sc">*</span> <span class="fu">exp</span>(r <span class="sc">*</span> year), <span class="at">data =</span> pop_data,</span>
+<span id="cb209-7"><a href="lab11.html#cb209-7" tabindex="-1"></a>                     <span class="at">start =</span> <span class="fu">list</span>(<span class="at">N0 =</span> <span class="dv">50</span>, <span class="at">r =</span> <span class="fl">0.1</span>))</span>
+<span id="cb209-8"><a href="lab11.html#cb209-8" tabindex="-1"></a><span class="fu">summary</span>(growth_model)</span></code></pre></div>
 <pre><code>## 
 ## Formula: population ~ N0 * exp(r * year)
 ## 
@@ -436,12 +447,12 @@ observed in the data with <code>range(penguins$flipper_length_mm)</code>
 ## 
 ## Number of iterations to convergence: 4 
 ## Achieved convergence tolerance: 3.79e-06</code></pre>
-<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="lab11.html#cb201-1" tabindex="-1"></a><span class="fu">ggplot</span>(pop_data, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> population)) <span class="sc">+</span></span>
-<span id="cb201-2"><a href="lab11.html#cb201-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb201-3"><a href="lab11.html#cb201-3" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">predict</span>(growth_model)), <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
-<span id="cb201-4"><a href="lab11.html#cb201-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Fitted exponential growth curve&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Year&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Population size&quot;</span>) <span class="sc">+</span></span>
-<span id="cb201-5"><a href="lab11.html#cb201-5" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-136-1.png" width="672" /></p>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="lab11.html#cb211-1" tabindex="-1"></a><span class="fu">ggplot</span>(pop_data, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> population)) <span class="sc">+</span></span>
+<span id="cb211-2"><a href="lab11.html#cb211-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb211-3"><a href="lab11.html#cb211-3" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">predict</span>(growth_model)), <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb211-4"><a href="lab11.html#cb211-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Fitted exponential growth curve&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Year&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Population size&quot;</span>) <span class="sc">+</span></span>
+<span id="cb211-5"><a href="lab11.html#cb211-5" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-149-1.png" alt="" width="672" /></p>
 <div class="rmdquestion">
 <h4 id="question-5">
 Question 5

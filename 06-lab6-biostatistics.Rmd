@@ -4,107 +4,253 @@
 
 **Objectives:**
 
-1. To understand what a statistical hypothesis is
-2. To execute and interpret a t-test
-3. To execute and interpret a one-way ANOVA
-4. To execute and interpret a chi-squared test
+1. To understand what a statistical hypothesis is, and the logic behind p-values
+2. To explore and summarize a real, publicly available human health data set
+3. To execute and interpret a t-test, including checking its assumptions
+4. To execute and interpret a one-way ANOVA and post-hoc comparisons
+5. To execute and interpret a chi-squared test of association
+6. To connect statistical results back to a biological/clinical conclusion
 ```
 
-Up to now we've described and visualized data. Today we take the next step: asking whether the patterns we see are likely to be real, or could plausibly be due to chance.
+Up to now we've described and visualized data. Today we take the next step: asking whether the patterns we see are likely to be real, or could plausibly be due to chance. We'll do this using a real, publicly available human health data set instead of a simulated one.
 
-## Statistical hypotheses
+***
 
-Every statistical test starts with two competing hypotheses:
+## The data set: risk factors for low infant birth weight
 
-- **Null hypothesis ($H_0$):** there is no difference / no relationship
-- **Alternative hypothesis ($H_1$):** there is a difference / a relationship
+We will use the `birthwt` data set, which comes bundled with the `MASS` package (installed automatically with `R`). It was collected at Baystate Medical Center, Springfield, Massachusetts, and has been used for decades as a teaching data set in biostatistics because it's real clinical data with a clear, important public health question behind it: **what maternal risk factors are associated with low infant birth weight?**
 
-A test gives us a **p-value**: the probability of observing data this extreme (or more extreme) if the null hypothesis were true. By convention in biology, we often use $\alpha = 0.05$ as our threshold — if $p < 0.05$, we reject $H_0$.
+```{r}
+library(MASS)
+data(birthwt)
+```
+
+```{r}
+str(birthwt)
+```
+
+```{r}
+head(birthwt)
+```
+
+### Understanding the columns
+
+| Column | Meaning |
+|---|---|
+| `low` | 1 = birth weight < 2.5 kg (low), 0 = normal birth weight |
+| `age` | mother's age in years |
+| `lwt` | mother's weight (lbs) at last menstrual period |
+| `race` | 1 = white, 2 = black, 3 = other |
+| `smoke` | smoking status during pregnancy (1 = yes, 0 = no) |
+| `ptl` | number of previous premature labors |
+| `ht` | history of hypertension (1 = yes, 0 = no) |
+| `ui` | presence of uterine irritability (1 = yes, 0 = no) |
+| `ftv` | number of physician visits in the first trimester |
+| `bwt` | birth weight in grams (the actual continuous outcome) |
+
+Notice that several of these columns are stored as plain numbers (`0`/`1`, or `1`/`2`/`3`) even though they represent **categories**, not quantities. Before we can analyze them properly, we need to relabel them as factors with meaningful names — otherwise `R` (and anyone reading our plots) will treat `smoke = 1` as a number rather than "yes."
+
+```{r}
+birthwt$smoke_f <- factor(birthwt$smoke, levels = c(0,1), labels = c("Non-smoker","Smoker"))
+birthwt$race_f  <- factor(birthwt$race, levels = c(1,2,3), labels = c("White","Black","Other"))
+birthwt$low_f   <- factor(birthwt$low, levels = c(0,1), labels = c("Normal weight","Low weight"))
+birthwt$ht_f    <- factor(birthwt$ht, levels = c(0,1), labels = c("No hypertension","Hypertension"))
+
+head(birthwt[, c("bwt","smoke_f","race_f","low_f","ht_f")])
+```
 
 ```{block, type='rmdquestion'}
 #### Question 1
 
-- In your own words, what does a p-value of 0.03 mean?
-- What does it NOT mean? (Hint: it is not "the probability the null hypothesis is true")
+- How many mothers are in this data set? (Hint: `nrow()`)
+- Using `table()`, how many mothers smoked during pregnancy, and how many did not?
+- Using `summary()` on the `bwt` column, report the minimum, mean, and maximum birth weight in the data set (in grams)
 ```
 
-## The t-test: comparing two groups
+***
 
-A t-test compares the means of two groups of a continuous variable. Let's use the `penguins` data set from Lab 4.
+## Statistical hypotheses and p-values
 
-```{r}
-library(palmerpenguins)
-data(penguins)
-penguins <- na.omit(penguins)
+Every statistical test starts with two competing hypotheses:
+
+- **Null hypothesis ($H_0$):** there is no difference / no relationship (e.g., smoking status has no relationship with birth weight)
+- **Alternative hypothesis ($H_1$):** there is a difference / a relationship
+
+A test gives us a **p-value**: the probability of observing data this extreme (or more extreme) *if the null hypothesis were actually true*. By convention in biology and medicine, we typically use $\alpha = 0.05$ as our threshold — if $p < 0.05$, we reject $H_0$ in favor of $H_1$.
+
+```{block, type='rmdinfo'}
+#### A common misconception
+
+A p-value of 0.03 does **not** mean "there's a 3% chance the null hypothesis is true," and it does **not** mean "there's a 97% chance our result is correct." It means: *if smoking truly had no effect on birth weight, we'd see a difference this large (or larger) only 3% of the time by chance alone.* That's a subtle but important distinction.
 ```
-
-Do Adelie and Chinstrap penguins differ in bill length?
-
-```{r}
-adelie_chinstrap <- subset(penguins, species %in% c("Adelie","Chinstrap"))
-t.test(bill_length_mm ~ species, data = adelie_chinstrap)
-```
-
-Look at the `p-value` in the output. A very small p-value (well below 0.05) tells us the two species' mean bill lengths are very unlikely to be this different by chance alone.
 
 ```{block, type='rmdquestion'}
 #### Question 2
 
-- Run a t-test comparing `flipper_length_mm` between Gentoo and Adelie penguins. Add the code and the output.
-- Based on the p-value, would you reject or fail to reject the null hypothesis? State your conclusion in a full sentence.
+- In your own words, restate what a p-value of 0.01 would mean in the context of this data set (choose any one of the variables above)
+- Why is $\alpha = 0.05$ a *convention* rather than a law of nature? What would change about our conclusions if we used $\alpha = 0.01$ instead?
 ```
 
-## ANOVA: comparing more than two groups
+***
 
-A t-test only compares two groups. When you have three or more groups, use an **ANOVA** (Analysis of Variance) instead.
+## Visual exploration before testing
+
+Before running any test, it's good practice to *look* at your data (recall Labs 4 and 9).
 
 ```{r}
-anova_model <- aov(bill_length_mm ~ species, data = penguins)
-summary(anova_model)
+library(ggplot2)
+
+ggplot(birthwt, aes(x = smoke_f, y = bwt, fill = smoke_f)) +
+  geom_boxplot() +
+  geom_jitter(width = 0.1, alpha = 0.4) +
+  labs(title = "Birth weight by maternal smoking status",
+       x = "Maternal smoking status", y = "Birth weight (g)") +
+  theme_minimal() +
+  theme(legend.position = "none")
 ```
 
-Look at the `Pr(>F)` value in the summary table — this is your p-value for the ANOVA.
+```{r}
+ggplot(birthwt, aes(x = race_f, y = bwt, fill = race_f)) +
+  geom_boxplot() +
+  geom_jitter(width = 0.1, alpha = 0.4) +
+  labs(title = "Birth weight by maternal race",
+       x = "Race", y = "Birth weight (g)") +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+It's also useful to look at a categorical-vs-categorical relationship before we test it formally. Here's the proportion of low- versus normal-birth-weight babies within each smoking group. This plot uses the `scales` package to format the y-axis as a percentage — install it once with `install.packages("scales")` if you don't already have it:
+
+```{r}
+ggplot(birthwt, aes(x = smoke_f, fill = low_f)) +
+  geom_bar(position = "fill") +
+  scale_y_continuous(labels = scales::percent) +
+  labs(title = "Proportion of low birth weight by maternal smoking status",
+       x = "Maternal smoking status", y = "Percent of births", fill = "Birth weight category") +
+  theme_minimal()
+```
+
+`position = "fill"` rescales each bar to 100%, which makes it easy to compare *proportions* between groups of different sizes — exactly the kind of relationship a chi-squared test (below) will test formally.
 
 ```{block, type='rmdquestion'}
 #### Question 3
 
-- Run an ANOVA testing whether `body_mass_g` differs across all three penguin species. Add the code and output.
-- What does the ANOVA tell you that a single t-test could not?
-- ANOVA tells you *that* groups differ, but not *which* groups differ. Look up `TukeyHSD()` and run it on your model. Which specific pairs of species are significantly different?
+- Based on the first boxplot, does it look like smokers and non-smokers have different average birth weights? Which group looks lower?
+- Based on the second boxplot, does one racial group appear visually different from the others in birth weight?
+- Based on the stacked bar chart, which smoking group has a visually higher proportion of low-birth-weight babies?
 ```
 
-## Chi-squared test: comparing categorical variables
+***
 
-A chi-squared test asks whether two **categorical** variables are associated. For example: is `island` associated with `species`?
+## The t-test: comparing two groups
+
+A t-test compares the means of two groups of a continuous variable. Here we ask: **does maternal smoking status affect birth weight?**
+
+```{r}
+t.test(bwt ~ smoke_f, data = birthwt)
+```
+
+### Checking the t-test's assumptions
+
+A standard t-test assumes each group is roughly normally distributed. We can check this visually with a histogram, or formally with a Shapiro-Wilk test (introduced further in Lab 10):
+
+```{r}
+shapiro.test(birthwt$bwt[birthwt$smoke_f == "Smoker"])
+shapiro.test(birthwt$bwt[birthwt$smoke_f == "Non-smoker"])
+```
+
+A p-value **above** 0.05 in a Shapiro-Wilk test suggests the data don't significantly deviate from normal — safe to trust the t-test. If either group's p-value were well below 0.05, we'd consider the non-parametric alternative, `wilcox.test()` (same syntax, just swap the function name).
+
+```{block, type='rmdquestion'}
+#### Question 4
+
+- Report the t-test's p-value comparing `bwt` between smokers and non-smokers. State a full-sentence conclusion: do you reject or fail to reject $H_0$?
+- Based on the Shapiro-Wilk results, was the standard t-test an appropriate choice here? Justify your answer.
+- Look at the `t.test()` output again: it also reports a 95% confidence interval for the difference in means. What does that interval tell you, in plain language?
+```
+
+***
+
+## ANOVA: comparing more than two groups
+
+A t-test only compares two groups. `race_f` has three categories, so we need a one-way **ANOVA** (Analysis of Variance) instead: **does birth weight differ across maternal race categories?**
+
+```{r}
+race_model <- aov(bwt ~ race_f, data = birthwt)
+summary(race_model)
+```
+
+Look at the `Pr(>F)` value in the summary table — this is your p-value for the overall ANOVA.
+
+### Post-hoc comparisons: which groups actually differ?
+
+ANOVA tells you *that* the groups differ overall, but not *which specific pairs* differ. For that, use Tukey's Honest Significant Difference test:
+
+```{r}
+TukeyHSD(race_model)
+```
+
+Each row compares one pair of groups; the `p adj` column has already been corrected for the fact that we're running multiple comparisons at once (a preview of the multiple-testing problem covered in more depth in Lab 10).
+
+```{block, type='rmdquestion'}
+#### Question 5
+
+- Is the overall ANOVA for `bwt ~ race_f` statistically significant? Report the p-value.
+- According to `TukeyHSD()`, which specific pair(s) of racial groups have a significant difference in mean birth weight (p adj < 0.05)?
+- Now test whether `bwt` differs by `ftv` (number of first-trimester physician visits) treated as a categorical grouping variable — you'll first need to convert it with `factor(birthwt$ftv)`. Are there any groups with very few observations? Why might that be a problem for ANOVA?
+```
+
+***
+
+## Chi-squared test: comparing two categorical variables
+
+A chi-squared test asks whether two **categorical** variables are associated. Here's a genuinely important clinical question: **is maternal smoking associated with having a low-birth-weight baby?**
 
 First, build a contingency table:
 
 ```{r}
-island_species_table <- table(penguins$island, penguins$species)
-island_species_table
+smoke_low_table <- table(birthwt$smoke_f, birthwt$low_f)
+smoke_low_table
 ```
 
 Then test it:
 
 ```{r}
-chisq.test(island_species_table)
+chisq.test(smoke_low_table)
+```
+
+```{block, type='rmdinfo'}
+#### A note on small samples
+
+The chi-squared test relies on a large-sample approximation. `R` will print a warning if any expected cell count is below 5, in which case Fisher's Exact Test (`fisher.test()`) is a safer choice — same syntax, just swap the function.
 ```
 
 ```{block, type='rmdquestion'}
-#### Question 4
+#### Question 6
 
-- Build a contingency table of `species` versus `sex`, and run a chi-squared test on it. Add the code and output.
-- Based on the p-value, is there a statistically significant association between species and sex in this data set? Explain what that would mean biologically if there were.
+- Report the chi-squared statistic and p-value for the smoking/low-birth-weight association. Is it statistically significant?
+- Build a contingency table of `ht_f` (hypertension) versus `low_f`, and run a chi-squared (or Fisher's exact, if you get a warning) test on it. State your conclusion.
+- Calculate the proportion of low-birth-weight babies among smokers versus non-smokers by hand from your contingency table (e.g., `prop.table(smoke_low_table, margin = 1)`). Does this match the direction of the association reported by the test?
 ```
 
-## Choosing the right test
+***
+
+## Bringing it together: choosing the right test
 
 ```{block, type='rmdquestion'}
-#### Question 5
+#### Question 7
 
-For each of the following biological questions, name the test you would use (t-test, ANOVA, or chi-squared) and explain why:
+For each of the following questions you could ask of the `birthwt` data set, name which test you would use (t-test, ANOVA, or chi-squared) and explain why:
 
-- Does average tail length differ between two subspecies of lizard?
-- Does flower color (red/yellow/white) differ in frequency between two habitats?
-- Does average enzyme activity differ across four temperature treatments?
+- Does mother's age (`age`) differ between mothers who did and did not smoke?
+- Is history of hypertension (`ht_f`) associated with race (`race_f`)?
+- Does mother's weight at last menstrual period (`lwt`) differ across the three race categories?
+
+Then actually run **one** of the three tests above, and report your code, output, and a full-sentence biological conclusion.
+```
+
+```{block, type='rmdquestion'}
+#### Question 8 (synthesis)
+
+Write a short paragraph (4-6 sentences), as if for the results section of a report, summarizing what this data set suggests about risk factors for low birth weight. Cite at least two of the specific statistical results you obtained in this lab (test name, statistic or p-value, and your interpretation). Be careful with your language: a significant association does not, by itself, prove that one variable *causes* the other.
 ```

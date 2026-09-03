@@ -8,7 +8,7 @@
   <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
 set in the _output.yml file.</p>" />
-  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.48 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 9 Lab 8: Advanced Data Wrangling and Importing Ecological Datasets | BIOL120 Excercise Guidebook" />
   <meta property="og:type" content="book" />
@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="ProfessorJavier F. Tabima Restrepo" />
 
 
-<meta name="date" content="2026-08-13" />
+<meta name="date" content="2026-09-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -202,11 +202,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="7" data-path="lab6.html"><a href="lab6.html"><i class="fa fa-check"></i><b>7</b> Lab 6: Biostatistics and Computational Testing in R</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="lab6.html"><a href="lab6.html#statistical-hypotheses"><i class="fa fa-check"></i><b>7.1</b> Statistical hypotheses</a></li>
-<li class="chapter" data-level="7.2" data-path="lab6.html"><a href="lab6.html#the-t-test-comparing-two-groups"><i class="fa fa-check"></i><b>7.2</b> The t-test: comparing two groups</a></li>
-<li class="chapter" data-level="7.3" data-path="lab6.html"><a href="lab6.html#anova-comparing-more-than-two-groups"><i class="fa fa-check"></i><b>7.3</b> ANOVA: comparing more than two groups</a></li>
-<li class="chapter" data-level="7.4" data-path="lab6.html"><a href="lab6.html#chi-squared-test-comparing-categorical-variables"><i class="fa fa-check"></i><b>7.4</b> Chi-squared test: comparing categorical variables</a></li>
-<li class="chapter" data-level="7.5" data-path="lab6.html"><a href="lab6.html#choosing-the-right-test"><i class="fa fa-check"></i><b>7.5</b> Choosing the right test</a></li>
+<li class="chapter" data-level="7.1" data-path="lab6.html"><a href="lab6.html#the-data-set-risk-factors-for-low-infant-birth-weight"><i class="fa fa-check"></i><b>7.1</b> The data set: risk factors for low infant birth weight</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="lab6.html"><a href="lab6.html#understanding-the-columns"><i class="fa fa-check"></i><b>7.1.1</b> Understanding the columns</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="lab6.html"><a href="lab6.html#statistical-hypotheses-and-p-values"><i class="fa fa-check"></i><b>7.2</b> Statistical hypotheses and p-values</a></li>
+<li class="chapter" data-level="7.3" data-path="lab6.html"><a href="lab6.html#visual-exploration-before-testing"><i class="fa fa-check"></i><b>7.3</b> Visual exploration before testing</a></li>
+<li class="chapter" data-level="7.4" data-path="lab6.html"><a href="lab6.html#the-t-test-comparing-two-groups"><i class="fa fa-check"></i><b>7.4</b> The t-test: comparing two groups</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="lab6.html"><a href="lab6.html#checking-the-t-tests-assumptions"><i class="fa fa-check"></i><b>7.4.1</b> Checking the t-test’s assumptions</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="lab6.html"><a href="lab6.html#anova-comparing-more-than-two-groups"><i class="fa fa-check"></i><b>7.5</b> ANOVA: comparing more than two groups</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="lab6.html"><a href="lab6.html#post-hoc-comparisons-which-groups-actually-differ"><i class="fa fa-check"></i><b>7.5.1</b> Post-hoc comparisons: which groups actually differ?</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="lab6.html"><a href="lab6.html#chi-squared-test-comparing-two-categorical-variables"><i class="fa fa-check"></i><b>7.6</b> Chi-squared test: comparing two categorical variables</a></li>
+<li class="chapter" data-level="7.7" data-path="lab6.html"><a href="lab6.html#bringing-it-together-choosing-the-right-test"><i class="fa fa-check"></i><b>7.7</b> Bringing it together: choosing the right test</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="lab7.html"><a href="lab7.html"><i class="fa fa-check"></i><b>8</b> Lab 7: R Markdown and Literate Programming</a>
 <ul>
@@ -291,7 +302,7 @@ To summarize data by category
 <div id="reading-text-delimited-files-.txt-.tsv" class="section level2 hasAnchor" number="9.1">
 <h2><span class="header-section-number">9.1</span> Reading text-delimited files (<code>.txt</code> / <code>.tsv</code>)<a href="lab8.html#reading-text-delimited-files-.txt-.tsv" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>Text delimited files</strong> contain plain, unformatted text, where columns are separated by a <code>tab</code> character (<code>\t</code>). To read them, use <code>read.table()</code>:</p>
-<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="lab8.html#cb137-1" tabindex="-1"></a><span class="co"># read.table(file = &quot;data_table.txt&quot;, sep = &quot;\t&quot;, header = T)</span></span></code></pre></div>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="lab8.html#cb147-1" tabindex="-1"></a><span class="co"># read.table(file = &quot;data_table.txt&quot;, sep = &quot;\t&quot;, header = T)</span></span></code></pre></div>
 <div class="rmdquestion">
 <h4 id="question-1">
 Question 1
@@ -361,12 +372,12 @@ Is this table any different from the ones in Questions 1 and 2?
 <div id="dealing-with-missing-data" class="section level2 hasAnchor" number="9.4">
 <h2><span class="header-section-number">9.4</span> Dealing with missing data<a href="lab8.html#dealing-with-missing-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Ecological field data almost always has gaps — a sensor failed, a sample was lost, an observer skipped a field. <code>R</code> represents missing values as <code>NA</code>.</p>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="lab8.html#cb138-1" tabindex="-1"></a>eco_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb138-2"><a href="lab8.html#cb138-2" tabindex="-1"></a>  <span class="at">site =</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>,<span class="st">&quot;B&quot;</span>,<span class="st">&quot;C&quot;</span>,<span class="st">&quot;D&quot;</span>,<span class="st">&quot;E&quot;</span>),</span>
-<span id="cb138-3"><a href="lab8.html#cb138-3" tabindex="-1"></a>  <span class="at">temp_c =</span> <span class="fu">c</span>(<span class="fl">18.2</span>, <span class="cn">NA</span>, <span class="fl">21.4</span>, <span class="fl">19.8</span>, <span class="cn">NA</span>),</span>
-<span id="cb138-4"><a href="lab8.html#cb138-4" tabindex="-1"></a>  <span class="at">ph =</span> <span class="fu">c</span>(<span class="fl">7.1</span>, <span class="fl">6.9</span>, <span class="cn">NA</span>, <span class="fl">7.3</span>, <span class="fl">7.0</span>)</span>
-<span id="cb138-5"><a href="lab8.html#cb138-5" tabindex="-1"></a>)</span>
-<span id="cb138-6"><a href="lab8.html#cb138-6" tabindex="-1"></a>eco_data</span></code></pre></div>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="lab8.html#cb148-1" tabindex="-1"></a>eco_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb148-2"><a href="lab8.html#cb148-2" tabindex="-1"></a>  <span class="at">site =</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>,<span class="st">&quot;B&quot;</span>,<span class="st">&quot;C&quot;</span>,<span class="st">&quot;D&quot;</span>,<span class="st">&quot;E&quot;</span>),</span>
+<span id="cb148-3"><a href="lab8.html#cb148-3" tabindex="-1"></a>  <span class="at">temp_c =</span> <span class="fu">c</span>(<span class="fl">18.2</span>, <span class="cn">NA</span>, <span class="fl">21.4</span>, <span class="fl">19.8</span>, <span class="cn">NA</span>),</span>
+<span id="cb148-4"><a href="lab8.html#cb148-4" tabindex="-1"></a>  <span class="at">ph =</span> <span class="fu">c</span>(<span class="fl">7.1</span>, <span class="fl">6.9</span>, <span class="cn">NA</span>, <span class="fl">7.3</span>, <span class="fl">7.0</span>)</span>
+<span id="cb148-5"><a href="lab8.html#cb148-5" tabindex="-1"></a>)</span>
+<span id="cb148-6"><a href="lab8.html#cb148-6" tabindex="-1"></a>eco_data</span></code></pre></div>
 <pre><code>##   site temp_c  ph
 ## 1    A   18.2 7.1
 ## 2    B     NA 6.9
@@ -374,7 +385,7 @@ Is this table any different from the ones in Questions 1 and 2?
 ## 4    D   19.8 7.3
 ## 5    E     NA 7.0</code></pre>
 <p>Check for missing values with <code>is.na()</code>:</p>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="lab8.html#cb140-1" tabindex="-1"></a><span class="fu">is.na</span>(eco_data)</span></code></pre></div>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="lab8.html#cb150-1" tabindex="-1"></a><span class="fu">is.na</span>(eco_data)</span></code></pre></div>
 <pre><code>##       site temp_c    ph
 ## [1,] FALSE  FALSE FALSE
 ## [2,] FALSE   TRUE FALSE
@@ -382,16 +393,16 @@ Is this table any different from the ones in Questions 1 and 2?
 ## [4,] FALSE  FALSE FALSE
 ## [5,] FALSE   TRUE FALSE</code></pre>
 <p>Count how many missing values are in a column:</p>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="lab8.html#cb142-1" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(eco_data<span class="sc">$</span>temp_c))</span></code></pre></div>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="lab8.html#cb152-1" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(eco_data<span class="sc">$</span>temp_c))</span></code></pre></div>
 <pre><code>## [1] 2</code></pre>
 <p>You have a few options for handling missingness:</p>
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="lab8.html#cb144-1" tabindex="-1"></a><span class="co"># Remove any row with at least one NA</span></span>
-<span id="cb144-2"><a href="lab8.html#cb144-2" tabindex="-1"></a><span class="fu">na.omit</span>(eco_data)</span></code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="lab8.html#cb154-1" tabindex="-1"></a><span class="co"># Remove any row with at least one NA</span></span>
+<span id="cb154-2"><a href="lab8.html#cb154-2" tabindex="-1"></a><span class="fu">na.omit</span>(eco_data)</span></code></pre></div>
 <pre><code>##   site temp_c  ph
 ## 1    A   18.2 7.1
 ## 4    D   19.8 7.3</code></pre>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="lab8.html#cb146-1" tabindex="-1"></a><span class="co"># Calculate a mean while ignoring NAs</span></span>
-<span id="cb146-2"><a href="lab8.html#cb146-2" tabindex="-1"></a><span class="fu">mean</span>(eco_data<span class="sc">$</span>temp_c, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="lab8.html#cb156-1" tabindex="-1"></a><span class="co"># Calculate a mean while ignoring NAs</span></span>
+<span id="cb156-2"><a href="lab8.html#cb156-2" tabindex="-1"></a><span class="fu">mean</span>(eco_data<span class="sc">$</span>temp_c, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## [1] 19.8</code></pre>
 <div class="rmdquestion">
 <h4 id="question-4">
@@ -419,16 +430,16 @@ ignoring the <code>NA</code> in your calculations
 <div id="selecting-variables-and-adding-calculated-columns" class="section level2 hasAnchor" number="9.5">
 <h2><span class="header-section-number">9.5</span> Selecting variables and adding calculated columns<a href="lab8.html#selecting-variables-and-adding-calculated-columns" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Recall <code>subset()</code> from Lab 3 for filtering rows. The <code>select</code> argument lets you keep or drop specific <strong>columns</strong>:</p>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="lab8.html#cb148-1" tabindex="-1"></a><span class="co"># Keep only site and temp_c</span></span>
-<span id="cb148-2"><a href="lab8.html#cb148-2" tabindex="-1"></a><span class="fu">subset</span>(eco_data, <span class="at">select =</span> <span class="fu">c</span>(site, temp_c))</span></code></pre></div>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="lab8.html#cb158-1" tabindex="-1"></a><span class="co"># Keep only site and temp_c</span></span>
+<span id="cb158-2"><a href="lab8.html#cb158-2" tabindex="-1"></a><span class="fu">subset</span>(eco_data, <span class="at">select =</span> <span class="fu">c</span>(site, temp_c))</span></code></pre></div>
 <pre><code>##   site temp_c
 ## 1    A   18.2
 ## 2    B     NA
 ## 3    C   21.4
 ## 4    D   19.8
 ## 5    E     NA</code></pre>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="lab8.html#cb150-1" tabindex="-1"></a><span class="co"># Drop the ph column</span></span>
-<span id="cb150-2"><a href="lab8.html#cb150-2" tabindex="-1"></a><span class="fu">subset</span>(eco_data, <span class="at">select =</span> <span class="sc">-</span><span class="fu">c</span>(ph))</span></code></pre></div>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="lab8.html#cb160-1" tabindex="-1"></a><span class="co"># Drop the ph column</span></span>
+<span id="cb160-2"><a href="lab8.html#cb160-2" tabindex="-1"></a><span class="fu">subset</span>(eco_data, <span class="at">select =</span> <span class="sc">-</span><span class="fu">c</span>(ph))</span></code></pre></div>
 <pre><code>##   site temp_c
 ## 1    A   18.2
 ## 2    B     NA
@@ -436,8 +447,8 @@ ignoring the <code>NA</code> in your calculations
 ## 4    D   19.8
 ## 5    E     NA</code></pre>
 <p>To add a new calculated column, you can assign directly with <code>$</code>, or use <code>mutate()</code> from <code>tidyverse</code> (Lab 5):</p>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="lab8.html#cb152-1" tabindex="-1"></a>eco_data<span class="sc">$</span>temp_f <span class="ot">&lt;-</span> (eco_data<span class="sc">$</span>temp_c <span class="sc">*</span> <span class="dv">9</span><span class="sc">/</span><span class="dv">5</span>) <span class="sc">+</span> <span class="dv">32</span></span>
-<span id="cb152-2"><a href="lab8.html#cb152-2" tabindex="-1"></a>eco_data</span></code></pre></div>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="lab8.html#cb162-1" tabindex="-1"></a>eco_data<span class="sc">$</span>temp_f <span class="ot">&lt;-</span> (eco_data<span class="sc">$</span>temp_c <span class="sc">*</span> <span class="dv">9</span><span class="sc">/</span><span class="dv">5</span>) <span class="sc">+</span> <span class="dv">32</span></span>
+<span id="cb162-2"><a href="lab8.html#cb162-2" tabindex="-1"></a>eco_data</span></code></pre></div>
 <pre><code>##   site temp_c  ph temp_f
 ## 1    A   18.2 7.1  64.76
 ## 2    B     NA 6.9     NA
@@ -464,10 +475,10 @@ index, a rounded value, etc.) using either <code>$</code> or
 <div id="summarizing-data-by-category" class="section level2 hasAnchor" number="9.6">
 <h2><span class="header-section-number">9.6</span> Summarizing data by category<a href="lab8.html#summarizing-data-by-category" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Combine what you learned in Lab 5 (<code>group_by</code>, <code>summarize</code>) with today’s cleaned-up data to produce site-level summaries:</p>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="lab8.html#cb154-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb154-2"><a href="lab8.html#cb154-2" tabindex="-1"></a>eco_data <span class="sc">%&gt;%</span></span>
-<span id="cb154-3"><a href="lab8.html#cb154-3" tabindex="-1"></a>  <span class="fu">group_by</span>(site) <span class="sc">%&gt;%</span></span>
-<span id="cb154-4"><a href="lab8.html#cb154-4" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_temp =</span> <span class="fu">mean</span>(temp_c, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="lab8.html#cb164-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb164-2"><a href="lab8.html#cb164-2" tabindex="-1"></a>eco_data <span class="sc">%&gt;%</span></span>
+<span id="cb164-3"><a href="lab8.html#cb164-3" tabindex="-1"></a>  <span class="fu">group_by</span>(site) <span class="sc">%&gt;%</span></span>
+<span id="cb164-4"><a href="lab8.html#cb164-4" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_temp =</span> <span class="fu">mean</span>(temp_c, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 5 × 2
 ##   site  mean_temp
 ##   &lt;chr&gt;     &lt;dbl&gt;
