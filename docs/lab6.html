@@ -8,7 +8,7 @@
   <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
 set in the _output.yml file.</p>" />
-  <meta name="generator" content="bookdown 0.48 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.47 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 7 Lab 6: Biostatistics and Computational Testing in R | BIOL120 Excercise Guidebook" />
   <meta property="og:type" content="book" />
@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="ProfessorJavier F. Tabima Restrepo" />
 
 
-<meta name="date" content="2026-09-03" />
+<meta name="date" content="2026-10-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -37,7 +37,7 @@ set in the _output.yml file.</p>" />
   
   
 <link rel="prev" href="lab5.html"/>
-<link rel="next" href="lab7.html"/>
+<link rel="next" href="redlining.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -58,6 +58,15 @@ set in the _output.yml file.</p>" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.2.3/leaflet.js"></script>
 
 
 <style type="text/css">
@@ -219,12 +228,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.6" data-path="lab6.html"><a href="lab6.html#chi-squared-test-comparing-two-categorical-variables"><i class="fa fa-check"></i><b>7.6</b> Chi-squared test: comparing two categorical variables</a></li>
 <li class="chapter" data-level="7.7" data-path="lab6.html"><a href="lab6.html#bringing-it-together-choosing-the-right-test"><i class="fa fa-check"></i><b>7.7</b> Bringing it together: choosing the right test</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="lab7.html"><a href="lab7.html"><i class="fa fa-check"></i><b>8</b> Lab 7: R Markdown and Literate Programming</a>
+<li class="chapter" data-level="8" data-path="redlining.html"><a href="redlining.html"><i class="fa fa-check"></i><b>8</b> Lab 7: Historic redlining and neighborhood health</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="lab7.html"><a href="lab7.html#what-is-literate-programming"><i class="fa fa-check"></i><b>8.1</b> What is literate programming?</a></li>
-<li class="chapter" data-level="8.2" data-path="lab7.html"><a href="lab7.html#controlling-code-chunks"><i class="fa fa-check"></i><b>8.2</b> Controlling code chunks</a></li>
-<li class="chapter" data-level="8.3" data-path="lab7.html"><a href="lab7.html#scientific-and-mathematical-notation"><i class="fa fa-check"></i><b>8.3</b> Scientific and mathematical notation</a></li>
-<li class="chapter" data-level="8.4" data-path="lab7.html"><a href="lab7.html#exporting-your-report"><i class="fa fa-check"></i><b>8.4</b> Exporting your report</a></li>
+<li class="chapter" data-level="8.1" data-path="redlining.html"><a href="redlining.html#what-are-these-data"><i class="fa fa-check"></i><b>8.1</b> 1. What are these data?</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="redlining.html"><a href="redlining.html#redlining-the-holc-grades"><i class="fa fa-check"></i><b>8.1.1</b> Redlining: the HOLC grades</a></li>
+<li class="chapter" data-level="8.1.2" data-path="redlining.html"><a href="redlining.html#health-cdc-places"><i class="fa fa-check"></i><b>8.1.2</b> Health: CDC PLACES</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="redlining.html"><a href="redlining.html#what-do-we-expect-to-see"><i class="fa fa-check"></i><b>8.2</b> 2. What do we expect to see?</a></li>
+<li class="chapter" data-level="8.3" data-path="redlining.html"><a href="redlining.html#load-and-join-the-data-short-setup"><i class="fa fa-check"></i><b>8.3</b> 3. Load and join the data (short setup)</a></li>
+<li class="chapter" data-level="8.4" data-path="redlining.html"><a href="redlining.html#comparing-health-outcomes-by-grade"><i class="fa fa-check"></i><b>8.4</b> 4. Comparing health outcomes by grade</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="redlining.html"><a href="redlining.html#one-outcome"><i class="fa fa-check"></i><b>8.4.1</b> 4.1 One outcome</a></li>
+<li class="chapter" data-level="8.4.2" data-path="redlining.html"><a href="redlining.html#many-outcomes-at-once"><i class="fa fa-check"></i><b>8.4.2</b> 4.2 Many outcomes at once</a></li>
+<li class="chapter" data-level="8.4.3" data-path="redlining.html"><a href="redlining.html#how-big-is-the-difference"><i class="fa fa-check"></i><b>8.4.3</b> 4.3 How big is the difference?</a></li>
+<li class="chapter" data-level="8.4.4" data-path="redlining.html"><a href="redlining.html#is-the-difference-real-or-just-chance"><i class="fa fa-check"></i><b>8.4.4</b> 4.4 Is the difference real or just chance?</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="redlining.html"><a href="redlining.html#could-something-else-explain-the-pattern"><i class="fa fa-check"></i><b>8.5</b> 5. Could something else explain the pattern?</a></li>
+<li class="chapter" data-level="8.6" data-path="redlining.html"><a href="redlining.html#looking-at-your-own-state-or-county"><i class="fa fa-check"></i><b>8.6</b> 6. Looking at your own state or county</a></li>
+<li class="chapter" data-level="8.7" data-path="redlining.html"><a href="redlining.html#what-can-these-data-tell-us-and-what-cant-they"><i class="fa fa-check"></i><b>8.7</b> 7. What can these data tell us (and what can’t they)?</a></li>
+<li class="chapter" data-level="8.8" data-path="redlining.html"><a href="redlining.html#turning-this-into-your-group-project"><i class="fa fa-check"></i><b>8.8</b> 8. Turning this into your group project</a></li>
+<li class="chapter" data-level="8.9" data-path="redlining.html"><a href="redlining.html#sources-and-data"><i class="fa fa-check"></i><b>8.9</b> Sources and data</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="lab8.html"><a href="lab8.html"><i class="fa fa-check"></i><b>9</b> Lab 8: Advanced Data Wrangling and Importing Ecological Datasets</a>
 <ul>
@@ -314,9 +338,17 @@ conclusion
 <div id="the-data-set-risk-factors-for-low-infant-birth-weight" class="section level2 hasAnchor" number="7.1">
 <h2><span class="header-section-number">7.1</span> The data set: risk factors for low infant birth weight<a href="lab6.html#the-data-set-risk-factors-for-low-infant-birth-weight" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We will use the <code>birthwt</code> data set, which comes bundled with the <code>MASS</code> package (installed automatically with <code>R</code>). It was collected at Baystate Medical Center, Springfield, Massachusetts, and has been used for decades as a teaching data set in biostatistics because it’s real clinical data with a clear, important public health question behind it: <strong>what maternal risk factors are associated with low infant birth weight?</strong></p>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="lab6.html#cb119-1" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
-<span id="cb119-2"><a href="lab6.html#cb119-2" tabindex="-1"></a><span class="fu">data</span>(birthwt)</span></code></pre></div>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="lab6.html#cb120-1" tabindex="-1"></a><span class="fu">str</span>(birthwt)</span></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="lab6.html#cb125-1" tabindex="-1"></a><span class="fu">library</span>(MASS)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;MASS&#39;</code></pre>
+<pre><code>## The following object is masked _by_ &#39;.GlobalEnv&#39;:
+## 
+##     birthwt</code></pre>
+<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
+## 
+##     select</code></pre>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="lab6.html#cb129-1" tabindex="-1"></a><span class="fu">data</span>(birthwt)</span></code></pre></div>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="lab6.html#cb130-1" tabindex="-1"></a><span class="fu">str</span>(birthwt)</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    189 obs. of  10 variables:
 ##  $ low  : int  0 0 0 0 0 0 0 0 0 0 ...
 ##  $ age  : int  19 33 20 21 18 21 22 17 29 26 ...
@@ -328,7 +360,7 @@ conclusion
 ##  $ ui   : int  1 0 0 1 1 0 0 0 0 0 ...
 ##  $ ftv  : int  0 3 1 2 0 0 1 1 1 0 ...
 ##  $ bwt  : int  2523 2551 2557 2594 2600 2622 2637 2637 2663 2665 ...</code></pre>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="lab6.html#cb122-1" tabindex="-1"></a><span class="fu">head</span>(birthwt)</span></code></pre></div>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="lab6.html#cb132-1" tabindex="-1"></a><span class="fu">head</span>(birthwt)</span></code></pre></div>
 <pre><code>##    low age lwt race smoke ptl ht ui ftv  bwt
 ## 85   0  19 182    2     0   0  0  1   0 2523
 ## 86   0  33 155    3     0   0  0  0   3 2551
@@ -389,12 +421,12 @@ conclusion
 </tbody>
 </table>
 <p>Notice that several of these columns are stored as plain numbers (<code>0</code>/<code>1</code>, or <code>1</code>/<code>2</code>/<code>3</code>) even though they represent <strong>categories</strong>, not quantities. Before we can analyze them properly, we need to relabel them as factors with meaningful names — otherwise <code>R</code> (and anyone reading our plots) will treat <code>smoke = 1</code> as a number rather than “yes.”</p>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="lab6.html#cb124-1" tabindex="-1"></a>birthwt<span class="sc">$</span>smoke_f <span class="ot">&lt;-</span> <span class="fu">factor</span>(birthwt<span class="sc">$</span>smoke, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Non-smoker&quot;</span>,<span class="st">&quot;Smoker&quot;</span>))</span>
-<span id="cb124-2"><a href="lab6.html#cb124-2" tabindex="-1"></a>birthwt<span class="sc">$</span>race_f  <span class="ot">&lt;-</span> <span class="fu">factor</span>(birthwt<span class="sc">$</span>race, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;White&quot;</span>,<span class="st">&quot;Black&quot;</span>,<span class="st">&quot;Other&quot;</span>))</span>
-<span id="cb124-3"><a href="lab6.html#cb124-3" tabindex="-1"></a>birthwt<span class="sc">$</span>low_f   <span class="ot">&lt;-</span> <span class="fu">factor</span>(birthwt<span class="sc">$</span>low, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Normal weight&quot;</span>,<span class="st">&quot;Low weight&quot;</span>))</span>
-<span id="cb124-4"><a href="lab6.html#cb124-4" tabindex="-1"></a>birthwt<span class="sc">$</span>ht_f    <span class="ot">&lt;-</span> <span class="fu">factor</span>(birthwt<span class="sc">$</span>ht, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;No hypertension&quot;</span>,<span class="st">&quot;Hypertension&quot;</span>))</span>
-<span id="cb124-5"><a href="lab6.html#cb124-5" tabindex="-1"></a></span>
-<span id="cb124-6"><a href="lab6.html#cb124-6" tabindex="-1"></a><span class="fu">head</span>(birthwt[, <span class="fu">c</span>(<span class="st">&quot;bwt&quot;</span>,<span class="st">&quot;smoke_f&quot;</span>,<span class="st">&quot;race_f&quot;</span>,<span class="st">&quot;low_f&quot;</span>,<span class="st">&quot;ht_f&quot;</span>)])</span></code></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="lab6.html#cb134-1" tabindex="-1"></a>birthwt<span class="sc">$</span>smoke_f <span class="ot">&lt;-</span> <span class="fu">factor</span>(birthwt<span class="sc">$</span>smoke, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Non-smoker&quot;</span>,<span class="st">&quot;Smoker&quot;</span>))</span>
+<span id="cb134-2"><a href="lab6.html#cb134-2" tabindex="-1"></a>birthwt<span class="sc">$</span>race_f  <span class="ot">&lt;-</span> <span class="fu">factor</span>(birthwt<span class="sc">$</span>race, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;White&quot;</span>,<span class="st">&quot;Black&quot;</span>,<span class="st">&quot;Other&quot;</span>))</span>
+<span id="cb134-3"><a href="lab6.html#cb134-3" tabindex="-1"></a>birthwt<span class="sc">$</span>low_f   <span class="ot">&lt;-</span> <span class="fu">factor</span>(birthwt<span class="sc">$</span>low, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Normal weight&quot;</span>,<span class="st">&quot;Low weight&quot;</span>))</span>
+<span id="cb134-4"><a href="lab6.html#cb134-4" tabindex="-1"></a>birthwt<span class="sc">$</span>ht_f    <span class="ot">&lt;-</span> <span class="fu">factor</span>(birthwt<span class="sc">$</span>ht, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;No hypertension&quot;</span>,<span class="st">&quot;Hypertension&quot;</span>))</span>
+<span id="cb134-5"><a href="lab6.html#cb134-5" tabindex="-1"></a></span>
+<span id="cb134-6"><a href="lab6.html#cb134-6" tabindex="-1"></a><span class="fu">head</span>(birthwt[, <span class="fu">c</span>(<span class="st">&quot;bwt&quot;</span>,<span class="st">&quot;smoke_f&quot;</span>,<span class="st">&quot;race_f&quot;</span>,<span class="st">&quot;low_f&quot;</span>,<span class="st">&quot;ht_f&quot;</span>)])</span></code></pre></div>
 <pre><code>##     bwt    smoke_f race_f         low_f            ht_f
 ## 85 2523 Non-smoker  Black Normal weight No hypertension
 ## 86 2551 Non-smoker  Other Normal weight No hypertension
@@ -468,31 +500,31 @@ our conclusions if we used <span class="math inline"><span class="math inline">\
 <div id="visual-exploration-before-testing" class="section level2 hasAnchor" number="7.3">
 <h2><span class="header-section-number">7.3</span> Visual exploration before testing<a href="lab6.html#visual-exploration-before-testing" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Before running any test, it’s good practice to <em>look</em> at your data (recall Labs 4 and 9).</p>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="lab6.html#cb126-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb126-2"><a href="lab6.html#cb126-2" tabindex="-1"></a></span>
-<span id="cb126-3"><a href="lab6.html#cb126-3" tabindex="-1"></a><span class="fu">ggplot</span>(birthwt, <span class="fu">aes</span>(<span class="at">x =</span> smoke_f, <span class="at">y =</span> bwt, <span class="at">fill =</span> smoke_f)) <span class="sc">+</span></span>
-<span id="cb126-4"><a href="lab6.html#cb126-4" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb126-5"><a href="lab6.html#cb126-5" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.1</span>, <span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
-<span id="cb126-6"><a href="lab6.html#cb126-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Birth weight by maternal smoking status&quot;</span>,</span>
-<span id="cb126-7"><a href="lab6.html#cb126-7" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Maternal smoking status&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Birth weight (g)&quot;</span>) <span class="sc">+</span></span>
-<span id="cb126-8"><a href="lab6.html#cb126-8" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb126-9"><a href="lab6.html#cb126-9" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="lab6.html#cb136-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb136-2"><a href="lab6.html#cb136-2" tabindex="-1"></a></span>
+<span id="cb136-3"><a href="lab6.html#cb136-3" tabindex="-1"></a><span class="fu">ggplot</span>(birthwt, <span class="fu">aes</span>(<span class="at">x =</span> smoke_f, <span class="at">y =</span> bwt, <span class="at">fill =</span> smoke_f)) <span class="sc">+</span></span>
+<span id="cb136-4"><a href="lab6.html#cb136-4" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb136-5"><a href="lab6.html#cb136-5" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.1</span>, <span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb136-6"><a href="lab6.html#cb136-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Birth weight by maternal smoking status&quot;</span>,</span>
+<span id="cb136-7"><a href="lab6.html#cb136-7" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Maternal smoking status&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Birth weight (g)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb136-8"><a href="lab6.html#cb136-8" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb136-9"><a href="lab6.html#cb136-9" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-75-1.png" alt="" width="672" /></p>
-<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="lab6.html#cb127-1" tabindex="-1"></a><span class="fu">ggplot</span>(birthwt, <span class="fu">aes</span>(<span class="at">x =</span> race_f, <span class="at">y =</span> bwt, <span class="at">fill =</span> race_f)) <span class="sc">+</span></span>
-<span id="cb127-2"><a href="lab6.html#cb127-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb127-3"><a href="lab6.html#cb127-3" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.1</span>, <span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
-<span id="cb127-4"><a href="lab6.html#cb127-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Birth weight by maternal race&quot;</span>,</span>
-<span id="cb127-5"><a href="lab6.html#cb127-5" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Race&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Birth weight (g)&quot;</span>) <span class="sc">+</span></span>
-<span id="cb127-6"><a href="lab6.html#cb127-6" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb127-7"><a href="lab6.html#cb127-7" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="lab6.html#cb137-1" tabindex="-1"></a><span class="fu">ggplot</span>(birthwt, <span class="fu">aes</span>(<span class="at">x =</span> race_f, <span class="at">y =</span> bwt, <span class="at">fill =</span> race_f)) <span class="sc">+</span></span>
+<span id="cb137-2"><a href="lab6.html#cb137-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb137-3"><a href="lab6.html#cb137-3" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.1</span>, <span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb137-4"><a href="lab6.html#cb137-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Birth weight by maternal race&quot;</span>,</span>
+<span id="cb137-5"><a href="lab6.html#cb137-5" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Race&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Birth weight (g)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb137-6"><a href="lab6.html#cb137-6" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb137-7"><a href="lab6.html#cb137-7" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-76-1.png" alt="" width="672" /></p>
 <p>It’s also useful to look at a categorical-vs-categorical relationship before we test it formally. Here’s the proportion of low- versus normal-birth-weight babies within each smoking group. This plot uses the <code>scales</code> package to format the y-axis as a percentage — install it once with <code>install.packages("scales")</code> if you don’t already have it:</p>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="lab6.html#cb128-1" tabindex="-1"></a><span class="fu">ggplot</span>(birthwt, <span class="fu">aes</span>(<span class="at">x =</span> smoke_f, <span class="at">fill =</span> low_f)) <span class="sc">+</span></span>
-<span id="cb128-2"><a href="lab6.html#cb128-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">&quot;fill&quot;</span>) <span class="sc">+</span></span>
-<span id="cb128-3"><a href="lab6.html#cb128-3" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent) <span class="sc">+</span></span>
-<span id="cb128-4"><a href="lab6.html#cb128-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Proportion of low birth weight by maternal smoking status&quot;</span>,</span>
-<span id="cb128-5"><a href="lab6.html#cb128-5" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Maternal smoking status&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Percent of births&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;Birth weight category&quot;</span>) <span class="sc">+</span></span>
-<span id="cb128-6"><a href="lab6.html#cb128-6" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="lab6.html#cb138-1" tabindex="-1"></a><span class="fu">ggplot</span>(birthwt, <span class="fu">aes</span>(<span class="at">x =</span> smoke_f, <span class="at">fill =</span> low_f)) <span class="sc">+</span></span>
+<span id="cb138-2"><a href="lab6.html#cb138-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">&quot;fill&quot;</span>) <span class="sc">+</span></span>
+<span id="cb138-3"><a href="lab6.html#cb138-3" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent) <span class="sc">+</span></span>
+<span id="cb138-4"><a href="lab6.html#cb138-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Proportion of low birth weight by maternal smoking status&quot;</span>,</span>
+<span id="cb138-5"><a href="lab6.html#cb138-5" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Maternal smoking status&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Percent of births&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;Birth weight category&quot;</span>) <span class="sc">+</span></span>
+<span id="cb138-6"><a href="lab6.html#cb138-6" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-77-1.png" alt="" width="672" /></p>
 <p><code>position = "fill"</code> rescales each bar to 100%, which makes it easy to compare <em>proportions</em> between groups of different sizes — exactly the kind of relationship a chi-squared test (below) will test formally.</p>
 <div class="rmdquestion">
@@ -520,7 +552,7 @@ higher proportion of low-birth-weight babies?
 <div id="the-t-test-comparing-two-groups" class="section level2 hasAnchor" number="7.4">
 <h2><span class="header-section-number">7.4</span> The t-test: comparing two groups<a href="lab6.html#the-t-test-comparing-two-groups" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>A t-test compares the means of two groups of a continuous variable. Here we ask: <strong>does maternal smoking status affect birth weight?</strong></p>
-<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="lab6.html#cb129-1" tabindex="-1"></a><span class="fu">t.test</span>(bwt <span class="sc">~</span> smoke_f, <span class="at">data =</span> birthwt)</span></code></pre></div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="lab6.html#cb139-1" tabindex="-1"></a><span class="fu">t.test</span>(bwt <span class="sc">~</span> smoke_f, <span class="at">data =</span> birthwt)</span></code></pre></div>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
@@ -535,13 +567,13 @@ higher proportion of low-birth-weight babies?
 <div id="checking-the-t-tests-assumptions" class="section level3 hasAnchor" number="7.4.1">
 <h3><span class="header-section-number">7.4.1</span> Checking the t-test’s assumptions<a href="lab6.html#checking-the-t-tests-assumptions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A standard t-test assumes each group is roughly normally distributed. We can check this visually with a histogram, or formally with a Shapiro-Wilk test (introduced further in Lab 10):</p>
-<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="lab6.html#cb131-1" tabindex="-1"></a><span class="fu">shapiro.test</span>(birthwt<span class="sc">$</span>bwt[birthwt<span class="sc">$</span>smoke_f <span class="sc">==</span> <span class="st">&quot;Smoker&quot;</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="lab6.html#cb141-1" tabindex="-1"></a><span class="fu">shapiro.test</span>(birthwt<span class="sc">$</span>bwt[birthwt<span class="sc">$</span>smoke_f <span class="sc">==</span> <span class="st">&quot;Smoker&quot;</span>])</span></code></pre></div>
 <pre><code>## 
 ##  Shapiro-Wilk normality test
 ## 
 ## data:  birthwt$bwt[birthwt$smoke_f == &quot;Smoker&quot;]
 ## W = 0.98296, p-value = 0.4195</code></pre>
-<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="lab6.html#cb133-1" tabindex="-1"></a><span class="fu">shapiro.test</span>(birthwt<span class="sc">$</span>bwt[birthwt<span class="sc">$</span>smoke_f <span class="sc">==</span> <span class="st">&quot;Non-smoker&quot;</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="lab6.html#cb143-1" tabindex="-1"></a><span class="fu">shapiro.test</span>(birthwt<span class="sc">$</span>bwt[birthwt<span class="sc">$</span>smoke_f <span class="sc">==</span> <span class="st">&quot;Non-smoker&quot;</span>])</span></code></pre></div>
 <pre><code>## 
 ##  Shapiro-Wilk normality test
 ## 
@@ -575,8 +607,8 @@ interval tell you, in plain language?
 <div id="anova-comparing-more-than-two-groups" class="section level2 hasAnchor" number="7.5">
 <h2><span class="header-section-number">7.5</span> ANOVA: comparing more than two groups<a href="lab6.html#anova-comparing-more-than-two-groups" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>A t-test only compares two groups. <code>race_f</code> has three categories, so we need a one-way <strong>ANOVA</strong> (Analysis of Variance) instead: <strong>does birth weight differ across maternal race categories?</strong></p>
-<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="lab6.html#cb135-1" tabindex="-1"></a>race_model <span class="ot">&lt;-</span> <span class="fu">aov</span>(bwt <span class="sc">~</span> race_f, <span class="at">data =</span> birthwt)</span>
-<span id="cb135-2"><a href="lab6.html#cb135-2" tabindex="-1"></a><span class="fu">summary</span>(race_model)</span></code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="lab6.html#cb145-1" tabindex="-1"></a>race_model <span class="ot">&lt;-</span> <span class="fu">aov</span>(bwt <span class="sc">~</span> race_f, <span class="at">data =</span> birthwt)</span>
+<span id="cb145-2"><a href="lab6.html#cb145-2" tabindex="-1"></a><span class="fu">summary</span>(race_model)</span></code></pre></div>
 <pre><code>##              Df   Sum Sq Mean Sq F value  Pr(&gt;F)   
 ## race_f        2  5015725 2507863   4.913 0.00834 **
 ## Residuals   186 94953931  510505                   
@@ -586,7 +618,7 @@ interval tell you, in plain language?
 <div id="post-hoc-comparisons-which-groups-actually-differ" class="section level3 hasAnchor" number="7.5.1">
 <h3><span class="header-section-number">7.5.1</span> Post-hoc comparisons: which groups actually differ?<a href="lab6.html#post-hoc-comparisons-which-groups-actually-differ" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>ANOVA tells you <em>that</em> the groups differ overall, but not <em>which specific pairs</em> differ. For that, use Tukey’s Honest Significant Difference test:</p>
-<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="lab6.html#cb137-1" tabindex="-1"></a><span class="fu">TukeyHSD</span>(race_model)</span></code></pre></div>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="lab6.html#cb147-1" tabindex="-1"></a><span class="fu">TukeyHSD</span>(race_model)</span></code></pre></div>
 <pre><code>##   Tukey multiple comparisons of means
 ##     95% family-wise confidence level
 ## 
@@ -628,14 +660,14 @@ observations? Why might that be a problem for ANOVA?
 <h2><span class="header-section-number">7.6</span> Chi-squared test: comparing two categorical variables<a href="lab6.html#chi-squared-test-comparing-two-categorical-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>A chi-squared test asks whether two <strong>categorical</strong> variables are associated. Here’s a genuinely important clinical question: <strong>is maternal smoking associated with having a low-birth-weight baby?</strong></p>
 <p>First, build a contingency table:</p>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="lab6.html#cb139-1" tabindex="-1"></a>smoke_low_table <span class="ot">&lt;-</span> <span class="fu">table</span>(birthwt<span class="sc">$</span>smoke_f, birthwt<span class="sc">$</span>low_f)</span>
-<span id="cb139-2"><a href="lab6.html#cb139-2" tabindex="-1"></a>smoke_low_table</span></code></pre></div>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="lab6.html#cb149-1" tabindex="-1"></a>smoke_low_table <span class="ot">&lt;-</span> <span class="fu">table</span>(birthwt<span class="sc">$</span>smoke_f, birthwt<span class="sc">$</span>low_f)</span>
+<span id="cb149-2"><a href="lab6.html#cb149-2" tabindex="-1"></a>smoke_low_table</span></code></pre></div>
 <pre><code>##             
 ##              Normal weight Low weight
 ##   Non-smoker            86         29
 ##   Smoker                44         30</code></pre>
 <p>Then test it:</p>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="lab6.html#cb141-1" tabindex="-1"></a><span class="fu">chisq.test</span>(smoke_low_table)</span></code></pre></div>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="lab6.html#cb151-1" tabindex="-1"></a><span class="fu">chisq.test</span>(smoke_low_table)</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test with Yates&#39; continuity correction
 ## 
@@ -730,7 +762,7 @@ significant association does not, by itself, prove that one variable
         </div>
       </div>
 <a href="lab5.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="lab7.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="redlining.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
