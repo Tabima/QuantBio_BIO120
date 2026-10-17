@@ -14,7 +14,7 @@ This lab supports the group project idea on **medical bias and racial redlining 
 
 ***
 
-## 1. What are these data?
+## What are these data?
 
 ### Redlining: the HOLC grades
 
@@ -100,7 +100,7 @@ Three things are important to understand about these numbers:
 
 ***
 
-## 2. What do we expect to see?
+## What do we expect to see?
 
 Several published studies have linked historic redlining to health outcomes today:
 
@@ -112,7 +112,7 @@ So a reasonable **hypothesis** is that tracts graded D have a higher estimated p
 
 ***
 
-## 3. Load and join the data (short setup)
+## Load and join the data (short setup)
 
 Save both files in a `data` folder in your `BIOL120` folder as `holc_tracts.csv` (the HOLC file) and `places_tracts.csv` (the PLACES file). Both tract IDs are 11-digit codes that can start with a zero, so we read them as **text** to keep the zero.
 
@@ -143,9 +143,9 @@ table(joined$grade)
 
 ***
 
-## 4. Comparing health outcomes by grade
+## Comparing health outcomes by grade
 
-### 4.1 One outcome
+### One outcome
 
 Start with the outcome you chose in Question 1. Here we use diabetes; change `DIABETES_CrudePrev` to your own.
 
@@ -161,7 +161,7 @@ ggplot(joined, aes(x = grade, y = DIABETES_CrudePrev, color = grade)) +
 
 **How to read this plot:** each point is a census tract. The violin shows how many tracts have each value (wider means more tracts). The middle line of the box is the median, and the box covers the middle half of the tracts. If the boxes for A and D are shifted relative to each other, the typical tract in those grades differs. Notice that the grades **overlap**: some D tracts are healthier than some A tracts. A difference between grades is a difference in the *typical* tract, not a rule about every tract.
 
-### 4.2 Many outcomes at once
+### Many outcomes at once
 
 Is diabetes special, or do many outcomes follow the same pattern? We can look at several outcomes in one figure: diabetes, poor mental health, depression, current smoking, lack of health insurance, obesity and lack of leisure-time physical activity.
 
@@ -185,7 +185,7 @@ ggplot(long, aes(x = grade, y = prevalence, fill = grade)) +
   theme(legend.position = "none")
 ```
 
-### 4.3 How big is the difference?
+### How big is the difference?
 
 A plot shows a pattern, but a number says how big it is. We calculate the median of each outcome for each grade, then the ratio of D to A.
 
@@ -205,7 +205,7 @@ round(unlist(medians[medians$grade == "D", -1]) / unlist(medians[medians$grade =
 - Which outcomes would you expect to be directly affected by health care access, and which by something else (e.g. environment, stress, income)? Do the results fit your expectations?
 ```
 
-### 4.4 Is the difference real or just chance?
+### Is the difference real or just chance?
 
 With thousands of tracts, even small differences can look “significant”. We use a **one-way ANOVA** to ask whether the average outcome differs across the four grades, and Tukey’s test to see which pairs of grades differ. Then we use a **Spearman correlation** to ask whether tracts with more of their area in D have worse outcomes (a “dose-response” check: more redlining, worse health?).
 
@@ -243,7 +243,7 @@ ggplot(joined, aes(x = area_D, y = DIABETES_CrudePrev)) +
 
 ***
 
-## 5. Could something else explain the pattern?
+## Could something else explain the pattern?
 
 Suppose D tracts do have more diabetes. Does that mean redlining *caused* it? Not necessarily. Redlined neighborhoods also tend to have lower incomes today, and income itself is linked to health. This is called **confounding**: a third factor linked to both the exposure and the outcome. PLACES doesn't have income, but it does have `FOODSTAMP_CrudePrev` (estimated % of adults in households receiving food stamps/SNAP), which we can use as a rough indicator of poverty.
 
@@ -272,7 +272,7 @@ table(joined$grade, joined$poverty)
 
 ***
 
-## 6. Looking at your own state or county
+## Looking at your own state or county
 
 The HOLC maps cover many cities, and patterns can differ between them. Which states are in your joined data, and can you look at just one?
 
@@ -302,7 +302,7 @@ ggplot(ma, aes(x = grade, y = DIABETES_CrudePrev, color = grade)) +
 
 ***
 
-## 7. What can these data tell us (and what can't they)?
+## What can these data tell us (and what can't they)?
 
 Write down your answers in your own words. A strong project proposal will address these issues:
 
@@ -319,7 +319,7 @@ Write down your answers in your own words. A strong project proposal will addres
 
 ***
 
-## 8. Turning this into your group project
+## Turning this into your group project
 
 Your project proposal could build on this starter by:
 
